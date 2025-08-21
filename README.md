@@ -1,2 +1,2 @@
-# AiManiac-
-Un juego de acción y supervivencia en primera persona en el que los jugadores, usando esquís, descienden por una montaña nevada a gran velocidad, esquivando trampas y enfrentándose a la persecución de los guardias, con el objetivo de sobrevivir el mayor tiempo posible. 
+# AiManiac
+Un juego de primera persona, FPS de acción en un híbrido de racing-runner en donde los jugadores asumen el papel de un fugitivo que ha escapado de una prisión de alta seguridad en la cima de una montaña. Descienden a una velocidad vertiginosa por las laderas nevadas, utilizando una pistola de energía para desactivar trampas y defenderse. El juego se centra en la toma de decisiones rápidas, la precisión y la habilidad para sobrevivir a un descenso interminable lleno de obstáculos y peligros. Cada partida es una carrera contra el tiempo y la muerte, donde el objetivo es superar la distancia anterior y desbloquear nuevas habilidades para llegar aún más lejos. 
