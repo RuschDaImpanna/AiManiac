@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1705118762175188777}
   - component: {fileID: 6871043875731534865}
   - component: {fileID: 8073308525451282811}
+  - component: {fileID: -3571673757252925745}
   m_Layer: 0
   m_Name: PFB_Player
   m_TagString: Untagged
@@ -189,3 +190,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e547d3e280b70b45af0ba30559961ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+--- !u!114 &-3571673757252925745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6458590648794602947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3cfaa613018be43bbc9970b68472de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  mountainSection: {fileID: 0}
