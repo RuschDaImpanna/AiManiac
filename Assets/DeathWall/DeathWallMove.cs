@@ -14,6 +14,6 @@ public class DestroyWallMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(0, 0, player.transform.position.z - 30);
+        transform.position = new Vector3(0, player.transform.position.y + 50, player.transform.position.z - 75);
     }
 }

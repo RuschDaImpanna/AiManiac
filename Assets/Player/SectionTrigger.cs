@@ -1,4 +1,5 @@
 using UnityEngine;
+using System;
 
 public class SectionTrigger : MonoBehaviour
 {
@@ -18,7 +19,15 @@ public class SectionTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Zone_MountainGenerator"))
         {
-            Instantiate(mountainSection, new Vector3(0, 0, 30), Quaternion.identity);
+            float currentZPosition = mountainSection.transform.localPosition.z;
+            float currentYPosition = mountainSection.transform.localPosition.y;
+
+            float newZPosition = currentZPosition + (float) (mountainSection.transform.localScale.z * Math.Cos(mountainSection.transform.rotation.eulerAngles.x * (Math.PI / 180)));
+            float newYPosition = currentYPosition - (float) (mountainSection.transform.localScale.z * Math.Sin(mountainSection.transform.rotation.eulerAngles.x * (Math.PI / 180)));
+
+            GameObject newSection = Instantiate(mountainSection, new Vector3(mountainSection.transform.localPosition.x, newYPosition, newZPosition), mountainSection.transform.rotation);
+
+            mountainSection = newSection;
         }
     }
 }
