@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (rb != null)
+        //{
+        //    Debug.Log("Current Velocity: " + rb.linearVelocity + " Magnitude: " + Mathf.Sqrt(Mathf.Pow(rb.linearVelocity.x, 2) + Mathf.Pow(rb.linearVelocity.y, 2) + Mathf.Pow(rb.linearVelocity.z, 2)) * 3.6);
+        //}
     }
 
     void FixedUpdate()
