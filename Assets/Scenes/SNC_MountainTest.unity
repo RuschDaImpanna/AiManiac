@@ -307,6 +307,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8086515397417415601, guid: fd66e1963eaef85438d6d4912df50b4e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8086515397417415601, guid: fd66e1963eaef85438d6d4912df50b4e, type: 3}
+      propertyPath: obstaclePrefab
+      value: 
+      objectReference: {fileID: 6287956747211713015, guid: be8cdb3cae311934f9534b1e27a45701, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
