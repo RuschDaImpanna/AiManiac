@@ -31,8 +31,6 @@ public class CameraMovement : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.parent.Rotate(Vector3.up * mouseX);
 
-        Debug.Log(mouseMove);
-
     }
 
 }
