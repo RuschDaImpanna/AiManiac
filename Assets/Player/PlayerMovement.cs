@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    private float force = 10f;
+    private float force = 50f;
     private Rigidbody rb;
     private PlayerInput playerInput;
     private Vector2 moveInput;
