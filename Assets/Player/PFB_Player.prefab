@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 544923877727734743}
   - component: {fileID: 2969065965055080892}
   - component: {fileID: 5265752611043394911}
+  - component: {fileID: 416329612146621999}
   m_Layer: 0
   m_Name: PFB_Player
   m_TagString: Untagged
@@ -32,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 2444850865578077370}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.14275, y: 15.2, z: 0.30628}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -173,6 +174,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 90c4495b-f577-4f8d-8b92-782e5710108b
     m_ActionName: 'Player/Left[/Keyboard/a]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e15aea12-ad15-4487-bb96-61a053da8ffd
+    m_ActionName: 'Player/Look[/Mouse/delta]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 71c4bdb5-1379-477b-a6ab-17ec698c8880
+    m_ActionName: 'Player/Gun[/Mouse/leftButton]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -203,3 +212,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   mountainSection: {fileID: 0}
+--- !u!114 &416329612146621999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444850865578077370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa4ea8fe55f64d949b330b85f30f0964, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputController

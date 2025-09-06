@@ -32,5 +32,11 @@ public class InputController : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+        
+        Debug.Log(GetMouseMove());
+
+    }
     
 }
