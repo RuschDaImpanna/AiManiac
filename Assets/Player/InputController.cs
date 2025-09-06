@@ -31,12 +31,5 @@ public class InputController : MonoBehaviour
         return playerControls.Player.Look.ReadValue<Vector2>();
 
     }
-
-    private void FixedUpdate()
-    {
-        
-        Debug.Log(GetMouseMove());
-
-    }
     
 }
