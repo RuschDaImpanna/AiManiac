@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1757768198111015277}
   - component: {fileID: 1239793964688089900}
+  - component: {fileID: 3819670672103057370}
   m_Layer: 0
   m_Name: NewSectionTrigger
   m_TagString: Zone_MountainGenerator
@@ -26,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 922428565199957381}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 20, z: 0.33}
-  m_LocalScale: {x: 1, y: 50, z: 0.032722574}
+  m_LocalPosition: {x: 0, y: 20, z: -0.4836387}
+  m_LocalScale: {x: 1, y: 50, z: 0.03272257}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3015976956864774460}
@@ -53,6 +54,20 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3819670672103057370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 922428565199957381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d3cfaa613018be43bbc9970b68472de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NextMountainSection
+  currentMountainSection: {fileID: 1437532520046386625}
+  needDuplicate: 1
 --- !u!1 &1437532520046386625
 GameObject:
   m_ObjectHideFlags: 0
@@ -65,7 +80,6 @@ GameObject:
   - component: {fileID: 1650600131411401434}
   - component: {fileID: 8962690967715367139}
   - component: {fileID: 3789876104850571263}
-  - component: {fileID: 3366218385940738348}
   - component: {fileID: 8086515397417415601}
   m_Layer: 0
   m_Name: PFB_MountainSection
@@ -84,10 +98,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 60, y: 1, z: 60}
+  m_LocalScale: {x: 60, y: 1, z: 137.73}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1757768198111015277}
+  - {fileID: 196938467192848368}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 30, y: 0, z: 0}
 --- !u!33 &1650600131411401434
@@ -167,18 +182,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3366218385940738348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1437532520046386625}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f463f7226d0d64a84ef6baa7315684, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::MountainDestruction
 --- !u!114 &8086515397417415601
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,9 +189,76 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437532520046386625}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f233febace1210046808f65514424336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstaclesGeneration
   obstaclePrefab: {fileID: 6287956747211713015, guid: be8cdb3cae311934f9534b1e27a45701, type: 3}
+  seed: 0
+--- !u!1 &5319486831652451949
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 196938467192848368}
+  - component: {fileID: 5675849170854956372}
+  - component: {fileID: 7221214143165273929}
+  m_Layer: 0
+  m_Name: DestructionSectionTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &196938467192848368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319486831652451949}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 20, z: 1.4836388}
+  m_LocalScale: {x: 1, y: 50, z: 0.03272257}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3015976956864774460}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5675849170854956372
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319486831652451949}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7221214143165273929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5319486831652451949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75f463f7226d0d64a84ef6baa7315684, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MountainDestruction

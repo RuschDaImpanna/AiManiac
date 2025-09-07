@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: 50, z: -75}
-  m_LocalScale: {x: 30, y: 30, z: 0.33}
+  m_LocalScale: {x: 30, y: 30, z: 4.5068793}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -68,7 +68,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   player: {fileID: 0}
-  mountainSection: {fileID: 0}
+  prefabMountainSection: {fileID: 1437532520046386625, guid: fd66e1963eaef85438d6d4912df50b4e, type: 3}
+  isFront: 0
 --- !u!54 &405838039513297169
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public class ObstaclesGeneration : MonoBehaviour
 {
-    public GameObject obstaclePrefab;  
+    public GameObject obstaclePrefab;
+    public int seed;
     private List<(Vector3 position, Vector3 size)> existingObstacles = new List<(Vector3 position, Vector3 size)>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,6 +34,11 @@ public class ObstaclesGeneration : MonoBehaviour
             availablePositions.Add(availList);
         }
 
+        // Set random seed
+        seed = seed == 0 ? Random.Range(1, 10000) : seed;
+        Random.State originalState = Random.state;
+        Random.InitState(seed);
+
         // Instantiate cubes at random positions
         Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
 
@@ -42,19 +48,20 @@ public class ObstaclesGeneration : MonoBehaviour
             {
                 if (Random.Range(0, 1000) < 5f) // 0.5% chance to spawn an obstacle
                 {
-                    bool isPosAvailable = CheckPosAvailability(obstaclePrefab, pos);
-                    if (!isPosAvailable) continue;
+                    if (CheckPosAvailability(obstaclePrefab, pos)) {
+                        GameObject newObstacle = Instantiate(obstaclePrefab);
+                        newObstacle.transform.parent = transform;
+                        newObstacle.transform.localPosition = pos + new Vector3(0, obstacleRelativeScale.y / 2f, 0);
+                        newObstacle.transform.localRotation = Quaternion.identity;
 
-                    GameObject newObstacle = Instantiate(obstaclePrefab);
-                    newObstacle.transform.parent = transform;
-                    newObstacle.transform.localPosition = pos + new Vector3(0, obstacleRelativeScale.y / 2f, 0);
-                    newObstacle.transform.localRotation = Quaternion.identity;
-
-                    existingObstacles.Add((pos, obstacleRelativeScale));
+                        existingObstacles.Add((pos, obstacleRelativeScale));
+                    }
                 }
             }
         }
 
+        // Restore original random state
+        Random.state = originalState;
     }
 
     Vector3 GetRelativeSize(Vector3 size)

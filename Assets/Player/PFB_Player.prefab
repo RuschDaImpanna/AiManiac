@@ -15,10 +15,10 @@ GameObject:
   - component: {fileID: 3433682098617121403}
   - component: {fileID: 544923877727734743}
   - component: {fileID: 2969065965055080892}
-  - component: {fileID: 5265752611043394911}
+  - component: {fileID: 1792985915003758640}
   m_Layer: 0
   m_Name: PFB_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -142,7 +142,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &544923877727734743
 MonoBehaviour:
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e547d3e280b70b45af0ba30559961ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
---- !u!114 &5265752611043394911
+--- !u!114 &1792985915003758640
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,5 +201,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d3cfaa613018be43bbc9970b68472de, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: '::'
-  mountainSection: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::MountainGeneration
+  currentMountainSection: {fileID: 0}
+  needDuplicate: 1

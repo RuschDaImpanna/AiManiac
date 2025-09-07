@@ -1,11 +1,10 @@
 fileFormatVersion: 2
-guid: f36ffcf63afeb834f9a0bf952dcdc551
+guid: 0d3cfaa613018be43bbc9970b68472de
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
-  - player: {instanceID: 0}
-  - prefabMountainSection: {fileID: 1437532520046386625, guid: fd66e1963eaef85438d6d4912df50b4e, type: 3}
+  - prefabMountainSection: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
