@@ -391,14 +391,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1792985915003758640, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
-      propertyPath: currentMountainSection
-      value: 
-      objectReference: {fileID: 1973325354}
     - target: {fileID: 2444850865578077370, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_Name
       value: PFB_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5265752611043394911, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: nextMountainSection
+      value: 
+      objectReference: {fileID: 1973325354}
     - target: {fileID: 8914735227507761498, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

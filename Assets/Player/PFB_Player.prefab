@@ -214,7 +214,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3cfaa613018be43bbc9970b68472de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  mountainSection: {fileID: 0}
+  nextMountainSection: {fileID: 0}
+  needDuplicate: 1
 --- !u!114 &416329612146621999
 MonoBehaviour:
   m_ObjectHideFlags: 0
