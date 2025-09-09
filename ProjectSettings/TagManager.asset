@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 3
   tags:
   - Zone_MountainGenerator
+  - Zone_MountainDestructor
+  - Zone_LoopReset
   layers:
   - Default
   - TransparentFX

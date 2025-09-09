@@ -16,11 +16,9 @@ public class MountainDestruction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Collision detected with " + other.gameObject.name);
         if (other.gameObject.CompareTag("Zone_MountainDestructor"))
         {
-            Debug.Log("Mountain section destroyed: " + gameObject.name);
-            Destroy(gameObject);
+            Destroy(transform.parent.gameObject);
         }
     }
 }
