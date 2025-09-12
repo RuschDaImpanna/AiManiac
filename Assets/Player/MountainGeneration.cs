@@ -4,7 +4,7 @@ using System;
 public class MountainGeneration : MonoBehaviour
 {
 
-    public GameObject nextMountainSection;
+    public GameObject lastMountainSectionGenerated;
     public Boolean needDuplicate = false;
     private GameObject duplicateCurrentMountainSection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,30 +24,30 @@ public class MountainGeneration : MonoBehaviour
         {
             int customSeed = UnityEngine.Random.Range(1, 10000);
 
-            Vector3 newSectionPos = nextMountainSection.transform.localPosition + CalculteRelativeNextSectionPosition();
+            Vector3 newSectionPos = lastMountainSectionGenerated.transform.position + CalculteRelativeNextSectionPosition();
             GameObject newSection = Instantiate(
-                nextMountainSection, 
+                lastMountainSectionGenerated, 
                 newSectionPos, 
-                nextMountainSection.transform.rotation, 
-                nextMountainSection.transform.parent
+                lastMountainSectionGenerated.transform.rotation, 
+                lastMountainSectionGenerated.transform.parent
             );
             newSection.GetComponent<ObstaclesGeneration>().seed = customSeed;
 
             if (needDuplicate)
             {
-                Vector3 duplicateSectionPos = nextMountainSection.transform.localPosition - CalculteRelativeNextSectionPosition() * 2;
+                Vector3 duplicateSectionPos = lastMountainSectionGenerated.transform.position - CalculteRelativeNextSectionPosition() * 2;
                 GameObject duplicatedSection = Instantiate(
-                    nextMountainSection, 
+                    lastMountainSectionGenerated, 
                     duplicateSectionPos, 
-                    nextMountainSection.transform.rotation, 
-                    nextMountainSection.transform.parent
+                    lastMountainSectionGenerated.transform.rotation, 
+                    lastMountainSectionGenerated.transform.parent
                 );
                 duplicatedSection.GetComponent<ObstaclesGeneration>().seed = customSeed;
 
                 duplicateCurrentMountainSection = duplicatedSection;
             }
 
-            nextMountainSection = newSection;
+            lastMountainSectionGenerated = newSection;
         } else if (other.gameObject.CompareTag("Zone_LoopReset"))
         {
             //transform.position -= new Vector3(
@@ -57,7 +57,7 @@ public class MountainGeneration : MonoBehaviour
             //);
             transform.position -= CalculteRelativeNextSectionPosition() * 3f;
 
-            nextMountainSection = duplicateCurrentMountainSection;
+            lastMountainSectionGenerated = duplicateCurrentMountainSection;
         }
     }
 
@@ -65,13 +65,13 @@ public class MountainGeneration : MonoBehaviour
     {
         return new Vector3(
             0,
-            - nextMountainSection.transform.localScale.z * (float) Math.Sin(nextMountainSection.transform.rotation.eulerAngles.x * Math.PI / 180), 
-            nextMountainSection.transform.localScale.z * (float) Math.Cos(nextMountainSection.transform.rotation.eulerAngles.x * Math.PI / 180)
+            - lastMountainSectionGenerated.transform.localScale.z * (float) Math.Sin(lastMountainSectionGenerated.transform.rotation.eulerAngles.x * Math.PI / 180), 
+            lastMountainSectionGenerated.transform.localScale.z * (float) Math.Cos(lastMountainSectionGenerated.transform.rotation.eulerAngles.x * Math.PI / 180)
         );
     }
 
     public void SetCurrentMountainSection(GameObject currentMountainSection)
     {
-        this.nextMountainSection = currentMountainSection;
+        this.lastMountainSectionGenerated = currentMountainSection;
     }
 }

@@ -20,7 +20,7 @@ public class DangerOMeter : MonoBehaviour
         currentSpeed = currentVelocity.magnitude;
         previousVelocity = currentVelocity;
 
-        Debug.Log($"Player Speed: {currentSpeed:0.00} | Accel: {acceleration.magnitude:0.00}");
+        //Debug.Log($"Player Speed: {currentSpeed:0.00} | Accel: {acceleration.magnitude:0.00}");
 
     }
 }

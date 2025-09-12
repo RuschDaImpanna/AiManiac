@@ -25,9 +25,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Gun",
+                    "name": "Shoot",
                     "type": "Button",
-                    "id": "71c4bdb5-1379-477b-a6ab-17ec698c8880",
+                    "id": "16439265-f625-4171-bb0d-f35ce7ffce32",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -103,23 +103,23 @@
                 },
                 {
                     "name": "",
-                    "id": "7e75fbc6-a350-42fd-a5e9-f55a4cc598ed",
+                    "id": "96c1b6de-38d6-4482-833f-78361f574eb3",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Gun",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "ab4a89f5-ca83-42a9-b8ad-11c313dcb4a1",
-                    "path": "<Mouse>/leftButton",
+                    "id": "35357ca8-03f3-4de8-84a2-4fa67bc2a10e",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Gun",
+                    "action": "Shoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
