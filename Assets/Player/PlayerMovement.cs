@@ -18,6 +18,8 @@ public class PlayerMovement : MonoBehaviour
 
         moveAction.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
         moveAction.canceled += ctx => moveInput = Vector2.zero;
+
+        rb.AddForce(new Vector3(0f, 0f, 1f) * force);
     }
 
     void FixedUpdate()

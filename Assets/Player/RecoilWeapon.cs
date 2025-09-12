@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,8 @@ public class RecoilWeapon : MonoBehaviour
     private Rigidbody playerRigidbody;
     public Transform playerCamera;
     public float recoilForce = 1000f;
+    public float cooldown = 1.5f;
+    private float lastShootTime = -Mathf.Infinity;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -34,8 +37,11 @@ public class RecoilWeapon : MonoBehaviour
     // Called when left mouse button is clicked
     void OnShootRecoilWeapon()
     {
-        //Debug.Log("Horizontal recoil camera: " + -playerCamera.forward + " Vertical recoil camera: " + playerCamera.up);
-        Vector3 recoilDirection = -playerCamera.forward;
+        if (Time.time - lastShootTime < cooldown) return;
+
+        Vector3 vector3 = playerCamera.forward;
+        Vector3 recoilDirection = - new Vector3(vector3.x, 3*vector3.y/4, vector3.z/10);
         playerRigidbody.AddForce(recoilDirection * recoilForce, ForceMode.Impulse);
+        lastShootTime = Time.time;
     }
 }
