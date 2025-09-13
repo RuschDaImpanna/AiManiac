@@ -25,10 +25,12 @@ public class DestroyWallMove : MonoBehaviour
             );
         } else
         {
+            GameObject mountain = transform.parent.gameObject;
+
             transform.position = player.transform.position + new Vector3(
                 0f,
-                -prefabMountainSection.transform.localScale.z * Mathf.Sin(prefabMountainSection.transform.rotation.eulerAngles.x * Mathf.PI / 180) * 3.5f,
-                prefabMountainSection.transform.localScale.z * Mathf.Cos(prefabMountainSection.transform.rotation.eulerAngles.x * Mathf.PI / 180) * 3.5f
+                -prefabMountainSection.transform.localScale.z * Mathf.Sin(mountain.transform.rotation.eulerAngles.x * Mathf.PI / 180) * 3.5f,
+                prefabMountainSection.transform.localScale.z * Mathf.Cos(mountain.transform.rotation.eulerAngles.x * Mathf.PI / 180) * 3.5f
             );
         }
         

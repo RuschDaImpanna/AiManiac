@@ -107,7 +107,6 @@ public class ObstaclesGeneration : MonoBehaviour
     private void GenerateObstacles()
     {
         // Set random seed
-        Debug.Log("Obstacle Generation Seed: " + seed);
         seed = seed == 0 ? Random.Range(1, 10000) : seed;
         Random.State originalState = Random.state;
         Random.InitState(seed);
@@ -127,6 +126,7 @@ public class ObstaclesGeneration : MonoBehaviour
                         newObstacle.transform.parent = transform;
                         newObstacle.transform.localPosition = pos + new Vector3(0, obstacleRelativeScale.y / 2f, 0);
                         newObstacle.transform.localRotation = Quaternion.identity;
+                        newObstacle.transform.localScale = obstacleRelativeScale;
 
                         existingObstacles.Add((pos, obstacleRelativeScale));
                     }
