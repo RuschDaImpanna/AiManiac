@@ -1,67 +1,65 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class ObstaclesGeneration : MonoBehaviour
 {
     public GameObject obstaclePrefab;
     public int seed;
+    public bool isInitialized = false;
     private List<(Vector3 position, Vector3 size)> existingObstacles = new List<(Vector3 position, Vector3 size)>();
+    private static List<List<Vector3>> gridPositions = new List<List<Vector3>>();
+
+    public IEnumerator Initialize(int customSeed = 0, bool deleteExistingObstacles = true)
+    {
+        isInitialized = false;
+
+        if (customSeed != 0)
+        {
+            seed = customSeed;
+        }
+
+        // Generate grid positions
+        if (gridPositions.Count == 0)
+        {
+            GenerateGridPositions(obstaclePrefab.transform.localScale, 0f, 0f);
+        }
+
+        if (deleteExistingObstacles)
+        {
+            // Delete existing obstacles
+            for (int i = transform.childCount - 1; i >= 0; i--)
+            {
+                Transform child = transform.GetChild(i);
+                if (child.CompareTag("Obstacle"))
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
+            yield return null;
+        }
+
+        //Debug.Log("Obstacles " + transform.name + ": " + GetChildrenObstaclesCount());
+
+        // Generate obstacles
+        if (GetChildrenObstaclesCount() == 0)
+        {
+            GenerateObstacles();
+        }
+
+        yield return null;
+
+        isInitialized = true;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Generate grid positions
-        List<List<Vector3>> gridPositions = new List<List<Vector3>>();
-        List<List<bool>> availablePositions = new List<List<bool>>();
-
-        Vector3 gridScale = Vector3.one;
-        float gapX = 0;
-        float gapZ = 0;
-
-        for (float x = -(transform.localScale.x) / 2f; (x + gridScale.x) <= transform.localScale.x / 2f; x += gridScale.x + gapX)
+        if (!isInitialized)
         {
-            List<Vector3> list = new List<Vector3>();
-            List<bool> availList = new List<bool>();
-
-            for (float z = -(transform.localScale.z) / 2f; (z + gridScale.z) <= transform.localScale.z / 2f; z += gridScale.z + gapZ)
-            {
-                list.Add(new Vector3((x + gridScale.x / 2f) / transform.localScale.x, 0.5f, (z + gridScale.z / 2f) / transform.localScale.z));
-                
-                availList.Add(true);
-            }
-
-            gridPositions.Add(list);
-            availablePositions.Add(availList);
+            StartCoroutine(Initialize());
         }
-
-        // Set random seed
-        seed = seed == 0 ? Random.Range(1, 10000) : seed;
-        Random.State originalState = Random.state;
-        Random.InitState(seed);
-
-        // Instantiate cubes at random positions
-        Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
-
-        foreach (List<Vector3> list in gridPositions)
-        {
-            foreach (Vector3 pos in list)
-            {
-                if (Random.Range(0, 1000) < 5f) // 0.5% chance to spawn an obstacle
-                {
-                    if (CheckPosAvailability(obstaclePrefab, pos)) {
-                        GameObject newObstacle = Instantiate(obstaclePrefab);
-                        newObstacle.transform.parent = transform;
-                        newObstacle.transform.localPosition = pos + new Vector3(0, obstacleRelativeScale.y / 2f, 0);
-                        newObstacle.transform.localRotation = Quaternion.identity;
-
-                        existingObstacles.Add((pos, obstacleRelativeScale));
-                    }
-                }
-            }
-        }
-
-        // Restore original random state
-        Random.state = originalState;
     }
 
     Vector3 GetRelativeSize(Vector3 size)
@@ -106,4 +104,66 @@ public class ObstaclesGeneration : MonoBehaviour
         return overlapX && overlapZ;
     }
 
+    private void GenerateObstacles()
+    {
+        // Set random seed
+        Debug.Log("Obstacle Generation Seed: " + seed);
+        seed = seed == 0 ? Random.Range(1, 10000) : seed;
+        Random.State originalState = Random.state;
+        Random.InitState(seed);
+
+        // Instantiate obstacles at random positions
+        Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
+
+        foreach (List<Vector3> list in gridPositions)
+        {
+            foreach (Vector3 pos in list)
+            {
+                if (Random.Range(0, 1000) < 5f) // 0.5% chance to spawn an obstacle
+                {
+                    if (CheckPosAvailability(obstaclePrefab, pos))
+                    {
+                        GameObject newObstacle = Instantiate(obstaclePrefab);
+                        newObstacle.transform.parent = transform;
+                        newObstacle.transform.localPosition = pos + new Vector3(0, obstacleRelativeScale.y / 2f, 0);
+                        newObstacle.transform.localRotation = Quaternion.identity;
+
+                        existingObstacles.Add((pos, obstacleRelativeScale));
+                    }
+                }
+            }
+        }
+
+        // Restore original random state
+        Random.state = originalState;
+    }
+
+    private int GetChildrenObstaclesCount()
+    {
+        int count = 0;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).CompareTag("Obstacle"))
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    private void GenerateGridPositions(Vector3 gridScale, float gapX = 0, float gapZ = 0)
+    {
+        for (float x = -(transform.localScale.x) / 2f; (x + gridScale.x) <= transform.localScale.x / 2f; x += gridScale.x + gapX)
+        {
+            List<Vector3> list = new List<Vector3>();
+
+            for (float z = -(transform.localScale.z) / 2f; (z + gridScale.z) <= transform.localScale.z / 2f; z += gridScale.z + gapZ)
+            {
+                list.Add(new Vector3((x + gridScale.x / 2f) / transform.localScale.x, 0.5f, (z + gridScale.z / 2f) / transform.localScale.z));
+
+            }
+
+            gridPositions.Add(list);
+        }
+    }
 }
