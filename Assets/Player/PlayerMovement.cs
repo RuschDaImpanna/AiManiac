@@ -7,7 +7,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private PlayerInput playerInput;
     private Vector2 moveInput;
-
+    public bool showSpeed = false;
+    private Vector3 previousVelocity;
 
     void Awake()
     {
@@ -24,7 +25,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        // Show speed and acceleration in console
+        if (showSpeed)
+        {
+            float speed = rb.linearVelocity.magnitude;
+            float acceleration = ((rb.linearVelocity - previousVelocity) / Time.fixedDeltaTime).magnitude;
+            Debug.Log("Speed (m/s): " + speed + " Acceleration (m/s^2): " + acceleration + " Speed (km/h): " +  speed * 3.6);
+        }
+        previousVelocity = rb.linearVelocity;
         rb.AddForce(new Vector3(moveInput.x, 0f, moveInput.y) * force);
 
     }

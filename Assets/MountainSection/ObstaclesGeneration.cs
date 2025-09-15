@@ -9,6 +9,8 @@ public class ObstaclesGeneration : MonoBehaviour
     public bool isInitialized = false;
     private List<(Vector3 position, Vector3 size)> existingObstacles = new List<(Vector3 position, Vector3 size)>();
     private static List<List<Vector3>> gridPositions = new List<List<Vector3>>();
+    private Vector3 gridScale = new Vector3(3f, 3f, 3f);
+    private Vector3 relativeGridScale;
 
     public IEnumerator Initialize(int customSeed = 0, bool deleteExistingObstacles = true)
     {
@@ -22,7 +24,8 @@ public class ObstaclesGeneration : MonoBehaviour
         // Generate grid positions
         if (gridPositions.Count == 0)
         {
-            GenerateGridPositions(obstaclePrefab.transform.localScale, 0f, 0f);
+            GenerateGridPositions(gridScale, 0f, 0f);
+            relativeGridScale = GetRelativeSize(gridScale); // Calculate relative grid scale based on parent scale
         }
 
         if (deleteExistingObstacles)
@@ -39,8 +42,6 @@ public class ObstaclesGeneration : MonoBehaviour
 
             yield return null;
         }
-
-        //Debug.Log("Obstacles " + transform.name + ": " + GetChildrenObstaclesCount());
 
         // Generate obstacles
         if (GetChildrenObstaclesCount() == 0)
@@ -114,6 +115,10 @@ public class ObstaclesGeneration : MonoBehaviour
         // Instantiate obstacles at random positions
         Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
 
+        var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
+        int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
+        int marginZ = obstacleSettings != null ? obstacleSettings.marginZ : 0;
+
         foreach (List<Vector3> list in gridPositions)
         {
             foreach (Vector3 pos in list)
@@ -122,13 +127,22 @@ public class ObstaclesGeneration : MonoBehaviour
                 {
                     if (CheckPosAvailability(obstaclePrefab, pos))
                     {
+                        // Instantiate the obstacle
                         GameObject newObstacle = Instantiate(obstaclePrefab);
                         newObstacle.transform.parent = transform;
                         newObstacle.transform.localPosition = pos + new Vector3(0, obstacleRelativeScale.y / 2f, 0);
                         newObstacle.transform.localRotation = Quaternion.identity;
                         newObstacle.transform.localScale = obstacleRelativeScale;
 
-                        existingObstacles.Add((pos, obstacleRelativeScale));
+                        // Add margin to the occupied space
+                        Vector3 occupedSpace = new Vector3(
+                            obstacleRelativeScale.x + (marginX *  relativeGridScale.x), 
+                            obstacleRelativeScale.y, 
+                            obstacleRelativeScale.z + (marginZ * relativeGridScale.z)
+                        );
+
+                        // Store the position and size of the new obstacle
+                        existingObstacles.Add((pos, occupedSpace));
                     }
                 }
             }
