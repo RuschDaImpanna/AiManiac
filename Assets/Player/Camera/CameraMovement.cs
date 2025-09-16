@@ -6,6 +6,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
+        //Posición de mouse xd
         mouseScript = GetComponentInParent<InputController>();
     }
 
@@ -13,8 +14,8 @@ public class CameraMovement : MonoBehaviour
     public float mouseSensitivity = 100f;
 
     [Header("Limit (Up, Down)")]
-    public Vector2 limitFront = new Vector2(-70f, 70f);
-    public Vector2 limitBack = new Vector2(-70f, 16f);
+    public Vector2 limitFront = new Vector2();
+    public Vector2 limitBack = new Vector2();
 
     float xRotation = 0f;
 
@@ -22,8 +23,10 @@ public class CameraMovement : MonoBehaviour
     {
         Vector2 mouseMove = mouseScript.GetMouseMove();
 
+        //En el centro de la pantalla
         Cursor.lockState = CursorLockMode.Locked;
 
+        //Calcular el movimiento del mouse con respecto a la sensibilidad y el tiempo
         float mouseX = mouseMove.x * mouseSensitivity * Time.deltaTime;
         float mouseY = mouseMove.y * mouseSensitivity * Time.deltaTime;
 
