@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 451278470496976230}
   - component: {fileID: 4819425224121495848}
   m_Layer: 0
-  m_Name: PFB_MountainSection (1)
+  m_Name: SecondMountainSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: 3420137053147506873}
   - component: {fileID: 2476140345635825774}
   m_Layer: 0
-  m_Name: PFB_DeathWall (1)
+  m_Name: FrontalDeathWall
   m_TagString: Zone_MountainDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 3459685209603973334}
   - component: {fileID: 4406918879436005377}
   m_Layer: 0
-  m_Name: PFB_DeathWall
+  m_Name: PlayerDeathWall
   m_TagString: Zone_MountainDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,7 +563,7 @@ GameObject:
   - component: {fileID: 4679407848072216938}
   - component: {fileID: 311261232408841508}
   m_Layer: 0
-  m_Name: PFB_MountainSection
+  m_Name: FirstMountainSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
