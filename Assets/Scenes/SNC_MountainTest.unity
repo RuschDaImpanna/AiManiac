@@ -332,10 +332,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3133909993974353020, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
-      propertyPath: obstaclePrefab
-      value: 
-      objectReference: {fileID: 602244683580460098, guid: cc349b0a849a6594b9bb92dba3ac9904, type: 3}
     - target: {fileID: 3298805395641170456, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_Name
       value: Mountain
@@ -348,10 +344,6 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1229095057}
-    - target: {fileID: 5132197251012605747, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
-      propertyPath: obstaclePrefab
-      value: 
-      objectReference: {fileID: 602244683580460098, guid: cc349b0a849a6594b9bb92dba3ac9904, type: 3}
     - target: {fileID: 8564497288481973801, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
