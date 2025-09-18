@@ -58,5 +58,26 @@ public class CameraMovement : MonoBehaviour
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         // Rotación horizontal
         transform.parent.Rotate(Vector3.up * mouseX);
+
+        // =======================
+    //  Debug de límites
+    // =======================
+    Vector3 origin = transform.position;
+
+    // Límite mínimo
+    Quaternion rotMin = Quaternion.Euler(minX, transform.parent.eulerAngles.y, 0f);
+    Vector3 dirMin = rotMin * Vector3.forward;
+    Debug.DrawRay(origin, dirMin * 5f, Color.red);
+
+    // Límite en 0 (centro de rango)
+    float midX = (minX + maxX) * 0.5f;
+    Quaternion rotMid = Quaternion.Euler(midX, transform.parent.eulerAngles.y, 0f);
+    Vector3 dirMid = rotMid * Vector3.forward;
+    Debug.DrawRay(origin, dirMid * 5f, Color.green);
+
+    // Límite máximo
+    Quaternion rotMax = Quaternion.Euler(maxX, transform.parent.eulerAngles.y, 0f);
+    Vector3 dirMax = rotMax * Vector3.forward;
+    Debug.DrawRay(origin, dirMax * 5f, Color.blue);
     }
 }
