@@ -50,8 +50,6 @@ public class CameraMovement : MonoBehaviour
             float tmp = minX; minX = maxX; maxX = tmp;
         }
 
-        Debug.Log($"parentY={parentY:F1} | absY={absParentY:F1} | t={t:F2} | minX={minX:F1} | maxX={maxX:F1} | xRot={xRotation:F1}");
-
 
         xRotation = Mathf.Clamp(xRotation, minX, maxX);
         // Rotación vertical
@@ -59,7 +57,7 @@ public class CameraMovement : MonoBehaviour
         // Rotación horizontal
         transform.parent.Rotate(Vector3.up * mouseX);
 
-        // =======================
+    // =======================
     //  Debug de límites
     // =======================
     Vector3 origin = transform.position;

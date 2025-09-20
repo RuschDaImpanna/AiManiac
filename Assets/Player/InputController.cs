@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
@@ -31,5 +32,15 @@ public class InputController : MonoBehaviour
         return playerControls.Player.Look.ReadValue<Vector2>();
 
     }
-    
+
+    public bool LShoot()
+    {
+        return Mouse.current.leftButton.wasPressedThisFrame;
+    }
+
+    public bool RShoot()
+    {
+        return Mouse.current.rightButton.wasPressedThisFrame;
+    }
+
 }
