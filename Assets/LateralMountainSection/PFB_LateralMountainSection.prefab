@@ -130,6 +130,7 @@ MonoBehaviour:
   seed: 0
   isInitialized: 0
   obstacleSpawnChance: 0.1
+  generationType: 1
 --- !u!1001 &4167019351429197254
 PrefabInstance:
   m_ObjectHideFlags: 0

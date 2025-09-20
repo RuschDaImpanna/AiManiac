@@ -2,16 +2,25 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 
+public enum ObstacleGenerationType
+{
+    Random,
+    Lateral
+}
+
 public class ObstaclesGeneration : MonoBehaviour
 {
     public GameObject obstaclePrefab;
     public int seed;
     public bool isInitialized = false;
     public float obstacleSpawnChance = 0.005f; // 0.5% chance to spawn an obstacle at each grid position
+
     private List<(Vector3 position, Vector3 size)> existingObstacles = new List<(Vector3 position, Vector3 size)>();
     public List<List<Vector3>> gridPositions = new List<List<Vector3>>(); // TODO: make private and create getter
     private Vector3 gridScale = new Vector3(3f, 3f, 3f);
     private Vector3 relativeGridScale;
+
+    public ObstacleGenerationType generationType = ObstacleGenerationType.Random;
 
     public IEnumerator Initialize(int customSeed = 0, bool deleteExistingObstacles = true)
     {
@@ -47,7 +56,15 @@ public class ObstaclesGeneration : MonoBehaviour
         // Generate obstacles
         if (GetChildrenObstaclesCount() == 0)
         {
-            GenerateObstacles();
+            switch (generationType)
+            {
+                case ObstacleGenerationType.Random:
+                    GenerateObstacles();
+                    break;
+                case ObstacleGenerationType.Lateral:
+                    GenerateLateralObstacles();
+                    break;
+            }
         }
 
         yield return null;
@@ -94,14 +111,20 @@ public class ObstaclesGeneration : MonoBehaviour
                 return false; // Overlap detected
             }
         }
-
+        Debug.Log("Available obstacles: " + existingObstacles.Count);
+        
         return true;
     }
 
-    private bool CheckOverlap(Vector3 pos1, Vector3 size1, Vector3 pos2, Vector3 size2)
+    private bool CheckOverlap(Vector3 pos1, Vector3 size1, Vector3 pos2, Vector3 size2, float overlapTolerance = 0.01f)
     {
-        bool overlapX = pos1.x - size1.x / 2f < pos2.x + size2.x / 2f && pos1.x + size1.x / 2f > pos2.x - size2.x / 2f;
-        bool overlapZ = pos1.z - size1.z / 2f < pos2.z + size2.z / 2f && pos1.z + size1.z / 2f > pos2.z - size2.z / 2f;
+        float tolX = overlapTolerance / transform.localScale.x;
+        float tolZ = overlapTolerance / transform.localScale.z;
+
+        bool overlapX = pos1.x - size1.x / 2f + tolX < pos2.x + size2.x / 2f - tolX &&
+                        pos1.x + size1.x / 2f - tolX > pos2.x - size2.x / 2f + tolX;
+        bool overlapZ = pos1.z - size1.z / 2f + tolZ < pos2.z + size2.z / 2f - tolZ &&
+                        pos1.z + size1.z / 2f - tolZ > pos2.z - size2.z / 2f + tolZ;
 
         return overlapX && overlapZ;
     }
@@ -138,6 +161,33 @@ public class ObstaclesGeneration : MonoBehaviour
         Random.state = originalState;
     }
 
+    private void GenerateLateralObstacles()
+    {
+        // Instantiate lateral obstacles
+        Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
+        var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
+        int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
+        int marginZ = obstacleSettings != null ? obstacleSettings.marginZ : 0;
+        foreach (List<Vector3> list in gridPositions)
+        {
+            int index = 0;
+            foreach (Vector3 pos in list)
+            {
+                Vector3 spawnPos = pos;
+                if (index % 2 != 0)
+                {
+                    spawnPos.z += obstacleRelativeScale.z;
+                }
+
+                if (CheckPosAvailability(obstaclePrefab, spawnPos))
+                {
+                    SpawnObstacle(spawnPos, obstacleRelativeScale, marginX, marginZ);
+                    index++;
+                }
+            }
+        }
+    }
+
     private void SpawnObstacle(Vector3 pos, Vector3 relativeScale, int marginX = 0, int marginZ = 0)
     {
         // Instantiate the obstacle
@@ -149,9 +199,9 @@ public class ObstaclesGeneration : MonoBehaviour
 
         // Add margin to the occupied space
         Vector3 occupedSpace = new Vector3(
-            relativeScale.x + (marginX * relativeGridScale.x),
+            relativeScale.x + (2 * marginX * relativeGridScale.x),
             relativeScale.y,
-            relativeScale.z + (marginZ * relativeGridScale.z)
+            relativeScale.z + (2 * marginZ * relativeGridScale.z)
         );
 
         // Store the position and size of the new obstacle
@@ -174,15 +224,12 @@ public class ObstaclesGeneration : MonoBehaviour
     private void GenerateGridPositions(Vector3 gridScale, float gapX = 0, float gapZ = 0)
     {
             for (float z = -(transform.localScale.z) / 2f; (z + gridScale.z) <= transform.localScale.z / 2f; z += gridScale.z + gapZ)
-            //for (float x = -(transform.localScale.x) / 2f; (x + gridScale.x) <= transform.localScale.x / 2f; x += gridScale.x + gapX)
         {
             List<Vector3> list = new List<Vector3>();
 
-            //for (float z = -(transform.localScale.z) / 2f; (z + gridScale.z) <= transform.localScale.z / 2f; z += gridScale.z + gapZ)
-        for (float x = -(transform.localScale.x) / 2f; (x + gridScale.x) <= transform.localScale.x / 2f; x += gridScale.x + gapX)
+            for (float x = -(transform.localScale.x) / 2f; (x + gridScale.x) <= transform.localScale.x / 2f; x += gridScale.x + gapX)
             {
                 list.Add(new Vector3((x + gridScale.x / 2f) / transform.localScale.x, 0.5f, (z + gridScale.z / 2f) / transform.localScale.z));
-
             }
 
             gridPositions.Add(list);
