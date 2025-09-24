@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 249393727878771358, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: m_Name
-      value: PFB_SnowTree Variant
+      value: PFB_LateralSnowTree
       objectReference: {fileID: 0}
     - target: {fileID: 5331607462668077478, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8663142793323087105, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: marginX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8663142793323087105, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: marginZ
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
