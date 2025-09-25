@@ -151,11 +151,18 @@ public class ObstaclesGeneration : MonoBehaviour
             {
                 if (Random.value < obstacleSpawnChance) // 0.5% chance to spawn an obstacle
                 {
-                    GameObject obstaclePrefab = obstaclesDatabase.GetWeightedRandomPrefab();
+                    ObstaclesDatabase.ObstacleData obstacleData = obstaclesDatabase.GetWeightedRandomPrefab();
+                    if (obstacleData == null)
+                    {
+                        Debug.LogError("No obstacle prefabs available in the database!");
+                        continue;
+                    }
+
+                    GameObject obstaclePrefab = obstacleData.prefab;
+                    int marginX = obstacleData.marginX;
+                    int marginZ = obstacleData.marginZ;
+
                     Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
-                    var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
-                    int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
-                    int marginZ = obstacleSettings != null ? obstacleSettings.marginZ : 0;
 
                     if (CheckPosAvailability(obstaclePrefab, pos))
                     {
@@ -172,11 +179,21 @@ public class ObstaclesGeneration : MonoBehaviour
     private void GenerateLateralObstacles()
     {
         // Instantiate lateral obstacles
-        GameObject obstaclePrefab = obstaclesDatabase.GetPrefabByName("LateralSnowTree");
+        ObstaclesDatabase.ObstacleData lateralSnowTreeData = obstaclesDatabase.GetPrefabByName("LateralSnowTree");
+        
+        if (lateralSnowTreeData == null)
+        {
+            Debug.LogError("LateralSnowTree prefab not found in the database!");
+            return;
+        }
+
+        GameObject obstaclePrefab = lateralSnowTreeData.prefab;
+        int marginX = lateralSnowTreeData.marginX;
+        int marginZ = lateralSnowTreeData.marginZ;
+
         Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
-        var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
-        int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
-        int marginZ = obstacleSettings != null ? obstacleSettings.marginZ : 0;
+
+
         foreach (List<Vector3> list in gridPositions)
         {
             int index = 0;

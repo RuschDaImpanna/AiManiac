@@ -12,24 +12,26 @@ public class ObstaclesDatabase : ScriptableObject
 
         [Header("Properties")]
         public int rarity = 1;
+        public int marginX = 0;
+        public int marginZ = 0;
     }
 
     [Header("All Obstacles")]
     public ObstacleData[] allObstacles;
 
-    public GameObject GetPrefabByName(string name)
+    public ObstacleData GetPrefabByName(string name)
     {
         foreach (ObstacleData data in allObstacles)
         {
             if (data.displayName == name)
-                return data.prefab;
+                return data;
         }
 
         Debug.LogWarning($"Obstacle '{name}' not found in database");
         return null;
     }
 
-    public GameObject GetWeightedRandomPrefab()
+    public ObstacleData GetWeightedRandomPrefab()
     {
         // Calculate total weight
         int totalWeight = 0;
@@ -50,11 +52,11 @@ public class ObstaclesDatabase : ScriptableObject
             currentWeight += data.rarity;
             if (randomValue < currentWeight)
             {
-                return data.prefab;
+                return data;
             }
         }
 
         // Fallback
-        return allObstacles[0].prefab;
+        return allObstacles[0];
     }
 }

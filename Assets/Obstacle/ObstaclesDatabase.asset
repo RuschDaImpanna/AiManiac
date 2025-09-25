@@ -16,12 +16,20 @@ MonoBehaviour:
   - displayName: SnowTree
     prefab: {fileID: 249393727878771358, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
     rarity: 1
+    marginX: 5
+    marginZ: 10
   - displayName: LateralSnowTree
     prefab: {fileID: 2618976508767311016, guid: 83f16dfb125686149a2629da20a758db, type: 3}
     rarity: 1
+    marginX: 3
+    marginZ: 3
   - displayName: Rock
     prefab: {fileID: 1114843831097786766, guid: 74fe0bd7dd3191b45b38e83aa9f7c223, type: 3}
     rarity: 1
+    marginX: 5
+    marginZ: 10
   - displayName: SnowMan
     prefab: {fileID: 8294360654495713859, guid: 956f7a87456f09a4582b55b82587eb21, type: 3}
     rarity: 1
+    marginX: 5
+    marginZ: 10

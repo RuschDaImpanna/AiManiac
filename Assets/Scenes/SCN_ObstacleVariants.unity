@@ -314,6 +314,10 @@ PrefabInstance:
       propertyPath: lastMountainSectionGenerated
       value: 
       objectReference: {fileID: 1283536748}
+    - target: {fileID: 5685707425898878009, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: mouseSensitivity
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8914735227507761498, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
