@@ -81,19 +81,6 @@ public class ObstaclesGeneration : MonoBehaviour
         }
     }
 
-    private Vector3 GetObstacleRealSize(GameObject obstacle)
-    {
-        Renderer renderer = obstacle.GetComponent<Renderer>();
-
-        Renderer[] renderers = obstacle.GetComponentsInChildren<Renderer>();
-        if (renderers.Length == 0) return Vector3.zero;
-
-        Bounds bounds = renderers[0].bounds;
-        foreach (Renderer r in renderers) bounds.Encapsulate(r.bounds);
-
-        return bounds.size / 2f; //TODO: check by /2f is needed
-    }
-
     private Vector3 GetRelativeSize(Vector3 size)
     {
         return new Vector3(size.x / transform.localScale.x, size.y / transform.localScale.y, size.z / transform.localScale.z);
@@ -150,8 +137,6 @@ public class ObstaclesGeneration : MonoBehaviour
 
         // Instantiate obstacles at random positions
         Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
-        Vector3 obstacleSize = GetObstacleRealSize(obstaclePrefab);
-
         var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
         int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
         int marginZ = obstacleSettings != null ? obstacleSettings.marginZ : 0;
@@ -164,7 +149,7 @@ public class ObstaclesGeneration : MonoBehaviour
                 {
                     if (CheckPosAvailability(obstaclePrefab, pos))
                     {
-                        SpawnObstacle(pos, obstacleRelativeScale, obstacleSize, marginX, marginZ);
+                        SpawnObstacle(pos, obstacleRelativeScale, marginX, marginZ);
                     }
                 }
             }
@@ -178,7 +163,6 @@ public class ObstaclesGeneration : MonoBehaviour
     {
         // Instantiate lateral obstacles
         Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
-        Vector3 obstacleSize = GetObstacleRealSize(obstaclePrefab);
         var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
         int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
         int marginZ = obstacleSettings != null ? obstacleSettings.marginZ : 0;
@@ -195,19 +179,19 @@ public class ObstaclesGeneration : MonoBehaviour
 
                 if (CheckPosAvailability(obstaclePrefab, spawnPos))
                 {
-                    SpawnObstacle(spawnPos, obstacleRelativeScale, obstacleSize, marginX, marginZ);
+                    SpawnObstacle(spawnPos, obstacleRelativeScale, marginX, marginZ);
                     index++;
                 }
             }
         }
     }
 
-    private void SpawnObstacle(Vector3 pos, Vector3 relativeScale, Vector3 realSize, int marginX = 0, int marginZ = 0)
+    private void SpawnObstacle(Vector3 pos, Vector3 relativeScale, int marginX = 0, int marginZ = 0)
     {
         // Instantiate the obstacle
         GameObject newObstacle = Instantiate(obstaclePrefab);
         newObstacle.transform.parent = transform;
-        newObstacle.transform.localPosition = pos + GetRelativeSize(new Vector3(0f, realSize.y / 2f, 0f));
+        newObstacle.transform.localPosition = pos;
         newObstacle.transform.localRotation = Quaternion.identity;
         newObstacle.transform.localScale = relativeScale;
 

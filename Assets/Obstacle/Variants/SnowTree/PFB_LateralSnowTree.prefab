@@ -54,11 +54,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8663142793323087105, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: marginX
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8663142793323087105, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: marginZ
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
