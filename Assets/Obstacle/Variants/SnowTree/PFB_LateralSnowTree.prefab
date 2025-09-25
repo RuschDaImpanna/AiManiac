@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_LateralSnowTree
       objectReference: {fileID: 0}
+    - target: {fileID: 4734897503724228274, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4959531727345265450, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5331607462668077478, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -81.05186
@@ -51,6 +59,14 @@ PrefabInstance:
     - target: {fileID: 5331607462668077478, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5349360869088236679, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8419925464281904013, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8663142793323087105, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
       propertyPath: marginX

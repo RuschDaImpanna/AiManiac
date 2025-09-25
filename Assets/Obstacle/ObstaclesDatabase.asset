@@ -33,3 +33,8 @@ MonoBehaviour:
     rarity: 1
     marginX: 5
     marginZ: 10
+  - displayName: FallenTrunk
+    prefab: {fileID: 3922764981593937304, guid: 6e3826f91de4c5a42b40dba03407063f, type: 3}
+    rarity: 1
+    marginX: 5
+    marginZ: 10
