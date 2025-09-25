@@ -10,7 +10,10 @@ public enum ObstacleGenerationType
 
 public class ObstaclesGeneration : MonoBehaviour
 {
-    public GameObject obstaclePrefab;
+    [Header("Database")]
+    public ObstaclesDatabase obstaclesDatabase;
+
+    [Header("Obstacle Settings")]
     public int seed;
     public bool isInitialized = false;
     public float obstacleSpawnChance = 0.005f; // 0.5% chance to spawn an obstacle at each grid position
@@ -75,6 +78,12 @@ public class ObstaclesGeneration : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (obstaclesDatabase == null)
+        {
+            Debug.LogError("Obstacle Database not assigned!");
+            return;
+        }
+
         if (!isInitialized)
         {
             StartCoroutine(Initialize());
@@ -136,20 +145,21 @@ public class ObstaclesGeneration : MonoBehaviour
         Random.InitState(seed);
 
         // Instantiate obstacles at random positions
-        Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
-        var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
-        int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
-        int marginZ = obstacleSettings != null ? obstacleSettings.marginZ : 0;
-
         foreach (List<Vector3> list in gridPositions)
         {
             foreach (Vector3 pos in list)
             {
                 if (Random.value < obstacleSpawnChance) // 0.5% chance to spawn an obstacle
                 {
+                    GameObject obstaclePrefab = obstaclesDatabase.GetWeightedRandomPrefab();
+                    Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
+                    var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
+                    int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
+                    int marginZ = obstacleSettings != null ? obstacleSettings.marginZ : 0;
+
                     if (CheckPosAvailability(obstaclePrefab, pos))
                     {
-                        SpawnObstacle(pos, obstacleRelativeScale, marginX, marginZ);
+                        SpawnObstacle(obstaclePrefab, pos, obstacleRelativeScale, marginX, marginZ);
                     }
                 }
             }
@@ -162,6 +172,7 @@ public class ObstaclesGeneration : MonoBehaviour
     private void GenerateLateralObstacles()
     {
         // Instantiate lateral obstacles
+        GameObject obstaclePrefab = obstaclesDatabase.GetPrefabByName("LateralSnowTree");
         Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
         var obstacleSettings = obstaclePrefab.GetComponent<ObstacleSettings>();
         int marginX = obstacleSettings != null ? obstacleSettings.marginX : 0;
@@ -179,17 +190,17 @@ public class ObstaclesGeneration : MonoBehaviour
 
                 if (CheckPosAvailability(obstaclePrefab, spawnPos))
                 {
-                    SpawnObstacle(spawnPos, obstacleRelativeScale, marginX, marginZ);
+                    SpawnObstacle(obstaclePrefab, spawnPos, obstacleRelativeScale, marginX, marginZ);
                     index++;
                 }
             }
         }
     }
 
-    private void SpawnObstacle(Vector3 pos, Vector3 relativeScale, int marginX = 0, int marginZ = 0)
+    private void SpawnObstacle(GameObject prefab, Vector3 pos, Vector3 relativeScale, int marginX = 0, int marginZ = 0)
     {
         // Instantiate the obstacle
-        GameObject newObstacle = Instantiate(obstaclePrefab);
+        GameObject newObstacle = Instantiate(prefab);
         newObstacle.transform.parent = transform;
         newObstacle.transform.localPosition = pos;
         newObstacle.transform.localRotation = Quaternion.identity;

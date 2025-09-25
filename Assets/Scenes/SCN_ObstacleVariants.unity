@@ -306,6 +306,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3433682098617121403, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
     - target: {fileID: 5265752611043394911, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: lastMountainSectionGenerated
       value: 
@@ -367,6 +371,18 @@ PrefabInstance:
       propertyPath: obstaclePrefab
       value: 
       objectReference: {fileID: 8294360654495713859, guid: 956f7a87456f09a4582b55b82587eb21, type: 3}
+    - target: {fileID: 311261232408841508, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: obstaclesDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
+    - target: {fileID: 3133909993974353020, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: obstaclesDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
+    - target: {fileID: 3133909993974353020, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: obstacleSpawnChance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3298805395641170456, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_Name
       value: PFB_Mountain
@@ -379,6 +395,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2027864518}
+    - target: {fileID: 3503135282531957208, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4137864009046286563, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalScale.z
       value: 1080
@@ -387,9 +407,25 @@ PrefabInstance:
       propertyPath: obstaclePrefab
       value: 
       objectReference: {fileID: 8294360654495713859, guid: 956f7a87456f09a4582b55b82587eb21, type: 3}
+    - target: {fileID: 4819425224121495848, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: obstaclesDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
+    - target: {fileID: 5132197251012605747, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: obstaclesDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
+    - target: {fileID: 5132197251012605747, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: obstacleSpawnChance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6136292862568373164, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalScale.z
       value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 6690513166264205975, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8564497288481973801, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalPosition.x
