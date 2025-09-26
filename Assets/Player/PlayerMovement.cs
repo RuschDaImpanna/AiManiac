@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public float initialSpeed = 50f;
+
     private float force = 50f;
     private Rigidbody rb;
     private PlayerInput playerInput;
@@ -13,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerInput = GetComponent<PlayerInput>();
+
+        // Add a initial velocity to the player (km/h)
+        rb.linearVelocity = transform.forward * (initialSpeed / 3.6f);
 
         InputAction moveAction = playerInput.actions["Move"];
 

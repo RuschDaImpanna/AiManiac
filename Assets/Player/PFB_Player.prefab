@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e547d3e280b70b45af0ba30559961ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
+  initialSpeed: 0
 --- !u!114 &-5079359155352472351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,6 +331,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraMovement
   mouseSensitivity: 15
+  limitFront: {x: 0, y: 0}
+  limitBack: {x: 0, y: 0}
 --- !u!1001 &3818211646697010183
 PrefabInstance:
   m_ObjectHideFlags: 0
