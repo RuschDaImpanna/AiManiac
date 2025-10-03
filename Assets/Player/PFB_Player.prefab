@@ -18,8 +18,6 @@ GameObject:
   - component: {fileID: -5079359155352472351}
   - component: {fileID: 5265752611043394911}
   - component: {fileID: 416329612146621999}
-  - component: {fileID: 4892350100780017385}
-  - component: {fileID: 7720477924209996360}
   m_Layer: 0
   m_Name: PFB_Player
   m_TagString: Untagged
@@ -243,30 +241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4ea8fe55f64d949b330b85f30f0964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputController
---- !u!114 &4892350100780017385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2444850865578077370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54aa30b28dd50542b02c5b9da10ed9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DangerOMeter
---- !u!114 &7720477924209996360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2444850865578077370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54aa30b28dd50542b02c5b9da10ed9d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DangerOMeter
 --- !u!1 &3815607756655467484
 GameObject:
   m_ObjectHideFlags: 0
