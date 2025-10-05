@@ -23,8 +23,12 @@ public class CameraMovement : MonoBehaviour
     {
         Vector2 mouseMove = mouseScript.GetMouseMove();
 
-        //En el centro de la pantalla
-        Cursor.lockState = CursorLockMode.Locked;
+        if (!GameManager.IsGameOver)
+        {
+            //En el centro de la pantalla
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
 
         //Calcular el movimiento del mouse con respecto a la sensibilidad y el tiempo
         float mouseX = mouseMove.x * mouseSensitivity * Time.deltaTime;
