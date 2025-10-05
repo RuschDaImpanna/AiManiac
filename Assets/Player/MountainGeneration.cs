@@ -9,10 +9,18 @@ public class MountainGeneration : MonoBehaviour
     private GameObject duplicatedLastMountainSectionGenerated;
     private int sectionsGenerated = 0;
 
+    private GameManager gameManager;
+
     public Boolean needDuplicate = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        gameManager = FindFirstObjectByType<GameManager>();
+
+        if (gameManager == null)
+        {
+            Debug.LogError("GameManager not found in the scene.");
+        }
     }
 
     // Update is called once per frame
@@ -70,6 +78,8 @@ public class MountainGeneration : MonoBehaviour
             // Reset position to duplicated section
             transform.position -= CalculteRelativeNextSectionPosition() * 3f;
             lastMountainSectionGenerated = duplicatedLastMountainSectionGenerated;
+
+            gameManager.lastZPosition -= CalculteRelativeNextSectionPosition().z * 3f;
         }
     }
 

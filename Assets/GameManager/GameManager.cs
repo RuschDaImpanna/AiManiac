@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // Enum with the different player states
 public enum PlayerState
@@ -13,10 +14,12 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject loseScreen;
+    public GameObject playScreen;
+    public Text scoreText;
 
     private SpeedBar playerSpeedBar;
     private int score;
-    private float lastZPosition;
+    public float lastZPosition;
     public const string highScoreKey = "HighScore";
 
     // Add a cooldown to start be considering danger/dead states
@@ -38,8 +41,9 @@ public class GameManager : MonoBehaviour
         score = 0;
         lastZPosition = player.transform.position.z;
 
-        // Initialize lose screen
+        // Initialize lose and play screen
         loseScreen.SetActive(false);
+        playScreen.SetActive(true);
     }
 
     // Update is called once per frame
@@ -53,14 +57,22 @@ public class GameManager : MonoBehaviour
         if (player.transform.position.z - lastZPosition > 1)
         {
             score += 1;
+            UpdateScoreUI();
             lastZPosition = player.transform.position.z;
         }
+    }
 
-        Debug.Log("Score: " + score);
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = "Score: " + score.ToString();
+        }
     }
 
     private void ShowLoseScreen()
     {
+        playScreen.SetActive(false); // Hide play screen
         loseScreen.SetActive(true); // Show lose screen
 
         // Unlock the cursos and show the cursor
@@ -86,7 +98,6 @@ public class GameManager : MonoBehaviour
     private void loadHighScore()
     {
         int highScore = PlayerPrefs.GetInt(highScoreKey, 0);
-        Debug.Log("High Score: " + highScore);
     }
 
     private void HandlePlayerStateChange(PlayerState newState)
@@ -113,19 +124,13 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
+        Debug.Log("Game Over.");
+        
         IsGameOver = true;
-        Debug.Log("Game Over triggered by GameManager.");
-        // Implement game over logic here (e.g., show game over screen, restart level, etc.)
-
+        
         if (Time.timeScale == 0f) return;
-
+        
         Time.timeScale = 0f; // Pause the game
-        ShowLoseScreen();
-
-        if (playerSpeedBar != null)
-        {
-            playerSpeedBar.OnStateChanged -= HandlePlayerStateChange;
-        }
 
         // Check high score
         if (score > PlayerPrefs.GetInt(highScoreKey, 0))
@@ -135,7 +140,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("New High Score: " + score);
         }
 
-        // Clean up score
+        ShowLoseScreen();
+
+        // Cleanup
+        if (playerSpeedBar != null)
+        {
+            playerSpeedBar.OnStateChanged -= HandlePlayerStateChange;
+        }
+
         score = 0;
     }
 }

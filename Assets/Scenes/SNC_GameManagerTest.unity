@@ -131,6 +131,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2969065965055080892, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: showSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969065965055080892, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: initialSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5265752611043394911, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: lastMountainSectionGenerated
       value: 
@@ -178,28 +186,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2444850865578077370, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 85561593}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
 --- !u!1 &85561592 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2444850865578077370, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
   m_PrefabInstance: {fileID: 85561591}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &85561593
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 85561592}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd75e9fb370523d48a71c025d5ad37e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpeedBar
 --- !u!114 &211143783 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5045350250240813038, guid: adc14d27833e73c408a5da38655f3467, type: 3}
@@ -582,6 +575,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!1 &1129620772 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1520235930542708947, guid: a27465578ab794045b7678def3fe8139, type: 3}
+  m_PrefabInstance: {fileID: 1701341313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1286255771 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7727752311157049523, guid: a27465578ab794045b7678def3fe8139, type: 3}
@@ -771,6 +769,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1875949248 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3814776301277635821, guid: a27465578ab794045b7678def3fe8139, type: 3}
+  m_PrefabInstance: {fileID: 1701341313}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
 --- !u!1001 &7042115376443048659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -824,9 +833,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 85561592}
     - target: {fileID: 5045350250240813038, guid: adc14d27833e73c408a5da38655f3467, type: 3}
+      propertyPath: scoreText
+      value: 
+      objectReference: {fileID: 1875949248}
+    - target: {fileID: 5045350250240813038, guid: adc14d27833e73c408a5da38655f3467, type: 3}
       propertyPath: loseScreen
       value: 
       objectReference: {fileID: 1286255771}
+    - target: {fileID: 5045350250240813038, guid: adc14d27833e73c408a5da38655f3467, type: 3}
+      propertyPath: playScreen
+      value: 
+      objectReference: {fileID: 1129620772}
     - target: {fileID: 8312848839991069583, guid: adc14d27833e73c408a5da38655f3467, type: 3}
       propertyPath: m_Name
       value: GameManager

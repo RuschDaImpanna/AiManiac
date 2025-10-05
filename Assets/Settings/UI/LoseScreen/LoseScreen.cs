@@ -16,11 +16,11 @@ public class LoseScreen : MonoBehaviour
 
     public void UpdateScores(int finalScore, int highScore)
     {
-        var scoreText = transform.Find("Label_FinalScore").GetComponent<UnityEngine.UI.Text>();
+        var finalScoreText = transform.Find("Label_FinalScore").GetComponent<UnityEngine.UI.Text>();
         var highScoreText = transform.Find("Label_HighScore").GetComponent<UnityEngine.UI.Text>();
-        if (scoreText != null)
+        if (finalScoreText != null)
         {
-            scoreText.text = "Final Score: " + finalScore.ToString();
+            finalScoreText.text = "Final Score: " + finalScore.ToString();
         }
         if (highScoreText != null)
         {
