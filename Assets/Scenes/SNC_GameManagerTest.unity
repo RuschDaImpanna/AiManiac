@@ -597,6 +597,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 85561592}
+    - target: {fileID: 2723859789992343623, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 211143783}
     - target: {fileID: 2894674027187284262, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -685,6 +689,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 8279418875215907688, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 211143783}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -780,6 +788,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Text
+--- !u!1 &2123428352 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5649248420620684564, guid: a27465578ab794045b7678def3fe8139, type: 3}
+  m_PrefabInstance: {fileID: 1701341313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7042115376443048659
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -844,6 +857,10 @@ PrefabInstance:
       propertyPath: playScreen
       value: 
       objectReference: {fileID: 1129620772}
+    - target: {fileID: 5045350250240813038, guid: adc14d27833e73c408a5da38655f3467, type: 3}
+      propertyPath: pauseScreen
+      value: 
+      objectReference: {fileID: 2123428352}
     - target: {fileID: 8312848839991069583, guid: adc14d27833e73c408a5da38655f3467, type: 3}
       propertyPath: m_Name
       value: GameManager

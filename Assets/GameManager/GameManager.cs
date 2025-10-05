@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject loseScreen;
     public GameObject playScreen;
+    public GameObject pauseScreen;
     public Text scoreText;
 
     private SpeedBar playerSpeedBar;
@@ -41,15 +43,17 @@ public class GameManager : MonoBehaviour
         score = 0;
         lastZPosition = player.transform.position.z;
 
-        // Initialize lose and play screen
+        // Initialize screens
         loseScreen.SetActive(false);
         playScreen.SetActive(true);
-    }
+        pauseScreen.SetActive(false);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Bind the pause action
+        InputAction pauseGameAction = player.GetComponent<PlayerInput>().actions["PauseGame"];
+        pauseGameAction.performed += ctx => 
+        {
+            if (ctx.control.path.Contains("escape")) PauseGame();
+        };
     }
 
     private void FixedUpdate()
@@ -59,6 +63,34 @@ public class GameManager : MonoBehaviour
             score += 1;
             UpdateScoreUI();
             lastZPosition = player.transform.position.z;
+        }
+    }
+
+    public void QuitGame()
+    {
+        Debug.Log("Quitting game...");
+        Application.Quit();
+    }
+    public void PauseGame()
+    {
+        if (IsGameOver) return;
+        if (Time.timeScale == 0f)
+        {
+            Time.timeScale = 1f; // Resume the game
+            playScreen.SetActive(true);
+            pauseScreen.SetActive(false);
+            // Lock the cursor and hide it
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            Time.timeScale = 0f; // Pause the game
+            playScreen.SetActive(false);
+            pauseScreen.SetActive(true);
+            // Unlock the cursor and show it
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 
