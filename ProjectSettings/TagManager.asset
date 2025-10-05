@@ -7,6 +7,7 @@ TagManager:
   - Zone_MountainGenerator
   - Zone_MountainDestructor
   - Zone_LoopReset
+  - Obstacle
   layers:
   - Default
   - TransparentFX

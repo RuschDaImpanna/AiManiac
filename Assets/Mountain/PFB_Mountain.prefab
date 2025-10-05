@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 451278470496976230}
   - component: {fileID: 4819425224121495848}
   m_Layer: 0
-  m_Name: PFB_MountainSection (1)
+  m_Name: SecondMountainSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 2389229326667407192}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.000022888184, z: 137.73}
-  m_LocalScale: {x: 60, y: 1, z: 137.73}
+  m_LocalPosition: {x: 0, y: 0, z: 180}
+  m_LocalScale: {x: 120, y: 1, z: 180}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3080395628585006068}
@@ -128,6 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObstaclesGeneration
   obstaclePrefab: {fileID: 6287956747211713015, guid: be8cdb3cae311934f9534b1e27a45701, type: 3}
   seed: 0
+  isInitialized: 0
+  obstacleSpawnChance: 0.005
 --- !u!1 &2459659283241978430
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,7 +143,7 @@ GameObject:
   - component: {fileID: 3420137053147506873}
   - component: {fileID: 2476140345635825774}
   m_Layer: 0
-  m_Name: PFB_DeathWall (1)
+  m_Name: FrontalDeathWall
   m_TagString: Zone_MountainDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,8 +158,8 @@ Transform:
   m_GameObject: {fileID: 2459659283241978430}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.4998932, z: 482.055}
-  m_LocalScale: {x: 30, y: 30, z: 4.5068793}
+  m_LocalPosition: {x: 0, y: 0.49987793, z: 630}
+  m_LocalScale: {x: 30, y: 30, z: 4.506879}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8564497288481973801}
@@ -257,6 +259,8 @@ Transform:
   - {fileID: 1901865267162993061}
   - {fileID: 365154112351459786}
   - {fileID: 4616111742507856502}
+  - {fileID: 4137864009046286563}
+  - {fileID: 6136292862568373164}
   - {fileID: 6751502264762810281}
   - {fileID: 1946113917351314341}
   m_Father: {fileID: 0}
@@ -287,8 +291,8 @@ Transform:
   m_GameObject: {fileID: 4232002507577741711}
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.1268005, z: 413.19}
-  m_LocalScale: {x: 60, y: 137.73, z: 4.506879}
+  m_LocalPosition: {x: 0, y: -1.126831, z: 540}
+  m_LocalScale: {x: 120, y: 180, z: 4.5068817}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8564497288481973801}
@@ -327,7 +331,7 @@ GameObject:
   - component: {fileID: 3459685209603973334}
   - component: {fileID: 4406918879436005377}
   m_Layer: 0
-  m_Name: PFB_DeathWall
+  m_Name: PlayerDeathWall
   m_TagString: Zone_MountainDestructor
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -559,7 +563,7 @@ GameObject:
   - component: {fileID: 4679407848072216938}
   - component: {fileID: 311261232408841508}
   m_Layer: 0
-  m_Name: PFB_MountainSection
+  m_Name: FirstMountainSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -575,7 +579,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000008940697, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 60, y: 1, z: 137.73}
+  m_LocalScale: {x: 120, y: 1, z: 180}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7785624540553170936}
@@ -666,13 +670,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7465812235113276244}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f233febace1210046808f65514424336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstaclesGeneration
   obstaclePrefab: {fileID: 6287956747211713015, guid: be8cdb3cae311934f9534b1e27a45701, type: 3}
   seed: 0
+  isInitialized: 0
+  obstacleSpawnChance: 0.005
 --- !u!1 &8693600385764709136
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,3 +813,135 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f463f7226d0d64a84ef6baa7315684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MountainDestruction
+--- !u!1001 &4203317413560571899
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8564497288481973801}
+    m_Modifications:
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -75
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000008940697
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7389374186340046188, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_Name
+      value: LeftLateralMountainSection
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+--- !u!4 &4137864009046286563 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+  m_PrefabInstance: {fileID: 4203317413560571899}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6202009013816208564
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8564497288481973801}
+    m_Modifications:
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 270
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.00000008940697
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7389374186340046188, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: m_Name
+      value: RightLateralMountainSection
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+--- !u!4 &6136292862568373164 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+  m_PrefabInstance: {fileID: 6202009013816208564}
+  m_PrefabAsset: {fileID: 0}

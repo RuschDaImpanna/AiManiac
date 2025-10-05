@@ -1,16 +1,18 @@
-using UnityEngine;
 using System;
+using System.Collections;
+using UnityEngine;
 
 public class MountainGeneration : MonoBehaviour
 {
 
     public GameObject lastMountainSectionGenerated;
+    private GameObject duplicatedLastMountainSectionGenerated;
+    private int sectionsGenerated = 0;
+
     public Boolean needDuplicate = false;
-    private GameObject duplicateCurrentMountainSection;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -18,56 +20,68 @@ public class MountainGeneration : MonoBehaviour
     {
     }
 
-    private void OnTriggerEnter(Collider other)
+    private IEnumerator OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Zone_MountainGenerator"))
         {
             int customSeed = UnityEngine.Random.Range(1, 10000);
 
-            Vector3 newSectionPos = lastMountainSectionGenerated.transform.position + CalculteRelativeNextSectionPosition();
-            GameObject newSection = Instantiate(
-                lastMountainSectionGenerated, 
-                newSectionPos, 
-                lastMountainSectionGenerated.transform.rotation, 
-                lastMountainSectionGenerated.transform.parent
-            );
-            newSection.GetComponent<ObstaclesGeneration>().seed = customSeed;
+            // Create new mountain section
+            GameObject newSection = Instantiate(lastMountainSectionGenerated);
+            newSection.transform.parent = lastMountainSectionGenerated.transform.parent;
+            newSection.transform.localPosition = lastMountainSectionGenerated.transform.localPosition + new Vector3(0f, 0f, lastMountainSectionGenerated.transform.localScale.z);
+            newSection.transform.rotation = lastMountainSectionGenerated.transform.rotation;
+            newSection.name = "MountainSection_" + (++sectionsGenerated);
 
+            // Initialize obstacles generation for the new section (if enabled)
+            ObstaclesGeneration lastMountainObstaclesGeneration = lastMountainSectionGenerated.GetComponent<ObstaclesGeneration>();
+            ObstaclesGeneration obstaclesGen = newSection.GetComponent<ObstaclesGeneration>();
+            
+            if (lastMountainObstaclesGeneration.enabled == false)
+            {
+                obstaclesGen.enabled = false;
+            } else
+            {
+                obstaclesGen.StartCoroutine(
+                    obstaclesGen.Initialize(
+                        deleteExistingObstacles: true,
+                        customSeed: customSeed
+                    )
+                );
+
+                yield return new WaitUntil(() => obstaclesGen.isInitialized);
+            }
+
+            // Duplicate last section for loop reset
             if (needDuplicate)
             {
-                Vector3 duplicateSectionPos = lastMountainSectionGenerated.transform.position - CalculteRelativeNextSectionPosition() * 2;
-                GameObject duplicatedSection = Instantiate(
-                    lastMountainSectionGenerated, 
-                    duplicateSectionPos, 
-                    lastMountainSectionGenerated.transform.rotation, 
-                    lastMountainSectionGenerated.transform.parent
-                );
-                duplicatedSection.GetComponent<ObstaclesGeneration>().seed = customSeed;
+                GameObject duplicatedSection = Instantiate(lastMountainSectionGenerated);
+                duplicatedSection.transform.parent = lastMountainSectionGenerated.transform.parent;
+                duplicatedSection.transform.localPosition = lastMountainSectionGenerated.transform.localPosition - new Vector3(0f, 0f, lastMountainSectionGenerated.transform.localScale.z * 2);
+                duplicatedSection.transform.rotation = lastMountainSectionGenerated.transform.rotation;
+                duplicatedSection.name = "MountainSection_Duplicate_" + sectionsGenerated;
 
-                duplicateCurrentMountainSection = duplicatedSection;
+                duplicatedLastMountainSectionGenerated = duplicatedSection;
             }
 
             lastMountainSectionGenerated = newSection;
         } else if (other.gameObject.CompareTag("Zone_LoopReset"))
         {
-            //transform.position -= new Vector3(
-            //    0f,
-            //    -currentMountainSection.transform.localScale.z * Mathf.Sin(currentMountainSection.transform.rotation.eulerAngles.x * Mathf.PI / 180) * 3f,
-            //    currentMountainSection.transform.localScale.z * Mathf.Cos(currentMountainSection.transform.rotation.eulerAngles.x * Mathf.PI / 180) * 3f
-            //);
+            // Reset position to duplicated section
             transform.position -= CalculteRelativeNextSectionPosition() * 3f;
-
-            lastMountainSectionGenerated = duplicateCurrentMountainSection;
+            lastMountainSectionGenerated = duplicatedLastMountainSectionGenerated;
         }
     }
 
     public Vector3 CalculteRelativeNextSectionPosition()
     {
-        return new Vector3(
+        Vector3 relativeNextSectionPosition = new Vector3(
             0,
-            - lastMountainSectionGenerated.transform.localScale.z * (float) Math.Sin(lastMountainSectionGenerated.transform.rotation.eulerAngles.x * Math.PI / 180), 
-            lastMountainSectionGenerated.transform.localScale.z * (float) Math.Cos(lastMountainSectionGenerated.transform.rotation.eulerAngles.x * Math.PI / 180)
+            -lastMountainSectionGenerated.transform.localScale.z * (float)Math.Sin(lastMountainSectionGenerated.transform.rotation.eulerAngles.x * Math.PI / 180),
+            lastMountainSectionGenerated.transform.localScale.z * (float)Math.Cos(lastMountainSectionGenerated.transform.rotation.eulerAngles.x * Math.PI / 180)
         );
+
+        return relativeNextSectionPosition;
     }
 
     public void SetCurrentMountainSection(GameObject currentMountainSection)
