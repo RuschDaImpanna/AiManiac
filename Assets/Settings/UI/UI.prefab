@@ -180,6 +180,7 @@ GameObject:
   m_Component:
   - component: {fileID: 524106708417455819}
   - component: {fileID: 6073771598347555232}
+  - component: {fileID: 865814502569764111}
   m_Layer: 5
   m_Name: Hands
   m_TagString: Untagged
@@ -216,6 +217,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4979392521448101983}
   m_CullTransparentMesh: 1
+--- !u!114 &865814502569764111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4979392521448101983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f85530e280400344a94cc3a90a949751, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HandsAnimations
+  player: {fileID: 0}
 --- !u!1 &6379170983048304598
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +248,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7559412297104162838
 RectTransform:
   m_ObjectHideFlags: 0
