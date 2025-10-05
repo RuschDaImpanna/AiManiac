@@ -18,9 +18,10 @@ GameObject:
   - component: {fileID: -5079359155352472351}
   - component: {fileID: 5265752611043394911}
   - component: {fileID: 416329612146621999}
+  - component: {fileID: 5532003595342597524}
   m_Layer: 0
   m_Name: PFB_Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
