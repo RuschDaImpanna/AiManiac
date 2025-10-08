@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class RecoilWeapon : MonoBehaviour
+public class WeaponRecoil : MonoBehaviour
 {
     private Rigidbody playerRigidbody;
     public Transform playerCamera;
@@ -21,7 +21,7 @@ public class RecoilWeapon : MonoBehaviour
         {
             if (ctx.control.path.Contains("leftButton"))
             {
-                OnShootRecoilWeapon();
+                OnShootWeaponRecoil();
             }
             else if (ctx.control.path.Contains("rightButton"))
             {
@@ -49,7 +49,7 @@ public class RecoilWeapon : MonoBehaviour
     }
 
     // Called when left mouse button is clicked
-    void OnShootRecoilWeapon()
+    void OnShootWeaponRecoil()
     {   
         if (currentCooldown != 0f) return;
 

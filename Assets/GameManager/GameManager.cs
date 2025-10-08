@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
 
     private Text weaponCooldownText;
     private SpeedBar playerSpeedBar;
-    private RecoilWeapon playerWeapon;
+    private WeaponRecoil playerWeapon;
     private int score;
     public float lastZPosition;
     public const string highScoreKey = "HighScore";
@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
         }
         
         // Find the player's weapon
-        playerWeapon = player.GetComponentInChildren<RecoilWeapon>();
+        playerWeapon = player.GetComponentInChildren<WeaponRecoil>();
 
         // Load high score and initialize score
         loadHighScore();
