@@ -28,6 +28,9 @@ public class SpeedBar : MonoBehaviour
         } else if (speed < dangerSpeedLimit)
         {
             newState = PlayerState.Danger;
+        } else
+        {
+            newState = PlayerState.Normal;
         }
 
         if (newState != currentState)
@@ -39,6 +42,7 @@ public class SpeedBar : MonoBehaviour
         if (speed / 2 > deadSpeedLimit)
         {
             deadSpeedLimit = speed / 2;
+            Debug.Log("Updated deadSpeedLimit to: " + deadSpeedLimit * 3.6);
             dangerSpeedLimit = speed - deadSpeedLimit / 2;
         }
     }

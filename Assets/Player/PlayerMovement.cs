@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private PlayerInput playerInput;
     private Vector2 moveInput;
+    private float speed;
+    public float Speed { get { return speed; } }
     public bool showSpeed = false;
     private Vector3 previousVelocity;
 
@@ -30,13 +32,15 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        speed = rb.linearVelocity.magnitude;
+
         // Show speed and acceleration in console
         if (showSpeed)
         {
-            float speed = rb.linearVelocity.magnitude;
             float acceleration = ((rb.linearVelocity - previousVelocity) / Time.fixedDeltaTime).magnitude;
             Debug.Log("Speed (m/s): " + speed + " Acceleration (m/s^2): " + acceleration + " Speed (km/h): " +  speed * 3.6);
         }
+
         previousVelocity = rb.linearVelocity;
         rb.AddForce(new Vector3(moveInput.x, 0f, moveInput.y) * force);
 

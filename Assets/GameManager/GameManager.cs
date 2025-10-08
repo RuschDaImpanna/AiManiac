@@ -17,12 +17,14 @@ public class GameManager : MonoBehaviour
     public GameObject loseScreen;
     public GameObject playScreen;
     public GameObject pauseScreen;
+    public Text speedText;
     public Text scoreText;
     public GameObject weaponCooldownLabel;
 
     private Text weaponCooldownText;
     private SpeedBar playerSpeedBar;
     private WeaponRecoil playerWeapon;
+    private PlayerMovement playerMovement;
     private int score;
     public float lastZPosition;
     public const string highScoreKey = "HighScore";
@@ -43,6 +45,9 @@ public class GameManager : MonoBehaviour
         
         // Find the player's weapon
         playerWeapon = player.GetComponentInChildren<WeaponRecoil>();
+
+        // Find the player's movement script
+        playerMovement = player.GetComponent<PlayerMovement>();
 
         // Load high score and initialize score
         loadHighScore();
@@ -68,31 +73,42 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // Update score UI
         if (player.transform.position.z - lastZPosition > 1)
         {
             score += 1;
             UpdateScoreUI();
             lastZPosition = player.transform.position.z;
 
-            float weaponCooldown = playerWeapon.CurrentCooldown;
+            
+        }
 
-            if (weaponCooldown > 0)
+        // Update speed UI
+        float speed = playerMovement.Speed;
+
+        speedText.text = (speed * 3.6f).ToString("F1") + " km/h";
+
+
+        // Update speed UI
+        float weaponCooldown = playerWeapon.CurrentCooldown;
+
+        if (weaponCooldown > 0)
+        {
+            if (weaponCooldownLabel.activeInHierarchy == false)
             {
-                if (weaponCooldownLabel.activeInHierarchy == false)
-                {
-                    weaponCooldownLabel.SetActive(true);
-                }
-
-                weaponCooldownText.text = weaponCooldown.ToString("F2") + "s";
-            } else
-            {
-                if (weaponCooldownLabel.activeInHierarchy == true)
-                {
-                    weaponCooldownLabel.SetActive(false);
-                }
-
-                weaponCooldownText.text = "";
+                weaponCooldownLabel.SetActive(true);
             }
+
+            weaponCooldownText.text = weaponCooldown.ToString("F2") + "s";
+        }
+        else
+        {
+            if (weaponCooldownLabel.activeInHierarchy == true)
+            {
+                weaponCooldownLabel.SetActive(false);
+            }
+
+            weaponCooldownText.text = "";
         }
     }
 
@@ -170,15 +186,15 @@ public class GameManager : MonoBehaviour
         {
             case PlayerState.Normal:
                 Debug.Log("Player is in Normal state.");
-                // Handle normal state logic here
+                speedText.color = Color.white;
                 break;
             case PlayerState.Danger:
                 Debug.Log("Player is in Danger state.");
-                // Handle danger state logic here
+                speedText.color = Color.yellow;
                 break;
             case PlayerState.Dead:
                 Debug.Log("Player is Dead.");
-                // Handle dead state logic here
+                speedText.color = Color.red;
                 GameOver();
                 break;
         }
