@@ -63,7 +63,7 @@ public class MountainGeneration : MonoBehaviour
             // Duplicate last section for loop reset
             if (needDuplicate)
             {
-                GameObject duplicatedSection = Instantiate(lastMountainSectionGenerated);
+                GameObject duplicatedSection = Instantiate(newSection);
                 duplicatedSection.transform.parent = lastMountainSectionGenerated.transform.parent;
                 duplicatedSection.transform.localPosition = lastMountainSectionGenerated.transform.localPosition - new Vector3(0f, 0f, lastMountainSectionGenerated.transform.localScale.z * 2);
                 duplicatedSection.transform.rotation = lastMountainSectionGenerated.transform.rotation;

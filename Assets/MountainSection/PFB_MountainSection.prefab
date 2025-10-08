@@ -179,9 +179,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f233febace1210046808f65514424336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstaclesGeneration
-  obstaclePrefab: {fileID: 6287956747211713015, guid: be8cdb3cae311934f9534b1e27a45701, type: 3}
+  obstaclePrefab: {fileID: 1114843831097786766, guid: 74fe0bd7dd3191b45b38e83aa9f7c223, type: 3}
   seed: 0
   isInitialized: 0
+  obstacleSpawnChance: 0.005
+  generationType: 0
 --- !u!1 &5319486831652451949
 GameObject:
   m_ObjectHideFlags: 0
