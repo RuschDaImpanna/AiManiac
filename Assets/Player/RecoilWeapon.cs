@@ -8,6 +8,8 @@ public class RecoilWeapon : MonoBehaviour
     public Transform playerCamera;
     public float recoilForce = 1000f;
     public float cooldown = 1.5f;
+    private float currentCooldown = 0f;
+    public float CurrentCooldown { get { return currentCooldown; } }
     private float lastShootTime = -Mathf.Infinity;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,10 +36,22 @@ public class RecoilWeapon : MonoBehaviour
         
     }
 
+    void FixedUpdate()
+    {
+        if (Time.time - lastShootTime < cooldown)
+        {
+            currentCooldown = cooldown - (Time.time - lastShootTime);
+        }
+        else
+        {
+            currentCooldown = 0f;
+        }
+    }
+
     // Called when left mouse button is clicked
     void OnShootRecoilWeapon()
-    {
-        if (Time.time - lastShootTime < cooldown) return;
+    {   
+        if (currentCooldown != 0f) return;
 
         Vector3 vector3 = playerCamera.forward;
         Vector3 recoilDirection = - new Vector3(vector3.x, 3*vector3.y/4, vector3.z/10);

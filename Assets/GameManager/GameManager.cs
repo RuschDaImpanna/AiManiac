@@ -18,8 +18,11 @@ public class GameManager : MonoBehaviour
     public GameObject playScreen;
     public GameObject pauseScreen;
     public Text scoreText;
+    public GameObject weaponCooldownLabel;
 
+    private Text weaponCooldownText;
     private SpeedBar playerSpeedBar;
+    private RecoilWeapon playerWeapon;
     private int score;
     public float lastZPosition;
     public const string highScoreKey = "HighScore";
@@ -31,17 +34,24 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // Find and subscribe to the SpeedBar's state change event
-        SpeedBar playerSpeedBar = FindFirstObjectByType<SpeedBar>();
+        playerSpeedBar = FindFirstObjectByType<SpeedBar>();
 
         if (playerSpeedBar != null )
         {
             playerSpeedBar.OnStateChanged += HandlePlayerStateChange;
         }
+        
+        // Find the player's weapon
+        playerWeapon = player.GetComponentInChildren<RecoilWeapon>();
 
         // Load high score and initialize score
         loadHighScore();
         score = 0;
         lastZPosition = player.transform.position.z;
+
+        // Initialize cooldown label
+        weaponCooldownText = weaponCooldownLabel.GetComponent<Text>();
+        weaponCooldownLabel.SetActive(false);
 
         // Initialize screens
         loseScreen.SetActive(false);
@@ -63,6 +73,26 @@ public class GameManager : MonoBehaviour
             score += 1;
             UpdateScoreUI();
             lastZPosition = player.transform.position.z;
+
+            float weaponCooldown = playerWeapon.CurrentCooldown;
+
+            if (weaponCooldown > 0)
+            {
+                if (weaponCooldownLabel.activeInHierarchy == false)
+                {
+                    weaponCooldownLabel.SetActive(true);
+                }
+
+                weaponCooldownText.text = weaponCooldown.ToString("F2") + "s";
+            } else
+            {
+                if (weaponCooldownLabel.activeInHierarchy == true)
+                {
+                    weaponCooldownLabel.SetActive(false);
+                }
+
+                weaponCooldownText.text = "";
+            }
         }
     }
 
