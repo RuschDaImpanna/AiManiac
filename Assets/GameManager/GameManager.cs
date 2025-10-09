@@ -26,7 +26,11 @@ public class GameManager : MonoBehaviour
     private WeaponRecoil playerWeapon;
     private PlayerMovement playerMovement;
     private int score;
-    public float lastZPosition;
+    private float lastZPosition;
+    public float LastZPosition {
+        get { return lastZPosition; }
+        set { lastZPosition = value; }
+    }
     public const string highScoreKey = "HighScore";
 
     // Add a cooldown to start be considering danger/dead states

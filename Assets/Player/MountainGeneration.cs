@@ -79,7 +79,7 @@ public class MountainGeneration : MonoBehaviour
             transform.position -= CalculteRelativeNextSectionPosition() * 3f;
             lastMountainSectionGenerated = duplicatedLastMountainSectionGenerated;
 
-            gameManager.lastZPosition -= CalculteRelativeNextSectionPosition().z * 3f;
+            gameManager.LastZPosition -= CalculteRelativeNextSectionPosition().z * 3f;
         }
     }
 
