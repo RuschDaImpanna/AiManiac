@@ -126,10 +126,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f233febace1210046808f65514424336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstaclesGeneration
-  obstaclePrefab: {fileID: 6287956747211713015, guid: be8cdb3cae311934f9534b1e27a45701, type: 3}
+  obstaclesDatabase: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
   seed: 0
   isInitialized: 0
   obstacleSpawnChance: 0.005
+  generationType: 0
 --- !u!1 &2459659283241978430
 GameObject:
   m_ObjectHideFlags: 0
@@ -675,10 +676,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f233febace1210046808f65514424336, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ObstaclesGeneration
-  obstaclePrefab: {fileID: 6287956747211713015, guid: be8cdb3cae311934f9534b1e27a45701, type: 3}
+  obstaclesDatabase: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
   seed: 0
   isInitialized: 0
   obstacleSpawnChance: 0.005
+  generationType: 0
 --- !u!1 &8693600385764709136
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +823,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8564497288481973801}
     m_Modifications:
+    - target: {fileID: -7986909209581151353, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: obstaclesDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
     - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
       propertyPath: m_LocalPosition.x
       value: -75
@@ -883,6 +889,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8564497288481973801}
     m_Modifications:
+    - target: {fileID: -7986909209581151353, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
+      propertyPath: obstaclesDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
     - target: {fileID: 232370299758065432, guid: eeb3f557558a062409be8e8254046aa7, type: 3}
       propertyPath: m_LocalScale.x
       value: 30
