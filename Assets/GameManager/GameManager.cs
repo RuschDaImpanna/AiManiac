@@ -26,11 +26,25 @@ public class GameManager : MonoBehaviour
     private WeaponRecoil playerWeapon;
     private PlayerMovement playerMovement;
     private int score;
-    public float lastZPosition;
+    private float lastZPosition;
+    public float LastZPosition {
+        get { return lastZPosition; }
+        set { lastZPosition = value; }
+    }
     public const string highScoreKey = "HighScore";
 
     // Add a cooldown to start be considering danger/dead states
     private float initialCooldownTime = 5f;
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -112,10 +126,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void QuitGame()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Quitting game...");
-        Application.Quit();
+        // Reset time scale when a new scene is loaded
+        Time.timeScale = 1f;
+        IsGameOver = false;
     }
     public void PauseGame()
     {
@@ -186,7 +201,7 @@ public class GameManager : MonoBehaviour
         {
             case PlayerState.Normal:
                 Debug.Log("Player is in Normal state.");
-                speedText.color = Color.white;
+                speedText.color = new Color(0.1960784f, 0.1960784f, 0.1960784f);
                 break;
             case PlayerState.Danger:
                 Debug.Log("Player is in Danger state.");

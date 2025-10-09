@@ -51,6 +51,7 @@ public class WeaponRecoil : MonoBehaviour
     // Called when left mouse button is clicked
     void OnShootWeaponRecoil()
     {   
+        if (Time.timeScale == 0f) return;
         if (currentCooldown != 0f) return;
 
         Vector3 vector3 = playerCamera.forward;
