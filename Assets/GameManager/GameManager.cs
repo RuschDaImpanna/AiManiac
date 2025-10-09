@@ -36,6 +36,16 @@ public class GameManager : MonoBehaviour
     // Add a cooldown to start be considering danger/dead states
     private float initialCooldownTime = 5f;
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -116,10 +126,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void QuitGame()
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Debug.Log("Quitting game...");
-        Application.Quit();
+        // Reset time scale when a new scene is loaded
+        Time.timeScale = 1f;
+        IsGameOver = false;
     }
     public void PauseGame()
     {
