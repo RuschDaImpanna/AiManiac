@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class ObstaclePlayerBounce : MonoBehaviour
@@ -8,11 +9,23 @@ public class ObstaclePlayerBounce : MonoBehaviour
     [SerializeField, Range(0f, 1f)]
     private float speedReduction = 2f / 3f;
 
+    [SerializeField]
+    private CinemachineImpulseSource impulseSource;
+
+    private void Start()
+    {
+        impulseSource = GetComponent<CinemachineImpulseSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player hit obstacle, applying bounce effect.");
+
+
+            impulseSource.GenerateImpulse();
+
             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
             if (playerRigidbody != null)
             {
