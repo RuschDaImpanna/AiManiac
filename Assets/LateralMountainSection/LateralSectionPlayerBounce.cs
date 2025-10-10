@@ -1,12 +1,13 @@
 using UnityEngine;
 
-public class PlayerBounce : MonoBehaviour
+public class LateralSectionPlayerBounce : MonoBehaviour
 {
     [SerializeField, Range(0f, 1f)]
     private float bounceForce = 1f;
 
     [SerializeField, Range(0f, 1f)]
-    private float speedReduction = 2/3;
+    private float speedReduction = 2f / 3f;
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))

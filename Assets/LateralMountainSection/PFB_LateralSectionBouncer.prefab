@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3778360165395842788}
   - component: {fileID: -6018745206458348871}
   m_Layer: 0
-  m_Name: PFB_Bouncer
+  m_Name: PFB_LateralSectionBouncer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -66,3 +66,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3f7aa13fec47d4b97a9ffad2f59ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBounce
+  bounceForce: 1
+  speedReduction: 0.6666667

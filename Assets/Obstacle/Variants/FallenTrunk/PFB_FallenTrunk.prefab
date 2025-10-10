@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8662497954408525926}
   - component: {fileID: 7607214533530081651}
   - component: {fileID: 231291090220381253}
+  - component: {fileID: 30120940103147655}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -105,7 +106,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -113,6 +114,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.0000076293945, y: 0.0000076293945, z: -0.000030517578}
+--- !u!114 &30120940103147655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5567220491007696512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f410c0138c957449e1be7c37ae2189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionForwarder
 --- !u!1001 &7004006369484127343
 PrefabInstance:
   m_ObjectHideFlags: 0

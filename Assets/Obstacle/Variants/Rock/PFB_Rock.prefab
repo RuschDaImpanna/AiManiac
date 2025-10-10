@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8667977590353123593}
   - component: {fileID: 3884292657897350782}
   - component: {fileID: 250120359639734611}
+  - component: {fileID: 852191866095090337}
   m_Layer: 0
   m_Name: RockCollider
   m_TagString: Untagged
@@ -105,12 +106,24 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &852191866095090337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3447695948433009283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f410c0138c957449e1be7c37ae2189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionForwarder
 --- !u!1001 &4317752918687341192
 PrefabInstance:
   m_ObjectHideFlags: 0

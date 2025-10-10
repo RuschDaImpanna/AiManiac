@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4778966545365283430}
   - component: {fileID: 7776158834446803422}
   - component: {fileID: 4959531727345265450}
+  - component: {fileID: 7898539231864900081}
   m_Layer: 0
   m_Name: TrunkCollider
   m_TagString: Untagged
@@ -105,7 +106,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -113,6 +114,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+--- !u!114 &7898539231864900081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4734897503724228274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f410c0138c957449e1be7c37ae2189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionForwarder
 --- !u!1 &8419925464281904013
 GameObject:
   m_ObjectHideFlags: 0
@@ -125,6 +138,7 @@ GameObject:
   - component: {fileID: 9113664673269279842}
   - component: {fileID: 1954805403850424752}
   - component: {fileID: 5349360869088236679}
+  - component: {fileID: 7579876782373660361}
   m_Layer: 0
   m_Name: CanopyCollider
   m_TagString: Untagged
@@ -218,7 +232,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -226,6 +240,18 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7579876782373660361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8419925464281904013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65f410c0138c957449e1be7c37ae2189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CollisionForwarder
 --- !u!1001 &6067836468699569001
 PrefabInstance:
   m_ObjectHideFlags: 0
