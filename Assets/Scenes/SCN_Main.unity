@@ -442,7 +442,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
     - target: {fileID: 3298805395641170456, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_Name
-      value: PFB_Mountain
+      value: Mountain
       objectReference: {fileID: 0}
     - target: {fileID: 3420137053147506873, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: player
@@ -528,7 +528,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2444850865578077370, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_Name
-      value: PFB_Player
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 5265752611043394911, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: lastMountainSectionGenerated
@@ -745,7 +745,7 @@ PrefabInstance:
       objectReference: {fileID: 1918376488}
     - target: {fileID: 8312848839991069583, guid: adc14d27833e73c408a5da38655f3467, type: 3}
       propertyPath: m_Name
-      value: PFB_GameManager
+      value: GameManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
