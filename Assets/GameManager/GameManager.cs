@@ -201,7 +201,7 @@ public class GameManager : MonoBehaviour
         {
             case PlayerState.Normal:
                 Debug.Log("Player is in Normal state.");
-                speedText.color = new Color(0.1960784f, 0.1960784f, 0.1960784f);
+                speedText.color = new Color(0.9f, 0.9f, 0.9f);
                 break;
             case PlayerState.Danger:
                 Debug.Log("Player is in Danger state.");
