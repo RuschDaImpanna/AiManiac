@@ -388,6 +388,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
     - target: {fileID: 3133909993974353020, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3133909993974353020, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: obstaclesDatabase
       value: 
       objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
@@ -407,6 +411,10 @@ PrefabInstance:
       propertyPath: obstaclesDatabase
       value: 
       objectReference: {fileID: 11400000, guid: e7525cbfbaaac204ea70c9694fe1d322, type: 2}
+    - target: {fileID: 5132197251012605747, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5132197251012605747, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: obstaclesDatabase
       value: 
