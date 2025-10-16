@@ -14,6 +14,8 @@ public class HandsAnimations : MonoBehaviour
     private Animator LAnimator;
     private Animator RAnimator;
 
+    public RectTransform LRt;
+
 
     void Awake()
     {
@@ -39,7 +41,32 @@ public class HandsAnimations : MonoBehaviour
         bool RAttack = input.RShoot();
 
         LAnimator.SetBool("Shoot", LAttack);
+        RAnimator.SetBool("Shoot", RAttack);
+        
+        AnimatorStateInfo stateInfo = LAnimator.GetCurrentAnimatorStateInfo(0);
+        Vector2 offset = LRt.offsetMax;
+        
+        AnimatorClipInfo[] clipInfo = LAnimator.GetCurrentAnimatorClipInfo(0);
 
+if (clipInfo.Length > 0)
+{
+    string clipName = clipInfo[0].clip.name;
+    Debug.Log("Se está reproduciendo el clip: " + clipName);
+}
 
+        if (stateInfo.IsName("ShootLGun"))
+        {
+
+            offset.y = 30;
+
+        }
+        else if (stateInfo.IsName("IdleLGun"))
+        {
+
+            offset.y = 0;
+
+        }
+
+        LRt.offsetMax = offset;
     }
 }
