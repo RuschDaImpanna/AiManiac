@@ -785,17 +785,25 @@ PrefabInstance:
       value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 4385382775427999868, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_Text
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385382775427999868, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_Color.b
-      value: 0.9
+      value: 0.9411765
       objectReference: {fileID: 0}
     - target: {fileID: 4385382775427999868, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_Color.g
-      value: 0.9
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4385382775427999868, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_Color.r
-      value: 0.9
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4385382775427999868, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 281c9a29b6b4b1f4a98b4d20eab81711, type: 3}
     - target: {fileID: 6379170983048304598, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_IsActive
       value: 0

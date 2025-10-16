@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
         // Update speed UI
         float speed = playerMovement.Speed;
 
-        speedText.text = (speed * 3.6f).ToString("F1") + " km/h";
+        speedText.text = (speed * 3.6f).ToString("F1");
 
 
         // Update speed UI

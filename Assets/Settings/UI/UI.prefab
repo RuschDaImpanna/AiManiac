@@ -1222,6 +1222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HandsAnimations
   player: {fileID: 0}
+  LRt: {fileID: 0}
 --- !u!1 &5389573574960464204
 GameObject:
   m_ObjectHideFlags: 0
@@ -1663,7 +1664,6 @@ GameObject:
   - component: {fileID: 9141626566143078459}
   - component: {fileID: 5698179552704063348}
   - component: {fileID: 8879264820426731963}
-  - component: {fileID: 6658217316324146324}
   m_Layer: 5
   m_Name: UI
   m_TagString: Untagged
@@ -1759,28 +1759,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!95 &6658217316324146324
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6593086829496656798}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7075520059687507199
 GameObject:
   m_ObjectHideFlags: 0
