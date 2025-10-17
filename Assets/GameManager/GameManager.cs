@@ -36,6 +36,8 @@ public class GameManager : MonoBehaviour
     // Add a cooldown to start be considering danger/dead states
     private float initialCooldownTime = 5f;
 
+    public float speed;
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -94,13 +96,13 @@ public class GameManager : MonoBehaviour
             UpdateScoreUI();
             lastZPosition = player.transform.position.z;
 
-            
+
         }
 
         // Update speed UI
-        float speed = playerMovement.Speed;
+        speed = playerMovement.Speed*3.6f;
 
-        speedText.text = (speed * 3.6f).ToString("F1");
+        speedText.text = speed.ToString("F1");
 
 
         // Update speed UI
@@ -168,7 +170,7 @@ public class GameManager : MonoBehaviour
         playScreen.SetActive(false); // Hide play screen
         loseScreen.SetActive(true); // Show lose screen
 
-        // Unlock the cursos and show the cursor
+        // Unlock the cursor and show the cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -201,7 +203,7 @@ public class GameManager : MonoBehaviour
         {
             case PlayerState.Normal:
                 Debug.Log("Player is in Normal state.");
-                speedText.color = new Color(0.9f, 0.9f, 0.9f);
+                speedText.color = new Color(0, 1, 0.9f);
                 break;
             case PlayerState.Danger:
                 Debug.Log("Player is in Danger state.");

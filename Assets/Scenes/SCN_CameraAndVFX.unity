@@ -668,6 +668,26 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 46744478}
+    - target: {fileID: 2524135392215866436, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 6.999994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2524135392215866436, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9990483
+      objectReference: {fileID: 0}
+    - target: {fileID: 2524135392215866436, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.043619405
+      objectReference: {fileID: 0}
+    - target: {fileID: 2524135392215866436, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 6.649994
+      objectReference: {fileID: 0}
+    - target: {fileID: 2524135392215866436, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2894674027187284262, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

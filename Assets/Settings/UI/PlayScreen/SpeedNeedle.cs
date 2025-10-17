@@ -2,7 +2,15 @@ using UnityEngine;
 
 public class SpeedNeedle : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    public Transform needle;
+    public GameManager gm;
+
+    private const float minSpeedAngle = -90;
+    private const float maxSpeedAngle = 5;
+
+    //private float speed = gm.speed;
+    
     void Start()
     {
         
@@ -11,6 +19,14 @@ public class SpeedNeedle : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+    
+    /*
+    float GetSpeedRotation()
+    {
+
+        float totalAngleSize = 0;
+
+    }*/
 }
