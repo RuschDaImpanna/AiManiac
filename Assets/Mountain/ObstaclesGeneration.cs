@@ -217,7 +217,8 @@ public class ObstaclesGeneration : MonoBehaviour
                 Vector3 spawnPos = pos;
                 if (index % 2 != 0) // Create an alternating/staggered layout for lateral obstacles
                 {
-                    spawnPos.z += obstacleRelativeScale.z;
+                    float relativeMarginZ = lateralSnowTreeData.marginZ / transform.localScale.z;
+                    spawnPos.z += obstacleRelativeScale.z + relativeMarginZ / 2;
                 }
 
                 if (CheckPosAvailability(obstaclePrefab, spawnPos))
