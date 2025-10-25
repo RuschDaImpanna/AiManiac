@@ -8,6 +8,12 @@ public enum ObstacleGenerationType
     Lateral
 }
 
+public enum LateralObstacleSide
+{
+    Left,
+    Right
+}
+
 public class ObstaclesGeneration : MonoBehaviour
 {
     [Header("Database")]
@@ -24,6 +30,9 @@ public class ObstaclesGeneration : MonoBehaviour
     private Vector3 relativeGridScale;
 
     public ObstacleGenerationType generationType = ObstacleGenerationType.Random;
+
+    [Header("Lateral Obstacle Settings")]
+    public LateralObstacleSide lateralObstacleSide = LateralObstacleSide.Left;
 
     public IEnumerator Initialize(int customSeed = 0, bool deleteExistingObstacles = true)
     {
@@ -194,13 +203,19 @@ public class ObstaclesGeneration : MonoBehaviour
         Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
 
 
-        foreach (List<Vector3> list in gridPositions)
+        foreach (List<Vector3> rowPosList in gridPositions)
         {
             int index = 0;
-            foreach (Vector3 pos in list)
+
+            if (lateralObstacleSide == LateralObstacleSide.Left)
+            {
+                rowPosList.Reverse();
+            }
+
+            foreach (Vector3 pos in rowPosList)
             {
                 Vector3 spawnPos = pos;
-                if (index % 2 != 0)
+                if (index % 2 != 0) // Create an alternating/staggered layout for lateral obstacles
                 {
                     spawnPos.z += obstacleRelativeScale.z;
                 }
@@ -249,7 +264,7 @@ public class ObstaclesGeneration : MonoBehaviour
 
     private void GenerateGridPositions(Vector3 gridScale, float gapX = 0, float gapZ = 0)
     {
-            for (float z = -(transform.localScale.z) / 2f; (z + gridScale.z) <= transform.localScale.z / 2f; z += gridScale.z + gapZ)
+        for (float z = -(transform.localScale.z) / 2f; (z + gridScale.z) <= transform.localScale.z / 2f; z += gridScale.z + gapZ)
         {
             List<Vector3> list = new List<Vector3>();
 
