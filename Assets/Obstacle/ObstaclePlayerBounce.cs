@@ -32,7 +32,7 @@ public class ObstaclePlayerBounce : MonoBehaviour
 
                 playerRigidbody.linearVelocity = new Vector3(
                     playerRigidbody.linearVelocity.x,
-                    playerRigidbody.linearVelocity.y,
+                    playerRigidbody.linearVelocity.y * speedReduction,
                     playerRigidbody.linearVelocity.z * speedReduction
                 );
 

@@ -3,7 +3,9 @@ using UnityEngine.InputSystem;
 
 public class DebugKeys : MonoBehaviour
 {
-    public GameManager gameManager;
+    [SerializeField]
+    private GameManager gameManager;
+    
     private GameObject player;
     private Rigidbody rb;
     void Start()

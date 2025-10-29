@@ -8,17 +8,26 @@ public class SpeedBar : MonoBehaviour
     private float deadSpeedLimit = 0f;
     private float dangerSpeedLimit = 0f;
     private PlayerState currentState = PlayerState.Normal;
+    private float speed = 0f;
+    public float Speed { get { return speed; } }
 
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        if (rb == null)
+        {
+            Debug.LogError("Rigidbody component not found on this GameObject!");
+        }
     }
 
     private void FixedUpdate()
     {
-        float speed = rb.linearVelocity.magnitude;
+        speed = Mathf.Sqrt(
+            Mathf.Pow(rb.linearVelocity.y, 2) 
+            + Mathf.Pow(rb.linearVelocity.z, 2)
+        );
 
         PlayerState newState = currentState;
 

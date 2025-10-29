@@ -31,7 +31,7 @@ public class LateralSectionPlayerBounce : MonoBehaviour
                 // Invert the player's horizontal velocity to create a bounce effect
                 playerRigidbody.linearVelocity = new Vector3(
                     -playerRigidbody.linearVelocity.x,
-                    playerRigidbody.linearVelocity.y, 
+                    playerRigidbody.linearVelocity.y * speedReduction, 
                     playerRigidbody.linearVelocity.z * speedReduction
                 );
 
