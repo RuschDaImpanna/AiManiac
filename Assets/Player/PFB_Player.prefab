@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5265752611043394911}
   - component: {fileID: 416329612146621999}
   - component: {fileID: 5532003595342597524}
+  - component: {fileID: -4954039905242949491}
   m_Layer: 0
   m_Name: PFB_Player
   m_TagString: Player
@@ -185,6 +186,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 16439265-f625-4171-bb0d-f35ce7ffce32
     m_ActionName: 'Player/Shoot[/Mouse/leftButton,/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5132adfe-b1c4-4453-a84f-fd7da882f9fc
+    m_ActionName: 'Player/PauseGame[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f3861eb4-48d3-44cc-b57a-8181b2264a4f
+    m_ActionName: 'Player/Debug[/Keyboard/f1,/Keyboard/f2,/Keyboard/f3]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -257,6 +266,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75e9fb370523d48a71c025d5ad37e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedBar
+--- !u!114 &-4954039905242949491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444850865578077370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d21758a27c7a884d8302ae316d58fbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &3815607756655467484
 GameObject:
   m_ObjectHideFlags: 0

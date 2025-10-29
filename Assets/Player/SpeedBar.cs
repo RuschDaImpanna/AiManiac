@@ -42,7 +42,7 @@ public class SpeedBar : MonoBehaviour
         if (speed / 2 > deadSpeedLimit)
         {
             deadSpeedLimit = speed / 2;
-            Debug.Log("Updated deadSpeedLimit to: " + deadSpeedLimit * 3.6);
+            //Debug.Log("Updated deadSpeedLimit to: " + deadSpeedLimit * 3.6);
             dangerSpeedLimit = speed - deadSpeedLimit / 2;
         }
     }

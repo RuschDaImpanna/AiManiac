@@ -120,9 +120,18 @@ public partial class @IA_PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Pause Game"",
+                    ""name"": ""PauseGame"",
                     ""type"": ""Button"",
                     ""id"": ""5132adfe-b1c4-4453-a84f-fd7da882f9fc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Debug"",
+                    ""type"": ""Button"",
+                    ""id"": ""f3861eb4-48d3-44cc-b57a-8181b2264a4f"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -225,7 +234,40 @@ public partial class @IA_PlayerControls: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Pause Game"",
+                    ""action"": ""PauseGame"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e09e3391-290f-4a5e-a2ca-7728b54bd43b"",
+                    ""path"": ""<Keyboard>/f1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b02905ea-7450-436f-8792-15dbf61541fd"",
+                    ""path"": ""<Keyboard>/f2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e3c64de9-4d3f-4b46-8475-7e9ca2ca16f5"",
+                    ""path"": ""<Keyboard>/f3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Debug"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -239,7 +281,8 @@ public partial class @IA_PlayerControls: IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
-        m_Player_PauseGame = m_Player.FindAction("Pause Game", throwIfNotFound: true);
+        m_Player_PauseGame = m_Player.FindAction("PauseGame", throwIfNotFound: true);
+        m_Player_Debug = m_Player.FindAction("Debug", throwIfNotFound: true);
     }
 
     ~@IA_PlayerControls()
@@ -324,6 +367,7 @@ public partial class @IA_PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Shoot;
     private readonly InputAction m_Player_PauseGame;
+    private readonly InputAction m_Player_Debug;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -351,6 +395,10 @@ public partial class @IA_PlayerControls: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/PauseGame".
         /// </summary>
         public InputAction @PauseGame => m_Wrapper.m_Player_PauseGame;
+        /// <summary>
+        /// Provides access to the underlying input action "Player/Debug".
+        /// </summary>
+        public InputAction @Debug => m_Wrapper.m_Player_Debug;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -389,6 +437,9 @@ public partial class @IA_PlayerControls: IInputActionCollection2, IDisposable
             @PauseGame.started += instance.OnPauseGame;
             @PauseGame.performed += instance.OnPauseGame;
             @PauseGame.canceled += instance.OnPauseGame;
+            @Debug.started += instance.OnDebug;
+            @Debug.performed += instance.OnDebug;
+            @Debug.canceled += instance.OnDebug;
         }
 
         /// <summary>
@@ -412,6 +463,9 @@ public partial class @IA_PlayerControls: IInputActionCollection2, IDisposable
             @PauseGame.started -= instance.OnPauseGame;
             @PauseGame.performed -= instance.OnPauseGame;
             @PauseGame.canceled -= instance.OnPauseGame;
+            @Debug.started -= instance.OnDebug;
+            @Debug.performed -= instance.OnDebug;
+            @Debug.canceled -= instance.OnDebug;
         }
 
         /// <summary>
@@ -474,11 +528,18 @@ public partial class @IA_PlayerControls: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnShoot(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Pause Game" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "PauseGame" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPauseGame(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Debug" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnDebug(InputAction.CallbackContext context);
     }
 }
