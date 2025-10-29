@@ -21,7 +21,7 @@ MonoBehaviour:
   - displayName: LateralSnowTree
     prefab: {fileID: 2618976508767311016, guid: 83f16dfb125686149a2629da20a758db, type: 3}
     rarity: 1
-    marginX: 5
+    marginX: 0
     marginZ: 5
   - displayName: Rock
     prefab: {fileID: 1114843831097786766, guid: 74fe0bd7dd3191b45b38e83aa9f7c223, type: 3}
