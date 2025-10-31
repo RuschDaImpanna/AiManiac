@@ -24,6 +24,9 @@ public class ObstaclesGeneration : MonoBehaviour
     public bool isInitialized = false;
     public float obstacleSpawnChance = 0.005f; // 0.5% chance to spawn an obstacle at each grid position
 
+    [SerializeField]
+    public GameObject player;
+
     private List<(Vector3 position, Vector3 size)> existingObstacles = new List<(Vector3 position, Vector3 size)>();
     public List<List<Vector3>> gridPositions = new List<List<Vector3>>(); // TODO: make private and create getter
     private Vector3 gridScale = new Vector3(3f, 3f, 3f);
@@ -152,6 +155,22 @@ public class ObstaclesGeneration : MonoBehaviour
         seed = seed == 0 ? Random.Range(1, 10000) : seed;
         Random.State originalState = Random.state;
         Random.InitState(seed);
+
+        // Spawn an obstacle in the current player x axis position
+        float playerRelativeX = player != null ? player.transform.localPosition.x / transform.localScale.x : 0f;
+        Vector3 obstacleSpawnPos = new Vector3(playerRelativeX, 0f, Random.value * 0.8f + .1f);
+        ObstaclesDatabase.ObstacleData obstacleDataFirstObstacle = obstaclesDatabase.GetWeightedRandomPrefab();
+        if (obstacleDataFirstObstacle != null)
+        {
+            GameObject obstaclePrefab = obstacleDataFirstObstacle.prefab;
+            int marginX = obstacleDataFirstObstacle.marginX;
+            int marginZ = obstacleDataFirstObstacle.marginZ;
+            Vector3 obstacleRelativeScale = GetRelativeSize(obstaclePrefab.transform.localScale);
+            if (CheckPosAvailability(obstaclePrefab, obstacleSpawnPos))
+            {
+                SpawnObstacle(obstaclePrefab, obstacleSpawnPos, obstacleRelativeScale, marginX, marginZ);
+            }
+        }
 
         // Instantiate obstacles at random positions
         foreach (List<Vector3> list in gridPositions)
