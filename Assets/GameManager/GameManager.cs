@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public float speed;
 
+    public float weaponCooldown;
+
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -106,7 +108,7 @@ public class GameManager : MonoBehaviour
 
 
         // Update speed UI
-        float weaponCooldown = playerWeapon.CurrentCooldown;
+        weaponCooldown = playerWeapon.CurrentCooldown;
 
         if (weaponCooldown > 0)
         {

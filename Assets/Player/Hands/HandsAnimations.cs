@@ -6,6 +6,8 @@ public class HandsAnimations : MonoBehaviour
 
     public GameObject player;
 
+    public GameManager gm;
+
     private InputController input;
 
     private GameObject LGun;
@@ -36,11 +38,16 @@ public class HandsAnimations : MonoBehaviour
     void FixedUpdate()
     {
 
+        //Cooldown
+        float cooldown = gm.weaponCooldown;
+
         //Asigna los booleanos según lo que se presionó y detecto InputController del player
         bool LAttack = input.LShoot();
         bool RAttack = input.RShoot();
 
         LAnimator.SetBool("Shoot", LAttack);
+        LAnimator.SetFloat("Cooldown", cooldown);
+
         RAnimator.SetBool("Shoot", RAttack);
         
         AnimatorStateInfo stateInfo = LAnimator.GetCurrentAnimatorStateInfo(0);
@@ -57,11 +64,10 @@ if (clipInfo.Length > 0)
         if (stateInfo.IsName("ShootLGun"))
         {
 
-            offset.y = 30;
+            offset.y = 100;
 
         }
-        else if (stateInfo.IsName("IdleLGun"))
-        {
+        else {
 
             offset.y = 0;
 
