@@ -38,8 +38,6 @@ public class GameManager : MonoBehaviour
 
     public float speed;
 
-    public float weaponCooldown;
-
     void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -108,7 +106,7 @@ public class GameManager : MonoBehaviour
 
 
         // Update speed UI
-        weaponCooldown = playerWeapon.CurrentCooldown;
+        /*float weaponCooldown = playerWeapon.CurrentCooldown;
 
         if (weaponCooldown > 0)
         {
@@ -127,7 +125,8 @@ public class GameManager : MonoBehaviour
             }
 
             weaponCooldownText.text = "";
-        }
+        }*/
+        
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)

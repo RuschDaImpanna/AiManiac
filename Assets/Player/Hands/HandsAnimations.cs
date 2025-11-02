@@ -6,7 +6,7 @@ public class HandsAnimations : MonoBehaviour
 
     public GameObject player;
 
-    public GameManager gm;
+    private WeaponRecoil weapon;
 
     private InputController input;
 
@@ -21,6 +21,8 @@ public class HandsAnimations : MonoBehaviour
 
     void Awake()
     {
+        //Tener la cosa esa de la pistola
+        weapon = player.GetComponent<WeaponRecoil>();
 
         //Tener el script de los disparos
         input = player.GetComponent<InputController>();
@@ -39,7 +41,7 @@ public class HandsAnimations : MonoBehaviour
     {
 
         //Cooldown
-        float cooldown = gm.weaponCooldown;
+        float cooldown = weapon.CurrentCooldown;
 
         //Asigna los booleanos según lo que se presionó y detecto InputController del player
         bool LAttack = input.LShoot();
