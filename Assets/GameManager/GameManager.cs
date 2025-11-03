@@ -70,10 +70,6 @@ public class GameManager : MonoBehaviour
         score = 0;
         lastZPosition = player.transform.position.z;
 
-        // Initialize cooldown label
-        weaponCooldownText = weaponCooldownLabel.GetComponent<Text>();
-        weaponCooldownLabel.SetActive(false);
-
         // Initialize screens
         loseScreen.SetActive(false);
         playScreen.SetActive(true);
@@ -104,28 +100,6 @@ public class GameManager : MonoBehaviour
 
         speedText.text = speed.ToString("F1");
 
-
-        // Update speed UI - Outdated since now we have the cooldown wheel
-        /*float weaponCooldown = playerWeapon.CurrentCooldown;
-
-        if (weaponCooldown > 0)
-        {
-            if (weaponCooldownLabel.activeInHierarchy == false)
-            {
-                weaponCooldownLabel.SetActive(true);
-            }
-
-            weaponCooldownText.text = weaponCooldown.ToString("F2") + "s";
-        }
-        else
-        {
-            if (weaponCooldownLabel.activeInHierarchy == true)
-            {
-                weaponCooldownLabel.SetActive(false);
-            }
-
-            weaponCooldownText.text = "";
-        }*/
         
     }
 
