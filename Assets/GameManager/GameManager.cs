@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
         speedText.text = speed.ToString("F1");
 
 
-        // Update speed UI
+        // Update speed UI - Outdated since now we have the cooldown wheel
         /*float weaponCooldown = playerWeapon.CurrentCooldown;
 
         if (weaponCooldown > 0)
