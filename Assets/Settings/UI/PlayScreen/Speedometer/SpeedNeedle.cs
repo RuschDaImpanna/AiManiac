@@ -3,30 +3,48 @@ using UnityEngine;
 public class SpeedNeedle : MonoBehaviour
 {
 
-    public Transform needle;
+    private Transform needle;
     public GameManager gm;
+    public SpeedBar deadLimit;
 
-    private const float minSpeedAngle = -90;
-    private const float maxSpeedAngle = 5;
+    public const float minSpeedAngle = -90;
+    public const float maxSpeedAngle = 5;
 
-    //private float speed = gm.speed;
+    private float speed;
+    private float maxSpeed;
     
-    void Start()
+    void Awake()
     {
+
+        needle = transform.GetChild(1);
         
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
+        speed = gm.speed;
+        maxSpeed = deadLimit.deadSpeedLimit * 10;
+
+        if (speed > maxSpeed)
+        {
+
+            speed = maxSpeed;
+
+        }
+
+        needle.eulerAngles = new Vector3(0, 0, GetSpeedRotation());
     }
     
-    /*
+    
     float GetSpeedRotation()
     {
 
-        float totalAngleSize = 0;
+        float totalAngleSize = minSpeedAngle - maxSpeedAngle;
 
-    }*/
+        float speedNormalized = speed / maxSpeed;
+
+        return minSpeedAngle - speedNormalized * totalAngleSize;
+
+    }
 }

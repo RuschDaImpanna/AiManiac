@@ -5,7 +5,7 @@ public class SpeedBar : MonoBehaviour
 {
     public event Action<PlayerState> OnStateChanged; // Event for state changes
 
-    private float deadSpeedLimit = 0f;
+    public float deadSpeedLimit;
     private float dangerSpeedLimit = 0f;
     private PlayerState currentState = PlayerState.Normal;
 
