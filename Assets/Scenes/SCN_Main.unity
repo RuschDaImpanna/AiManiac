@@ -446,7 +446,7 @@ PrefabInstance:
       objectReference: {fileID: 762964533}
     - target: {fileID: 3503135282531957208, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4819425224121495848, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: player
@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6690513166264205975, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8564497288481973801, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalPosition.x
@@ -536,7 +536,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3535722665068716966, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: intensityFactor
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5265752611043394911, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: lastMountainSectionGenerated
