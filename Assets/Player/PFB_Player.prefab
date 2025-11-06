@@ -20,6 +20,8 @@ GameObject:
   - component: {fileID: 416329612146621999}
   - component: {fileID: 5532003595342597524}
   - component: {fileID: -4954039905242949491}
+  - component: {fileID: 3196289009439801783}
+  - component: {fileID: -8335208582584995250}
   m_Layer: 0
   m_Name: PFB_Player
   m_TagString: Player
@@ -280,6 +282,75 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   gameManager: {fileID: 0}
+--- !u!114 &3196289009439801783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444850865578077370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseSource
+  ImpulseDefinition:
+    ImpulseChannel: 1
+    ImpulseShape: 2
+    CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    ImpulseDuration: 0.2
+    ImpulseType: 3
+    DissipationRate: 0.25
+    RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    RepeatMode: 0
+    Randomize: 1
+    TimeEnvelope:
+      AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      AttackTime: 0
+      SustainTime: 0.1
+      DecayTime: 0.7
+      ScaleWithImpact: 1
+      HoldForever: 0
+    ImpactRadius: 100
+    DirectionMode: 0
+    DissipationMode: 2
+    DissipationDistance: 100
+    PropagationSpeed: 343
+  DefaultVelocity: {x: 0, y: -1, z: 0}
+--- !u!114 &-8335208582584995250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2444850865578077370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5805d43359b583b44a05801954290257, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedBaseShake
+  impulseSource: {fileID: 3196289009439801783}
+  minSpeed: 100
+  maxSpeed: 300
+  baseIntensity: 0.5
 --- !u!1 &2494469111350284768
 GameObject:
   m_ObjectHideFlags: 0
@@ -5281,6 +5352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1252dafa380cda043883930f9f904cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedLinesMove
+  intensityFactor: 1
 --- !u!1001 &3818211646697010183
 PrefabInstance:
   m_ObjectHideFlags: 0
