@@ -1078,6 +1078,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2051116226}
+    - target: {fileID: 3004206714324111513, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3375116853662343681, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3424980631338750297, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_Color.b
       value: 0.9
@@ -1194,10 +1202,34 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 4385382775427999868, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_FontData.m_MaxSize
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4385382775427999868, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 5151435896274864390, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: weapon
       value: 
       objectReference: {fileID: 762964541}
+    - target: {fileID: 5745552976546884408, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745552976546884408, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745552976546884408, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745552976546884408, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6593086829496656798, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_Name
       value: UI
