@@ -24,18 +24,19 @@ public class GameManager : MonoBehaviour
     private Text weaponCooldownText;
     private SpeedBar playerSpeedBar;
     private WeaponRecoil playerWeapon;
+    private PlayerMovement playerMovement;
     private int score;
     private float lastZPosition;
-
     public float LastZPosition {
         get { return lastZPosition; }
         set { lastZPosition = value; }
     }
     public const string highScoreKey = "HighScore";
-    public static bool IsGameOver = false;
 
     // Add a cooldown to start be considering danger/dead states
     private float initialCooldownTime = 5f;
+
+    public float speed;
 
     void OnEnable()
     {
@@ -61,14 +62,13 @@ public class GameManager : MonoBehaviour
         // Find the player's weapon
         playerWeapon = player.GetComponentInChildren<WeaponRecoil>();
 
+        // Find the player's movement script
+        playerMovement = player.GetComponent<PlayerMovement>();
+
         // Load high score and initialize score
         loadHighScore();
         score = 0;
         lastZPosition = player.transform.position.z;
-
-        // Initialize cooldown label
-        weaponCooldownText = weaponCooldownLabel.GetComponent<Text>();
-        weaponCooldownLabel.SetActive(false);
 
         // Initialize screens
         loseScreen.SetActive(false);
@@ -92,36 +92,15 @@ public class GameManager : MonoBehaviour
             UpdateScoreUI();
             lastZPosition = player.transform.position.z;
 
-            
+
         }
 
         // Update speed UI
-        float speed = playerSpeedBar.Speed;
+        speed = playerMovement.Speed*3.6f;
 
-        speedText.text = (speed * 3.6f).ToString("F1") + " km/h";
+        speedText.text = speed.ToString("F1");
 
-
-        // Update speed UI
-        float weaponCooldown = playerWeapon.CurrentCooldown;
-
-        if (weaponCooldown > 0)
-        {
-            if (weaponCooldownLabel.activeInHierarchy == false)
-            {
-                weaponCooldownLabel.SetActive(true);
-            }
-
-            weaponCooldownText.text = weaponCooldown.ToString("F2") + "s";
-        }
-        else
-        {
-            if (weaponCooldownLabel.activeInHierarchy == true)
-            {
-                weaponCooldownLabel.SetActive(false);
-            }
-
-            weaponCooldownText.text = "";
-        }
+        
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -166,7 +145,7 @@ public class GameManager : MonoBehaviour
         playScreen.SetActive(false); // Hide play screen
         loseScreen.SetActive(true); // Show lose screen
 
-        // Unlock the cursos and show the cursor
+        // Unlock the cursor and show the cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
@@ -175,6 +154,7 @@ public class GameManager : MonoBehaviour
         loseScreen.GetComponent<LoseScreen>().UpdateScores(score, highScore);
     }
 
+    public static bool IsGameOver = false;
 
     public void RestartGame()
     {
@@ -197,25 +177,25 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case PlayerState.Normal:
-                //Debug.Log("Player is in Normal state.");
-                speedText.color = new Color(0.9f, 0.9f, 0.9f);
+                Debug.Log("Player is in Normal state.");
+                speedText.color = new Color(0, 1, 0.9f);
                 break;
             case PlayerState.Danger:
-                //Debug.Log("Player is in Danger state.");
+                Debug.Log("Player is in Danger state.");
                 speedText.color = Color.yellow;
                 break;
             case PlayerState.Dead:
-                //Debug.Log("Player is Dead.");
+                Debug.Log("Player is Dead.");
                 speedText.color = Color.red;
                 GameOver();
                 break;
         }
     }
 
-    public void GameOver()
+    private void GameOver()
     {
         Debug.Log("Game Over.");
-            
+        
         IsGameOver = true;
         
         if (Time.timeScale == 0f) return;
