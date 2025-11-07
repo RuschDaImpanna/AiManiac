@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3503135282531957208, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4798451026548632981, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalPosition.x
@@ -514,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6690513166264205975, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8564497288481973801, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalPosition.x
@@ -577,6 +577,10 @@ PrefabInstance:
       propertyPath: cooldown
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: shootSound
+      value: 
+      objectReference: {fileID: 762964549}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: recoilForce
       value: 2
@@ -726,6 +730,33 @@ PrefabInstance:
 --- !u!1 &762964533 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2444850865578077370, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+  m_PrefabInstance: {fileID: 762964532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &762964538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5532003595342597524, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+  m_PrefabInstance: {fileID: 762964532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762964533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd75e9fb370523d48a71c025d5ad37e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedBar
+--- !u!114 &762964541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+  m_PrefabInstance: {fileID: 762964532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762964533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3031aeeba5059f342823b8eaaf54049c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RecoilWeapon
+--- !u!82 &762964549 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5971157071735566960, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
   m_PrefabInstance: {fileID: 762964532}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &963887653 stripped
@@ -893,7 +924,7 @@ PrefabInstance:
     - target: {fileID: 5045350250240813038, guid: adc14d27833e73c408a5da38655f3467, type: 3}
       propertyPath: weaponCooldownLabel
       value: 
-      objectReference: {fileID: 1918376488}
+      objectReference: {fileID: 0}
     - target: {fileID: 8312848839991069583, guid: adc14d27833e73c408a5da38655f3467, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1163,10 +1194,22 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.9
       objectReference: {fileID: 0}
+    - target: {fileID: 5151435896274864390, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 762964541}
     - target: {fileID: 6593086829496656798, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
+    - target: {fileID: 7662318890275338125, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 2051116226}
+    - target: {fileID: 7662318890275338125, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: deadLimit
+      value: 
+      objectReference: {fileID: 762964538}
     - target: {fileID: 8279418875215907688, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1176,11 +1219,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a27465578ab794045b7678def3fe8139, type: 3}
---- !u!1 &1918376488 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1761221177508278221, guid: a27465578ab794045b7678def3fe8139, type: 3}
-  m_PrefabInstance: {fileID: 1918376487}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1918376489 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3814776301277635821, guid: a27465578ab794045b7678def3fe8139, type: 3}

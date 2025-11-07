@@ -23,7 +23,6 @@ GameObject:
   - component: {fileID: 3196289009439801783}
   - component: {fileID: -8335208582584995250}
   - component: {fileID: -1210862687174776262}
-  - component: {fileID: 2005820556893470052}
   - component: {fileID: 5971157071735566960}
   m_Layer: 0
   m_Name: PFB_Player
@@ -233,9 +232,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecoilWeapon
   shootSound: {fileID: 0}
-  playerCamera: {fileID: 2875558981627753839}
-  recoilForce: 1000
   cooldown: 1.5
+  impulseSource: {fileID: 0}
+  playerCamera: {fileID: 2875558981627753839}
+  repulseForce: 1000
+  recoilForce: 1000
+  recoilDirection: {x: 0, y: 0.2, z: -1}
 --- !u!114 &5265752611043394911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,6 +276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd75e9fb370523d48a71c025d5ad37e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedBar
+  deadSpeedLimit: 0
 --- !u!114 &-4954039905242949491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,26 +377,14 @@ MonoBehaviour:
   normalFOV: 60
   speedFOV: 80
   smoothSpeed: 5
---- !u!114 &2005820556893470052
-MonoBehaviour:
+--- !u!82 &5971157071735566960
+AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2444850865578077370}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf8a180037c200148ab199a8e2e26f91, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpeedBasedCameraDistance
-  cinemachineCamera: {fileID: 0}
-  minSpeed: 0
-  maxSpeed: 20
-  normalDistance: 5
-  maxDistance: 10
-  smoothSpeed: 5
---- !u!82 &5971157071735566960
-AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -5412,6 +5403,11 @@ MonoBehaviour:
   mouseSensitivity: 5
   limitFront: {x: 90, y: -90}
   limitBack: {x: 90, y: -90}
+  minSpeed: 0
+  maxSpeed: 20
+  smoothSpeed: 5
+  normalLocalPosition: {x: 0, y: 1.3, z: 1}
+  maxSpeedLocalPosition: {x: 0, y: 2, z: -3}
 --- !u!1001 &874291106812209919
 PrefabInstance:
   m_ObjectHideFlags: 0
