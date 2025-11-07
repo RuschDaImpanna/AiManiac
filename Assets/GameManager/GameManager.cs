@@ -212,7 +212,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void GameOver()
+    public void GameOver()
     {
         Debug.Log("Game Over.");
             
