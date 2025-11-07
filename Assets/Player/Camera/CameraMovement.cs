@@ -47,11 +47,11 @@ public class CameraMovement : MonoBehaviour
         Vector3 targetLocalPosition = Vector3.Lerp(normalLocalPosition, maxSpeedLocalPosition, speedPercent);
 
         // Smoothly move camera to target local position
-        transform.localPosition = Vector3.Lerp(
-            transform.localPosition,
-            targetLocalPosition,
-            Time.deltaTime * smoothSpeed
-        );
+        //transform.localPosition = Vector3.Lerp(
+        //    transform.localPosition,
+        //    targetLocalPosition,
+        //    Time.deltaTime * smoothSpeed
+        //);
     }
 
     private void FixedUpdate()
