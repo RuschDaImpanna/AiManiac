@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public GameObject weaponCooldownLabel;
 
-    private Text weaponCooldownText;
+    [Header("Audio Source")]
+    [SerializeField] private AudioSource windSound;
+
     private SpeedBar playerSpeedBar;
     private WeaponRecoil playerWeapon;
     private PlayerMovement playerMovement;
@@ -108,6 +110,11 @@ public class GameManager : MonoBehaviour
         // Reset time scale when a new scene is loaded
         Time.timeScale = 1f;
         IsGameOver = false;
+
+        if (windSound.isPlaying == false)
+        {
+            windSound.UnPause();
+        }
     }
     public void PauseGame()
     {
@@ -120,6 +127,8 @@ public class GameManager : MonoBehaviour
             // Lock the cursor and hide it
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
+
+            windSound.UnPause();
         }
         else
         {
@@ -129,6 +138,8 @@ public class GameManager : MonoBehaviour
             // Unlock the cursor and show it
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+
+            windSound.Pause();
         }
     }
 
@@ -201,6 +212,8 @@ public class GameManager : MonoBehaviour
         if (Time.timeScale == 0f) return;
         
         Time.timeScale = 0f; // Pause the game
+
+        windSound.Pause();
 
         // Check high score
         if (score > PlayerPrefs.GetInt(highScoreKey, 0))
