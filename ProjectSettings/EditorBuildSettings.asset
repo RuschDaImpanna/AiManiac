@@ -14,9 +14,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SCN_Main.unity
     guid: 587d3e33544cc464d8015cde1fb1391a
-  - enabled: 0
-    path: Assets/Scenes/SCN_MainTest.unity
-    guid: a3c5d96622c946e4ca4d5d98a77a7145
+  - enabled: 1
+    path: Assets/Scenes/SCN_Credits.unity
+    guid: 0c33464c3037fca438bb5dd0b5755f36
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
