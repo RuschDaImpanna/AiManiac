@@ -2,7 +2,28 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [Header("Sensibility")]
+    [SerializeField] private float mouseSensitivity = 100f;
+
+    [Header("Limit (Up, Down)")]
+    [SerializeField] private Vector2 limitFront = new Vector2();
+    [SerializeField] private Vector2 limitBack = new Vector2(); 
+    
+    [Header("Speed Settings")]
+    [SerializeField] private float minSpeed = 0f;
+    [SerializeField] private float maxSpeed = 20f;
+    [SerializeField] private float smoothSpeed = 5f;
+
+    [Header("Distance Settings")]
+    [SerializeField] private Vector3 normalLocalPosition = new Vector3(0f, 1.3f, 1f);
+    [SerializeField] private Vector3 maxSpeedLocalPosition = new Vector3(0f, 2f, -3f);
+
     private InputController mouseScript;
+    
+    private float xRotation = 0f;
+
+    private float currentDistanceMultiplier = 1f;
+    private Rigidbody rb;
 
     private void Awake()
     {
@@ -10,14 +31,28 @@ public class CameraMovement : MonoBehaviour
         mouseScript = GetComponentInParent<InputController>();
     }
 
-    [Header("Sensibility")]        
-    public float mouseSensitivity = 100f;
+    private void Start()
+    {
+        rb = GetComponentInParent<Rigidbody>();
+    }
 
-    [Header("Limit (Up, Down)")]
-    public Vector2 limitFront = new Vector2();
-    public Vector2 limitBack = new Vector2();
+    private void Update()
+    {
+        if (rb == null) return;
 
-    float xRotation = 0f;
+        float currentSpeed = rb.linearVelocity.magnitude;
+        float speedPercent = Mathf.InverseLerp(minSpeed, maxSpeed, currentSpeed);
+
+        // Interpolate between normal and max speed positions
+        Vector3 targetLocalPosition = Vector3.Lerp(normalLocalPosition, maxSpeedLocalPosition, speedPercent);
+
+        // Smoothly move camera to target local position
+        transform.localPosition = Vector3.Lerp(
+            transform.localPosition,
+            targetLocalPosition,
+            Time.deltaTime * smoothSpeed
+        );
+    }
 
     private void FixedUpdate()
     {

@@ -3,18 +3,19 @@ using UnityEngine;
 
 public class ObstaclePlayerBounce : MonoBehaviour
 {
-    [SerializeField]
-    private float bounceForce;
+    [Header("Cinemachine")]
+    [SerializeField] private CinemachineImpulseSource impulseSource;
 
-    [SerializeField, Range(0f, 1f)]
-    private float speedReduction = 2f / 3f;
-
-    [SerializeField]
-    private CinemachineImpulseSource impulseSource;
-
+    [Header("Bounce Settings")]
+    [SerializeField] private float bounceForce;
+    [SerializeField, Range(0f, 1f)] private float speedReduction = 2f / 3f;
+    
     private void Start()
     {
-        impulseSource = GetComponent<CinemachineImpulseSource>();
+        if (impulseSource == null)
+        {
+            impulseSource = GetComponent<CinemachineImpulseSource>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
