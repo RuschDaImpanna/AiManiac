@@ -1,2 +1,14 @@
 fileFormatVersion: 2
 guid: 3031aeeba5059f342823b8eaaf54049c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SFXSource: {instanceID: 0}
+  - ShootSFX: {instanceID: 0}
+  - playerCamera: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

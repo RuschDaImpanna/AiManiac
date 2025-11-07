@@ -1,10 +1,14 @@
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class WeaponRecoil : MonoBehaviour
 {
+    [Header("Audio Source")]
+    [SerializeField] AudioSource shootSound;
+    
     [Header("Shooting")]
     [SerializeField] private float cooldown = 1.5f;
     public float CurrentCooldown { get { return currentCooldown; } }
@@ -68,5 +72,8 @@ public class WeaponRecoil : MonoBehaviour
 
         // Apply camera recoil
         impulseSource.GenerateImpulseWithVelocity(recoilDirection.normalized * recoilForce);
-    }
+        
+        // Trigger shoot sound 
+        shootSound.Play();
+    }   
 }
