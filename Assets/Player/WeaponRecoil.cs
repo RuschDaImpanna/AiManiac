@@ -1,9 +1,14 @@
+using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 
 public class WeaponRecoil : MonoBehaviour
 {
+    [Header("Audio Source")]
+    [SerializeField] AudioSource shootSound;
+    
     private Rigidbody playerRigidbody;
     public Transform playerCamera;
     public float recoilForce = 1000f;
@@ -58,5 +63,10 @@ public class WeaponRecoil : MonoBehaviour
         Vector3 recoilDirection = - new Vector3(vector3.x, 3*vector3.y/4, vector3.z/10);
         playerRigidbody.AddForce(recoilDirection * recoilForce, ForceMode.Impulse);
         lastShootTime = Time.time;
-    }
+
+        // Trigger shoot sound 
+        shootSound.Play();
+
+       
+    }   
 }
