@@ -18,12 +18,17 @@ public class CameraMovement : MonoBehaviour
     [SerializeField] private Vector3 normalLocalPosition = new Vector3(0f, 1.3f, 1f);
     [SerializeField] private Vector3 maxSpeedLocalPosition = new Vector3(0f, 2f, -3f);
 
+    [Header("References")]
+    [SerializeField] private Transform body;
+
     private InputController mouseScript;
     
     private float xRotation = 0f;
 
-    private float currentDistanceMultiplier = 1f;
     private Rigidbody rb;
+
+    private Vector3 initialCameraPosition;
+    private Vector3 initialBodyPosition;
 
     private void Awake()
     {
@@ -34,6 +39,12 @@ public class CameraMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody>();
+
+        initialCameraPosition = transform.localPosition;
+        if (body)
+        {
+            initialBodyPosition = body.localPosition;
+        }
     }
 
     private void Update()
@@ -45,13 +56,24 @@ public class CameraMovement : MonoBehaviour
 
         // Interpolate between normal and max speed positions
         Vector3 targetLocalPosition = Vector3.Lerp(normalLocalPosition, maxSpeedLocalPosition, speedPercent);
+        //targetLocalPosition.y = normalLocalPosition.y; // Keep the camera's Y position relative to the body
 
         // Smoothly move camera to target local position
-        //transform.localPosition = Vector3.Lerp(
-        //    transform.localPosition,
-        //    targetLocalPosition,
-        //    Time.deltaTime * smoothSpeed
-        //);
+        transform.localPosition = Vector3.Lerp(
+            transform.localPosition,
+            targetLocalPosition,
+            Time.deltaTime * smoothSpeed
+        );
+
+        if (body)
+        {
+            Vector3 targetBodyLocalPosition = new Vector3(body.localPosition.x, targetLocalPosition.y - initialCameraPosition.y + initialBodyPosition.y, targetLocalPosition.z - initialCameraPosition.z);
+            body.localPosition = Vector3.Lerp(
+                body.localPosition,
+                targetBodyLocalPosition,
+                Time.deltaTime * smoothSpeed
+            );
+        }
     }
 
     private void FixedUpdate()

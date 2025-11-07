@@ -681,6 +681,10 @@ PrefabInstance:
       propertyPath: lastMountainSectionGenerated
       value: 
       objectReference: {fileID: 2389229326492011275}
+    - target: {fileID: 5685707425898878009, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: body
+      value: 
+      objectReference: {fileID: 1687342142}
     - target: {fileID: 8914735227507761498, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -934,6 +938,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adc14d27833e73c408a5da38655f3467, type: 3}
+--- !u!4 &1687342142 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6436741326929167202, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+  m_PrefabInstance: {fileID: 762964532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1822419361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,6 +1198,10 @@ PrefabInstance:
     - target: {fileID: 3814776301277635821, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_Color.r
       value: 0.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 3814776301277635821, guid: a27465578ab794045b7678def3fe8139, type: 3}
+      propertyPath: m_FontData.m_Alignment
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4385382775427999868, guid: a27465578ab794045b7678def3fe8139, type: 3}
       propertyPath: m_Color.b
