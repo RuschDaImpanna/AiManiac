@@ -13,6 +13,10 @@ public enum PlayerState
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Audio Source")]
+    [SerializeField] private AudioSource windSound;
+
+    [Header("References")]
     public GameObject player;
     public GameObject loseScreen;
     public GameObject playScreen;
@@ -21,8 +25,6 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public GameObject weaponCooldownLabel;
 
-    [Header("Audio Source")]
-    [SerializeField] private AudioSource windSound;
 
     private SpeedBar playerSpeedBar;
     private WeaponRecoil playerWeapon;

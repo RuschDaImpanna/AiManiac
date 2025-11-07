@@ -206,7 +206,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75123579}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.19906877, y: 0.42741662, z: 0.22448358, w: 0.8528153}
+  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
   m_LocalPosition: {x: 0, y: -473.39703, z: 330.84103}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -582,8 +582,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 762964549}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: spawnPoint
+      value: 
+      objectReference: {fileID: 1461705466}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: pulsePrefab
+      value: 
+      objectReference: {fileID: 6843102344348976751, guid: e330e7260648ca8448f6f2bcd1ad3e15, type: 3}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: pulseRadius
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: recoilForce
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: repulseForce
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: recoilDirection.y
@@ -643,31 +659,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.87527907
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.028439209
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4709534
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.106210895
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -8.617
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 55.867
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 9.263
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3433682098617121403, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_LinearDamping
@@ -728,7 +744,10 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 2005820556893470052, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1461705466}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
 --- !u!1 &762964533 stripped
@@ -774,6 +793,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineCamera
+--- !u!4 &963887656 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+  m_PrefabInstance: {fileID: 762964532}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1461705465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1461705466}
+  m_Layer: 0
+  m_Name: PulseSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1461705466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1461705465}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.09, z: 2.89}
+  m_LocalScale: {x: 1, y: 0.7272728, z: 0.8888891}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 963887656}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1485549718
 GameObject:
   m_ObjectHideFlags: 0

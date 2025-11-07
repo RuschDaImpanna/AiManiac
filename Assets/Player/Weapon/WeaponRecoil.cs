@@ -1,4 +1,4 @@
-using Unity.Cinemachine;
+    using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -8,7 +8,14 @@ public class WeaponRecoil : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField] AudioSource shootSound;
-    
+
+    [Header("Pulse Prefab")]
+    [SerializeField] private GameObject pulsePrefab;
+    [SerializeField] private Transform spawnPoint;
+
+    [Header("Pulse Settings")]
+    [SerializeField] private float pulseRadius = 10f;
+
     [Header("Shooting")]
     [SerializeField] private float cooldown = 1.5f;
     public float CurrentCooldown { get { return currentCooldown; } }
@@ -75,5 +82,10 @@ public class WeaponRecoil : MonoBehaviour
         
         // Trigger shoot sound 
         shootSound.Play();
-    }   
+
+        // Spawn visual pulse
+        Vector3 spawnPos = spawnPoint != null ? spawnPoint.position : transform.position;
+        GameObject pulse = Instantiate(pulsePrefab, spawnPos, Quaternion.identity);
+        pulse.GetComponent<Rigidbody>().linearVelocity = rb.linearVelocity; // Inherit player's velocity
+    }
 }
