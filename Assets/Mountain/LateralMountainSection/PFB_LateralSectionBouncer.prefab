@@ -98,7 +98,7 @@ MonoBehaviour:
     AmplitudeGain: 8
     FrequencyGain: 10
     RepeatMode: 0
-    Randomize: 1
+    Randomize: 0
     TimeEnvelope:
       AttackShape:
         serializedVersion: 2
