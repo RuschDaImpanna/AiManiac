@@ -28,6 +28,7 @@ public class WeaponRecoil : MonoBehaviour
     [SerializeField] private float repulseForce = 1000f;
     [SerializeField] private float recoilForce = 1f;
     [SerializeField] private Vector3 recoilDirection = new Vector3(0, 0.2f, -1f);
+    [SerializeField] private CameraWeaponRecoil cameraWeaponRecoil;
     
     private Rigidbody rb;
     
@@ -78,8 +79,10 @@ public class WeaponRecoil : MonoBehaviour
         lastShootTime = Time.time;
 
         // Apply camera recoil
+        Debug.Log("Shooting weapon recoil");
         impulseSource.GenerateImpulseWithVelocity(recoilDirection.normalized * recoilForce);
-        
+        cameraWeaponRecoil.ApplyRecoil();
+
         // Trigger shoot sound 
         shootSound.Play();
 

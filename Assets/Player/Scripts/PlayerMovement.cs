@@ -39,9 +39,9 @@ public class PlayerMovement : MonoBehaviour
         Vector3 speed = new Vector3(0f, -initialSpeed * Mathf.Sin(xAngleRad) / 3.6f, initialSpeed * Mathf.Cos(xAngleRad) / 3.6f);
         Debug.Log(Mathf.Sin(50f * xAngleRad) / 3.6f);
         rb.linearVelocity = speed;
-        Debug.Log("Initial velocity and velocity magnitued set to: " + new Vector3(rb.linearVelocity.x * 3.6f, rb.linearVelocity.y * 3.6f, rb.linearVelocity.z * 3.6f) + " " + rb.linearVelocity.magnitude * 3.6f + " for angle: " + angles.x);
-        Debug.Log("Speed: " + new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, rb.linearVelocity.z));
-        Debug.Log("Speed: " + speed.magnitude * 3.6f + " km/h");
+        //Debug.Log("Initial velocity and velocity magnitued set to: " + new Vector3(rb.linearVelocity.x * 3.6f, rb.linearVelocity.y * 3.6f, rb.linearVelocity.z * 3.6f) + " " + rb.linearVelocity.magnitude * 3.6f + " for angle: " + angles.x);
+        //Debug.Log("Speed: " + new Vector3(rb.linearVelocity.x, rb.linearVelocity.y, rb.linearVelocity.z));
+        //Debug.Log("Speed: " + speed.magnitude * 3.6f + " km/h");
     }
 
     void FixedUpdate()

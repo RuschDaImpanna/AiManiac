@@ -206,8 +206,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75123579}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2588191, y: 0, z: 0, w: 0.9659258}
-  m_LocalPosition: {x: 0, y: -473.39703, z: 330.84103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47389, y: -472.58176, z: 330.40646}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -458,7 +458,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3503135282531957208, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4798451026548632981, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalPosition.x
@@ -514,7 +514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6690513166264205975, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8564497288481973801, guid: a5b60dca31fdd274ba3a298aec974281, type: 3}
       propertyPath: m_LocalPosition.x
@@ -595,11 +595,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: recoilForce
-      value: 2
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: repulseForce
-      value: 1200
+      value: 1250
       objectReference: {fileID: 0}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: recoilDirection.y
@@ -609,6 +609,10 @@ PrefabInstance:
       propertyPath: recoilDirection.z
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: cameraWeaponRecoil
+      value: 
+      objectReference: {fileID: 1686763091}
     - target: {fileID: -4954039905242949491, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: gameManager
       value: 
@@ -693,6 +697,14 @@ PrefabInstance:
       propertyPath: intensityFactor
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3685356686973532796, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: recoilSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3685356686973532796, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: recoilAmount
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5265752611043394911, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: lastMountainSectionGenerated
       value: 
@@ -748,7 +760,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1461705466}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2444850865578077370, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 762964563}
   m_SourcePrefab: {fileID: 100100000, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
 --- !u!1 &762964533 stripped
 GameObject:
@@ -782,6 +797,21 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 5971157071735566960, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
   m_PrefabInstance: {fileID: 762964532}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &762964563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 762964533}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08723586e64d784458ba504ed6b02db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraWeaponRecoil
+  recoilAmount: 20
+  recoilSpeed: 10
+  returnSpeed: 5
 --- !u!114 &963887653 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2619481167046727954, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
@@ -997,6 +1027,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adc14d27833e73c408a5da38655f3467, type: 3}
+--- !u!114 &1686763091 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3685356686973532796, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+  m_PrefabInstance: {fileID: 762964532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08723586e64d784458ba504ed6b02db1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraWeaponRecoil
 --- !u!4 &1687342142 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6436741326929167202, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
