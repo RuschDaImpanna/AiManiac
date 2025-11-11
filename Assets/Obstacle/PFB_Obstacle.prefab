@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ObstaclePlayerBounce
   impulseSource: {fileID: 0}
   bounceForce: 50
-  speedReduction: 0.6666667
+  speedReduction: 0.75
 --- !u!114 &-7084216297432733705
 MonoBehaviour:
   m_ObjectHideFlags: 0

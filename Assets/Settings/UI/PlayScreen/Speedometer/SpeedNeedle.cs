@@ -24,7 +24,7 @@ public class SpeedNeedle : MonoBehaviour
     {
 
         speed = gm.speed;
-        maxSpeed = deadLimit.deadSpeedLimit * 10;
+        maxSpeed = deadLimit.DeadSpeedLimit * 10;
 
         if (speed > maxSpeed)
         {

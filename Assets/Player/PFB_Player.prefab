@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1497162489743078817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3914084322851429765}
+  m_Layer: 0
+  m_Name: PulseSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3914084322851429765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1497162489743078817}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.09, z: 2.89}
+  m_LocalScale: {x: 1, y: 0.7272728, z: 0.8888891}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2875558981627753839}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2444850865578077370
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +168,7 @@ Rigidbody:
   m_GameObject: {fileID: 2444850865578077370}
   serializedVersion: 5
   m_Mass: 75
-  m_LinearDamping: 0.1
+  m_LinearDamping: 0.03
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -231,17 +262,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3031aeeba5059f342823b8eaaf54049c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecoilWeapon
-  shootSound: {fileID: 0}
-  pulsePrefab: {fileID: 0}
-  spawnPoint: {fileID: 0}
-  pulseRadius: 10
-  cooldown: 1.5
+  shootSound: {fileID: 5971157071735566960}
+  pulsePrefab: {fileID: 6843102344348976751, guid: e330e7260648ca8448f6f2bcd1ad3e15, type: 3}
+  spawnPoint: {fileID: 3914084322851429765}
+  pulseRadius: 100
+  cooldown: 0.5
   impulseSource: {fileID: 0}
   playerCamera: {fileID: 2875558981627753839}
-  repulseForce: 1000
-  recoilForce: 1000
-  recoilDirection: {x: 0, y: 0.2, z: -1}
-  cameraWeaponRecoil: {fileID: 0}
+  repulseForce: 1250
+  recoilForce: 5
+  recoilDirection: {x: 0, y: 0, z: 1.5}
+  cameraWeaponRecoil: {fileID: 3685356686973532796}
 --- !u!114 &5265752611043394911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -362,7 +393,7 @@ MonoBehaviour:
   impulseSource: {fileID: 3196289009439801783}
   minSpeed: 100
   maxSpeed: 300
-  baseIntensity: 0.5
+  baseIntensity: 1
 --- !u!114 &-1210862687174776262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,11 +406,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01d4e1c2531fdf243b097ba11edded5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedBased
-  cinemachineCamera: {fileID: 0}
+  cinemachineCamera: {fileID: 2619481167046727954}
   minSpeed: 100
-  maxSpeed: 200
+  maxSpeed: 300
   normalFOV: 60
-  speedFOV: 80
+  speedFOV: 110
   smoothSpeed: 5
 --- !u!82 &5971157071735566960
 AudioSource:
@@ -5342,11 +5373,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3815607756655467484}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.2588191, y: -0, z: -0, w: 0.9659258}
-  m_LocalPosition: {x: -0.47389, y: 0.8291802, z: 1.8978804}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.47389, y: 1.300004, z: 1.0000063}
   m_LocalScale: {x: 1, y: 1.3026314, z: 1.1785713}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3914084322851429765}
   m_Father: {fileID: 6173364778672191845}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2619481167046727954
@@ -5412,7 +5444,7 @@ MonoBehaviour:
   smoothSpeed: 5
   normalLocalPosition: {x: 0, y: 1.3, z: 1}
   maxSpeedLocalPosition: {x: 0, y: 2, z: -3}
-  body: {fileID: 0}
+  body: {fileID: 6436741326929167202}
 --- !u!1 &6644019885161694042
 GameObject:
   m_ObjectHideFlags: 0
@@ -5458,7 +5490,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08723586e64d784458ba504ed6b02db1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraWeaponRecoil
-  recoilAmount: 2
+  recoilAmount: 20
   recoilSpeed: 10
   returnSpeed: 5
 --- !u!1001 &874291106812209919
@@ -5533,7 +5565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1252dafa380cda043883930f9f904cde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpeedLinesMove
-  intensityFactor: 1
+  intensityFactor: 0.5
 --- !u!1001 &3818211646697010183
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5592,7 +5624,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8731731518105318412, guid: aade94798fbb0fe4b886f861b552d529, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3914084322851429765}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 725970117616917160, guid: aade94798fbb0fe4b886f861b552d529, type: 3}
       insertIndex: -1

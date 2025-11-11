@@ -8,6 +8,7 @@ public enum PlayerState
 {
     Normal,
     Danger,
+    Warning,
     Dead
 }
 
@@ -17,14 +18,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource windSound;
 
     [Header("References")]
-    public GameObject player;
-    public GameObject loseScreen;
-    public GameObject playScreen;
-    public GameObject pauseScreen;
-    public Text speedText;
-    public Text scoreText;
-    public GameObject weaponCooldownLabel;
+    [SerializeField] private GameObject player;
+    public GameObject Player {
+        get { return player; }
+    }
 
+    [SerializeField] private GameObject loseScreen;
+    [SerializeField] private GameObject playScreen;
+    [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private Text speedText;
+    [SerializeField] private Text scoreText;
+    [SerializeField] private GameObject weaponCooldownLabel;
+    [SerializeField] private ScreenBorder screenBorder;
 
     private SpeedBar playerSpeedBar;
     private WeaponRecoil playerWeapon;
@@ -192,10 +197,19 @@ public class GameManager : MonoBehaviour
             case PlayerState.Normal:
                 Debug.Log("Player is in Normal state.");
                 speedText.color = new Color(0, 1, 0.9f);
+                screenBorder.SetNormal();
+                break;
+            case PlayerState.Warning:
+                Debug.Log("Player is in Warning state.");
+                speedText.color = Color.yellow;
+                screenBorder.FlashDanger(2f, FlashType.Warning);
+                screenBorder.SetWarning();
                 break;
             case PlayerState.Danger:
                 Debug.Log("Player is in Danger state.");
-                speedText.color = Color.yellow;
+                speedText.color = Color.red;
+                screenBorder.FlashDanger(2f, FlashType.Danger);
+                screenBorder.SetDanger();
                 break;
             case PlayerState.Dead:
                 Debug.Log("Player is Dead.");

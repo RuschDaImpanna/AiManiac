@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBounce
   bounceForce: 100
-  speedReduction: 0.6666667
+  speedReduction: 0.75
   impulseSource: {fileID: 7101282186354876050}
 --- !u!114 &7101282186354876050
 MonoBehaviour:

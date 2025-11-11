@@ -13,7 +13,7 @@ public class DebugKeys : MonoBehaviour
         InputAction debugAction = GetComponentInParent<PlayerInput>().actions["Debug"];
         debugAction.performed += OnDebug;
 
-        player = gameManager.player;
+        player = gameManager.Player;
         rb = player.GetComponent<Rigidbody>();
 
     }
@@ -41,6 +41,14 @@ public class DebugKeys : MonoBehaviour
         else if (control.name == "f3")
         {
             rb.linearVelocity += new Vector3(0f, 0f, -5f);
+        } else if (control.name == "f4")
+        {
+            if (Time.timeScale == 0f)
+            {
+                Time.timeScale = 1f; // Resume the game
+            } else { 
+                Time.timeScale = 0f; // Pause the game
+            }
         }
     }
 }
