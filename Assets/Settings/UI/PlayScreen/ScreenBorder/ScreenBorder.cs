@@ -1,11 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum FlashType
-{ 
-    Danger,
-    Warning
-}
 public class ScreenBorder : MonoBehaviour
 {
     [Header("Border Settings")]
@@ -18,12 +14,18 @@ public class ScreenBorder : MonoBehaviour
     [SerializeField] private Color freezeColor = new Color(0, 1, 1, 0.5f); // Cyan
     [SerializeField] private float fadeSpeed = 5f;
 
+    [Header("Flash Settings")]
+    [SerializeField] private Color flashColor = new Color(1, 0, 0, 0.7f); // Bright Red
+    [SerializeField] private Color flashBorderColor = new Color(0, 0, 0, 0.5f);
+    [SerializeField] private float flashDuration = 1f;
+
     private Color targetColor;
     private Color currentColor;
+    private bool isFlashing = false;
 
     public Color DangerColor { get { return dangerColor; } }
     public Color WarningColor { get { return warningColor; } }
-
+    
     void Start()
     {
         interiorBorderImage.color = freezeColor;
@@ -34,8 +36,7 @@ public class ScreenBorder : MonoBehaviour
     void Update()
     {
         // Smoothly transition to target color
-        interiorBorderImage.color = Color.Lerp(interiorBorderImage.color, targetColor, fadeSpeed * Time.deltaTime);
-        exteriorBorderImage.color = Color.Lerp(exteriorBorderImage.color, targetColor, fadeSpeed * Time.deltaTime);
+        if (!isFlashing) changeBorderColorProgressively(interiorBorderImage.color, targetColor, fadeSpeed);
     }
 
     // Call these methods based on your conditions
@@ -49,8 +50,7 @@ public class ScreenBorder : MonoBehaviour
     {
         if (fastTransition && currentColor != dangerColor)
         {
-            interiorBorderImage.color = warningColor;
-            exteriorBorderImage.color = warningColor;
+            changeBorderColor(warningColor);
         }
 
         targetColor = warningColor;
@@ -61,8 +61,11 @@ public class ScreenBorder : MonoBehaviour
     {
         if (fastTransition)
         {
-            interiorBorderImage.color = dangerColor;
-            exteriorBorderImage.color = dangerColor;
+            changeBorderColor(normalColor);
+            StartCoroutine(FlashCoroutine(flashDuration, onComplete: () =>
+            {
+                changeBorderColor(dangerColor);
+            }));
         }
 
         targetColor = dangerColor;
@@ -70,15 +73,35 @@ public class ScreenBorder : MonoBehaviour
     }
 
     // Flash effect for damage
-    public void FlashDanger(float duration = 2f, FlashType targetFlash = FlashType.Danger)
+    public void FlashDanger(float duration = 1f)
     {
-        StartCoroutine(FlashCoroutine(duration, targetFlash));
+        StartCoroutine(FlashCoroutine(duration));
     }
-    
-    private System.Collections.IEnumerator FlashCoroutine(float duration, FlashType targetFlash)
+
+    private System.Collections.IEnumerator FlashCoroutine(float duration, Action onComplete = null)
     {
-        flashImage.color = Color.Lerp(flashImage.color, targetFlash == FlashType.Danger ? dangerColor : warningColor, Time.deltaTime);
+        isFlashing = true;
+        float transitionSpeed = 1f;
+
+        flashImage.color = Color.Lerp(flashImage.color, flashColor, transitionSpeed);
+        
         yield return new WaitForSeconds(duration);
-        flashImage.color = Color.Lerp(flashImage.color, normalColor, Time.deltaTime);
+
+        flashImage.color = Color.Lerp(flashImage.color, normalColor, transitionSpeed);
+
+        isFlashing = false;
+        onComplete?.Invoke();
+    }
+
+    private void changeBorderColorProgressively(Color colorFrom, Color toColor, float transitionVelocity)
+    {
+        interiorBorderImage.color = Color.Lerp(colorFrom, toColor, Time.deltaTime * transitionVelocity);
+        exteriorBorderImage.color = Color.Lerp(colorFrom, toColor, Time.deltaTime * transitionVelocity);
+    }
+
+    private void changeBorderColor(Color newColor)
+    {
+        interiorBorderImage.color = newColor;
+        exteriorBorderImage.color = newColor;
     }
 }

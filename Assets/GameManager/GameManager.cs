@@ -202,13 +202,11 @@ public class GameManager : MonoBehaviour
             case PlayerState.Warning:
                 Debug.Log("Player is in Warning state.");
                 speedText.color = Color.yellow;
-                screenBorder.FlashDanger(2f, FlashType.Warning);
                 screenBorder.SetWarning(fastTransition: true);
                 break;
             case PlayerState.Danger:
                 Debug.Log("Player is in Danger state.");
                 speedText.color = Color.red;
-                screenBorder.FlashDanger(2f, FlashType.Danger);
                 screenBorder.SetDanger(fastTransition: true);
                 break;
             case PlayerState.Dead:
