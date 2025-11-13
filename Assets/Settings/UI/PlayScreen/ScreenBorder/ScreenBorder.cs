@@ -19,6 +19,7 @@ public class ScreenBorder : MonoBehaviour
     [SerializeField] private float fadeSpeed = 5f;
 
     private Color targetColor;
+    private Color currentColor;
 
     public Color DangerColor { get { return dangerColor; } }
     public Color WarningColor { get { return warningColor; } }
@@ -41,16 +42,31 @@ public class ScreenBorder : MonoBehaviour
     public void SetNormal()
     {
         targetColor = normalColor;
+        currentColor = normalColor;
     }
 
-    public void SetWarning()
+    public void SetWarning(bool fastTransition = false)
     {
+        if (fastTransition && currentColor != dangerColor)
+        {
+            interiorBorderImage.color = warningColor;
+            exteriorBorderImage.color = warningColor;
+        }
+
         targetColor = warningColor;
+        currentColor = warningColor;
     }
 
-    public void SetDanger()
+    public void SetDanger(bool fastTransition = false)
     {
+        if (fastTransition)
+        {
+            interiorBorderImage.color = dangerColor;
+            exteriorBorderImage.color = dangerColor;
+        }
+
         targetColor = dangerColor;
+        currentColor = dangerColor;
     }
 
     // Flash effect for damage
