@@ -35,12 +35,19 @@ public class GameManager : MonoBehaviour
     private WeaponRecoil playerWeapon;
     private PlayerMovement playerMovement;
     private int score;
+
     private float lastZPosition;
     public float LastZPosition {
         get { return lastZPosition; }
         set { lastZPosition = value; }
     }
+
     public const string highScoreKey = "HighScore";
+
+    private bool isGameOver = false;
+    public bool IsGameOver {
+        get { return isGameOver; }
+    }
 
     // Add a cooldown to start be considering danger/dead states
     private float initialCooldownTime = 5f;
@@ -116,16 +123,28 @@ public class GameManager : MonoBehaviour
     {
         // Reset time scale when a new scene is loaded
         Time.timeScale = 1f;
-        IsGameOver = false;
+        isGameOver = false;
 
         if (windSound.isPlaying == false)
         {
             windSound.UnPause();
         }
     }
+
+    void OnDestroy()
+    {
+        Debug.Log("GameManager destruido!");
+
+        // Limpiar suscripciones
+        if (playerSpeedBar != null)
+        {
+            playerSpeedBar.OnStateChanged -= HandlePlayerStateChange;
+        }
+    }
+
     public void PauseGame()
     {
-        if (IsGameOver) return;
+        if (isGameOver) return;
         if (Time.timeScale == 0f)
         {
             Time.timeScale = 1f; // Resume the game
@@ -172,13 +191,11 @@ public class GameManager : MonoBehaviour
         loseScreen.GetComponent<LoseScreen>().UpdateScores(score, highScore);
     }
 
-    public static bool IsGameOver = false;
-
     public void RestartGame()
     {
         Debug.Log("Restarting game...");
 
-        IsGameOver = false;
+        isGameOver = false;
         Time.timeScale = 1f; // Resume the game
         SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
     }
@@ -221,7 +238,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Game Over.");
         
-        IsGameOver = true;
+        isGameOver = true;
         
         if (Time.timeScale == 0f) return;
         

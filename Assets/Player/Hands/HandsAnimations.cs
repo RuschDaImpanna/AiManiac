@@ -60,7 +60,7 @@ public class HandsAnimations : MonoBehaviour
 if (clipInfo.Length > 0)
 {
     string clipName = clipInfo[0].clip.name;
-    Debug.Log("Se está reproduciendo el clip: " + clipName);
+    //Debug.Log("Se está reproduciendo el clip: " + clipName);
 }
 
         if (stateInfo.IsName("ShootLGun"))

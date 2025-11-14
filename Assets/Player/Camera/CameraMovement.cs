@@ -80,7 +80,7 @@ public class CameraMovement : MonoBehaviour
     {
         Vector2 mouseMove = mouseScript.GetMouseMove();
 
-        if (!GameManager.IsGameOver)
+        if (Time.timeScale != 0)
         {
             //En el centro de la pantalla
             Cursor.lockState = CursorLockMode.Locked;
