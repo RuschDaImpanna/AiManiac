@@ -67,9 +67,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de3f7aa13fec47d4b97a9ffad2f59ae3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBounce
-  bounceForce: 100
-  speedReduction: 0.75
   impulseSource: {fileID: 7101282186354876050}
+  impulseScale: 0.0675
+  bounceForce: 50
+  speedReduction: 0.75
 --- !u!114 &7101282186354876050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,8 +96,8 @@ MonoBehaviour:
     ImpulseType: 3
     DissipationRate: 0.25
     RawSignal: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-    AmplitudeGain: 8
-    FrequencyGain: 10
+    AmplitudeGain: 3.01
+    FrequencyGain: 8
     RepeatMode: 0
     Randomize: 0
     TimeEnvelope:
@@ -149,8 +150,8 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       AttackTime: 0
-      SustainTime: 0.125
-      DecayTime: 0.6
+      SustainTime: 0.26
+      DecayTime: 0.5
       ScaleWithImpact: 1
       HoldForever: 0
     ImpactRadius: 100

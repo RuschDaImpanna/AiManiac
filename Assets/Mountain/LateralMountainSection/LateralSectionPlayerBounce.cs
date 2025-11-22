@@ -3,14 +3,13 @@ using Unity.Cinemachine;
 
 public class LateralSectionPlayerBounce : MonoBehaviour
 {
-    [SerializeField]
-    private float bounceForce;
+    [Header("Cinemachine Impulse Settings")]
+    [SerializeField] private CinemachineImpulseSource impulseSource;
+    [SerializeField] private float impulseScale = 1f;
 
-    [SerializeField, Range(0f, 1f)]
-    private float speedReduction = 2f / 3f;
-
-    [SerializeField]
-    private CinemachineImpulseSource impulseSource;
+    [Header("Bounce Settings")]
+    [SerializeField] private float bounceForce;
+    [SerializeField, Range(0f, 1f)] private float speedReduction = 2f / 3f;
 
     private void Start()
     {
@@ -26,7 +25,7 @@ public class LateralSectionPlayerBounce : MonoBehaviour
             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
             if (playerRigidbody != null)
             {
-                impulseSource.GenerateImpulse();
+                impulseSource.GenerateImpulse(playerRigidbody.linearVelocity * impulseScale);
                 
                 // Invert the player's horizontal velocity to create a bounce effect
                 playerRigidbody.linearVelocity = new Vector3(
