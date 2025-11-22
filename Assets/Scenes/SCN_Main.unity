@@ -571,6 +571,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8335208582584995250, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: minSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: -8335208582584995250, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: scaleIntensity
+      value: 0.68
+      objectReference: {fileID: 0}
     - target: {fileID: -4954039905242949491, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: gameManager
       value: 
@@ -578,6 +586,14 @@ PrefabInstance:
     - target: {fileID: 2444850865578077370, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196289009439801783, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: ImpulseDefinition.AmplitudeGain
+      value: 1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3196289009439801783, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: ImpulseDefinition.FrequencyGain
+      value: 7.69
       objectReference: {fileID: 0}
     - target: {fileID: 5265752611043394911, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: lastMountainSectionGenerated

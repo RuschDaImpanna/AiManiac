@@ -7,11 +7,11 @@ public class SpeedBaseShake : MonoBehaviour
     [SerializeField] private CinemachineImpulseSource impulseSource;
 
     [Header("Speed Settings")]
-    [SerializeField] private float minSpeed = 100f;
+    [SerializeField] private float minSpeed = 50f;
     [SerializeField] private float maxSpeed = 200f;
 
     [Header("Shake Intensity")]
-    [SerializeField] private float baseIntensity = 0.5f;
+    [SerializeField] private float scaleIntensity = 0.5f;
 
     private Rigidbody rb;
 
@@ -34,7 +34,8 @@ public class SpeedBaseShake : MonoBehaviour
         if (currentSpeed >= minSpeed)
         {
             float speedPercent = Mathf.InverseLerp(minSpeed, maxSpeed, currentSpeed);
-            float intensity = baseIntensity * speedPercent;
+            //float intensity = scaleIntensity * (speedPercent + baseIntensity);
+            float intensity = scaleIntensity * speedPercent;
 
             // Generate continuous subtle impulses
             impulseSource.GenerateImpulse(intensity);
