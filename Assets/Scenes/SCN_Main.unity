@@ -416,6 +416,11 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!4 &249844939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6173364778672191845, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+  m_PrefabInstance: {fileID: 762964532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &443831379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -579,6 +584,14 @@ PrefabInstance:
       propertyPath: scaleIntensity
       value: 0.68
       objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: recoilSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: playerCameraHolder
+      value: 
+      objectReference: {fileID: 249844939}
     - target: {fileID: -4954039905242949491, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: gameManager
       value: 

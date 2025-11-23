@@ -7,7 +7,7 @@ public class SpeedBaseShake : MonoBehaviour
     [SerializeField] private CinemachineImpulseSource impulseSource;
 
     [Header("Speed Settings")]
-    [SerializeField] private float minSpeed = 50f;
+    [SerializeField] private float minSpeed = 100f;
     [SerializeField] private float maxSpeed = 200f;
 
     [Header("Shake Intensity")]
