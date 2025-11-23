@@ -16,15 +16,17 @@ public class SpeedBasedFov : MonoBehaviour
     [SerializeField] private float smoothSpeed = 5f;
 
     private Rigidbody rb;
+    private SpeedBar playerSpeedbar;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        playerSpeedbar = GetComponent<SpeedBar>();
     }
 
     void Update()
     {
-        float currentSpeed = rb.linearVelocity.magnitude * 3.6f;
+        float currentSpeed = playerSpeedbar.Speed * 3.6f;
         float speedPercent = Mathf.InverseLerp(minSpeed, maxSpeed, currentSpeed);
         float targetFOV = Mathf.Lerp(normalFOV, speedFOV, speedPercent);
 
