@@ -612,6 +612,14 @@ PrefabInstance:
       propertyPath: minSpeed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1210862687174776262, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: speedFOV
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: -1210862687174776262, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: normalFOV
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 2444850865578077370, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: m_Name
       value: Player

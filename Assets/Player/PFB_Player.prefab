@@ -262,17 +262,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3031aeeba5059f342823b8eaaf54049c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RecoilWeapon
+  playerCameraHolder: {fileID: 0}
   shootSound: {fileID: 5971157071735566960}
   pulsePrefab: {fileID: 6843102344348976751, guid: e330e7260648ca8448f6f2bcd1ad3e15, type: 3}
   spawnPoint: {fileID: 3914084322851429765}
+  prefabMountainSection: {fileID: 0}
   pulseRadius: 100
   cooldown: 0.5
   impulseSource: {fileID: 0}
-  playerCamera: {fileID: 2875558981627753839}
-  repulseForce: 1250
   recoilForce: 5
   recoilDirection: {x: 0, y: 0, z: 1.5}
   cameraWeaponRecoil: {fileID: 3685356686973532796}
+  recoilSpeed: 5
+  desaccelerationTime: 1
+  additionalForwardScale: 1
 --- !u!114 &5265752611043394911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -393,7 +396,7 @@ MonoBehaviour:
   impulseSource: {fileID: 3196289009439801783}
   minSpeed: 100
   maxSpeed: 300
-  baseIntensity: 1
+  scaleIntensity: 0.5
 --- !u!114 &-1210862687174776262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5440,7 +5443,7 @@ MonoBehaviour:
   limitFront: {x: 90, y: -90}
   limitBack: {x: 90, y: -90}
   minSpeed: 0
-  maxSpeed: 20
+  maxSpeed: 300
   smoothSpeed: 5
   normalLocalPosition: {x: 0, y: 1.3, z: 1}
   maxSpeedLocalPosition: {x: 0, y: 2, z: -3}
@@ -5578,6 +5581,10 @@ PrefabInstance:
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 8914735227507761498}
+    - target: {fileID: 444064538914662661, guid: aade94798fbb0fe4b886f861b552d529, type: 3}
+      propertyPath: maxSpeed
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 725970117616917160, guid: aade94798fbb0fe4b886f861b552d529, type: 3}
       propertyPath: m_Name
       value: CameraBrain
