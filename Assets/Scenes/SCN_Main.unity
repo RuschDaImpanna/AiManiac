@@ -585,6 +585,10 @@ PrefabInstance:
       value: 0.68
       objectReference: {fileID: 0}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: cooldown
+      value: 2.98
+      objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: recoilSpeed
       value: 100
       objectReference: {fileID: 0}
@@ -592,6 +596,14 @@ PrefabInstance:
       propertyPath: playerCameraHolder
       value: 
       objectReference: {fileID: 249844939}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: prefabMountainSection
+      value: 
+      objectReference: {fileID: 3015976956864774460, guid: fd66e1963eaef85438d6d4912df50b4e, type: 3}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: additionalForwardScale
+      value: 0.025
+      objectReference: {fileID: 0}
     - target: {fileID: -4954039905242949491, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: gameManager
       value: 
@@ -1095,6 +1107,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 762964533}
+    - target: {fileID: 5045350250240813038, guid: adc14d27833e73c408a5da38655f3467, type: 3}
+      propertyPath: speedBar
+      value: 
+      objectReference: {fileID: 762964538}
     - target: {fileID: 5045350250240813038, guid: adc14d27833e73c408a5da38655f3467, type: 3}
       propertyPath: scoreText
       value: 

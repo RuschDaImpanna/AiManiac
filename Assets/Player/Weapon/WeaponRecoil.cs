@@ -1,41 +1,44 @@
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.XR;
 
 public class WeaponRecoil : MonoBehaviour
 {
-    [Header("Audio Source")]
+    [Header("References")]
+    [SerializeField] private Transform playerCameraHolder;
     [SerializeField] AudioSource shootSound;
-
-    [Header("Pulse Prefab")]
     [SerializeField] private GameObject pulsePrefab;
     [SerializeField] private Transform spawnPoint;
+    [SerializeField] private Transform prefabMountainSection;
 
     [Header("Pulse Settings")]
     [SerializeField] private float pulseRadius = 10f;
 
-    [Header("Shooting")]
+    [Header("Shooting Settings")]
     [SerializeField] private float cooldown = 1.5f;
     public float CurrentCooldown { get { return currentCooldown; } }
-    private float lastShootTime = -Mathf.Infinity;
-    private float currentCooldown = 0f;
 
-    [Header("Recoil")]
+    [Header("Camera Recoil Settings")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
-    [SerializeField] private Transform playerCamera;
-    [SerializeField] private Transform playerCameraHolder;
-    [SerializeField] private float repulseForce = 1000f;
     [SerializeField] private float recoilForce = 1f;
     [SerializeField] private Vector3 recoilDirection = new (0, 0.2f, -1f);
     [SerializeField] private CameraWeaponRecoil cameraWeaponRecoil;
 
-    [Header("New Recoil Settings")]
+    [Header("Physic Recoil Settings")]
     [SerializeField] private float recoilSpeed = 5f;
     [SerializeField] private float desaccelerationTime = 1f;
+    [SerializeField] private float additionalForwardScale = 1f;
+
+    private float lastShootTime = -Mathf.Infinity;
+    private float currentCooldown = 0f;
 
     private float desacceleration = 0f;
     private float currentShootDirection = 0f;
+
+    private Quaternion mountainSectionRotation;
+    private float yComponentScale;
+    private float zComponentScale;
+    
     private Rigidbody rb;
     
     void Start()
@@ -59,6 +62,10 @@ public class WeaponRecoil : MonoBehaviour
             }
 
         };
+
+        mountainSectionRotation = prefabMountainSection.rotation;
+        yComponentScale = Mathf.Sin(mountainSectionRotation.eulerAngles.x * Mathf.Deg2Rad) * additionalForwardScale; 
+        zComponentScale = Mathf.Cos(mountainSectionRotation.eulerAngles.x * Mathf.Deg2Rad) * additionalForwardScale;
     }
 
     void FixedUpdate()
@@ -85,29 +92,31 @@ public class WeaponRecoil : MonoBehaviour
     void OnShootWeaponRecoil()
     {   
         if (Time.timeScale == 0f) return;
-        if (currentCooldown != 0f) return;
+        if (currentCooldown > 0f) return;
 
         // Apply physical recoil
-        Quaternion diference = Quaternion.Inverse(rb.transform.rotation) * playerCameraHolder.localRotation;
-        float yawAngleDiference = Mathf.DeltaAngle(0, diference.eulerAngles.y);
-        float recoilSpeedScale = Mathf.Abs(yawAngleDiference) / 90f; // Scale recoil based on how much the player is looking to the sides
+        Quaternion difference = Quaternion.Inverse(rb.transform.rotation) * playerCameraHolder.localRotation;
+        float yawAngleDifference = Mathf.DeltaAngle(0, difference.eulerAngles.y);
+        float recoilLateralSpeedScale = Mathf.Abs(yawAngleDifference) / 90f; // Scale recoil based on how much the player is looking to the sides
+        recoilLateralSpeedScale = recoilLateralSpeedScale > 1f ? 1f : recoilLateralSpeedScale; // Clamp to 1
 
-        currentShootDirection = yawAngleDiference >= 0 ? 1f : -1f;
-        desacceleration = recoilSpeed * recoilSpeedScale * currentShootDirection / desaccelerationTime;
+        currentShootDirection = yawAngleDifference >= 0 ? 1f : -1f;
+        desacceleration = recoilSpeed * recoilLateralSpeedScale * currentShootDirection / desaccelerationTime;
 
         UpdateLateralSpeed(
-            - recoilSpeed * recoilSpeedScale,
+            - recoilSpeed * recoilLateralSpeedScale,
             currentShootDirection
         );
 
-        // Old recoil code
-        //Vector3 vector3 = playerCamera.forward;
-        //Vector3 recoilForceDirection = - new Vector3(vector3.x, 3*vector3.y/4, vector3.z/10);
-        //rb.AddForce(recoilForceDirection * repulseForce, ForceMode.Impulse);
-        //lastShootTime = Time.time;
+        if (yawAngleDifference * currentShootDirection > 90f) { 
+            float recoilForwardSpeedScale = (Mathf.Abs(yawAngleDifference) - 90f) / 90f; // Scale forward recoil based on how much the player is looking backwards
+            UpdateForwardSpeed(
+                rb.linearVelocity.y - recoilSpeed * recoilForwardSpeedScale  * yComponentScale,
+                rb.linearVelocity.z + recoilSpeed * recoilForwardSpeedScale * zComponentScale
+            );
+        }
 
         // Apply camera recoil
-        //Debug.Log("Shooting weapon recoil");
         impulseSource.GenerateImpulse(recoilDirection.normalized * recoilForce);
         cameraWeaponRecoil.ApplyRecoil();
 
@@ -126,6 +135,15 @@ public class WeaponRecoil : MonoBehaviour
             speed * direction,
             rb.linearVelocity.y,
             rb.linearVelocity.z
+        );
+    }
+
+    public void UpdateForwardSpeed(float speedY, float speedZ)
+    {
+        rb.linearVelocity = new Vector3(
+            rb.linearVelocity.x,
+            speedY,
+            speedZ
         );
     }
 }
