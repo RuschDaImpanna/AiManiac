@@ -81,8 +81,7 @@ public class WeaponRecoil : MonoBehaviour
         if (Time.time - lastShootTime < cooldown)
         {
             currentCooldown = cooldown - (Time.time - lastShootTime);
-        }
-        else
+        } else
         {
             currentCooldown = 0f;
         }
@@ -93,6 +92,9 @@ public class WeaponRecoil : MonoBehaviour
     {   
         if (Time.timeScale == 0f) return;
         if (currentCooldown > 0f) return;
+
+        // Update last shoot time
+        lastShootTime = Time.time;
 
         // Apply physical recoil
         Quaternion difference = Quaternion.Inverse(rb.transform.rotation) * playerCameraHolder.localRotation;
