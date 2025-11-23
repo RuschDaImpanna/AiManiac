@@ -14,11 +14,9 @@ public enum PlayerState
 
 public class GameManager : MonoBehaviour
 {
-    [Header("Audio Source")]
-    [SerializeField] private AudioSource windSound;
-
     [Header("References")]
     [SerializeField] private GameObject player;
+    [SerializeField] private AudioSource windSound;
     public GameObject Player {
         get { return player; }
     }
@@ -112,11 +110,9 @@ public class GameManager : MonoBehaviour
         }
 
         // Update speed UI
-        speed = playerMovement.Speed*3.6f;
+        speed = playerSpeedBar.Speed*3.6f;
 
         speedText.text = speed.ToString("F1");
-
-        
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
