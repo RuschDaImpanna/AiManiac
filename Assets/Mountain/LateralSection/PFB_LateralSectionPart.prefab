@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4219031230163057794}
   - component: {fileID: 4640147714780823198}
   m_Layer: 0
-  m_Name: PFB_LateralMountainSectionPart
+  m_Name: PFB_LateralSectionPart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
