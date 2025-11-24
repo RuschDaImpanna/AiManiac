@@ -566,7 +566,7 @@ PrefabInstance:
       objectReference: {fileID: 2051116226}
     - target: {fileID: -1210862687174776262, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: minSpeed
-      value: 75
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -1210862687174776262, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: speedFOV
