@@ -16,7 +16,7 @@ MonoBehaviour:
   - displayName: SnowTree
     prefab: {fileID: 249393727878771358, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
     rarity: 1
-    marginX: 5
+    marginX: 10
     marginZ: 10
   - displayName: LateralSnowTree
     prefab: {fileID: 2618976508767311016, guid: 83f16dfb125686149a2629da20a758db, type: 3}
