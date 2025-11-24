@@ -549,9 +549,17 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: groundLayer.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: playerCameraHolder
       value: 
       objectReference: {fileID: 249844939}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: playerCameraTransform
+      value: 
+      objectReference: {fileID: 1153317803}
     - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: prefabMountainSection
       value: 
@@ -560,6 +568,18 @@ PrefabInstance:
       propertyPath: additionalForwardScale
       value: 0.025
       objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: additionalVerticalScale
+      value: 0.2125
+      objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: minimunRecoilVerticalAngle
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -5079359155352472351, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+      propertyPath: playerCameraHolderTransform
+      value: 
+      objectReference: {fileID: 249844939}
     - target: {fileID: -4954039905242949491, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
       propertyPath: gameManager
       value: 
@@ -753,6 +773,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 989969510}
   m_CullTransparentMesh: 1
+--- !u!4 &1153317803 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2875558981627753839, guid: 2bbd480064e35d34a95b5829e0f9821a, type: 3}
+  m_PrefabInstance: {fileID: 762964532}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1304358621
 GameObject:
   m_ObjectHideFlags: 0
@@ -6823,7 +6848,7 @@ GameObject:
   - component: {fileID: 7844283538121987970}
   - component: {fileID: 4290536668041933080}
   - component: {fileID: 4711630602998215428}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6934,7 +6959,7 @@ GameObject:
   - component: {fileID: 7315327223710691896}
   - component: {fileID: 3662043688891896994}
   - component: {fileID: 5204523012117812926}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7057,7 +7082,7 @@ GameObject:
   - component: {fileID: 9113544795785434380}
   - component: {fileID: 2967488132288574358}
   - component: {fileID: 6036721206722523530}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7193,7 +7218,7 @@ GameObject:
   - component: {fileID: 5673062936066235945}
   - component: {fileID: 451278470932375861}
   - component: {fileID: 4819425223749526907}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SecondMountainSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7556,7 +7581,7 @@ GameObject:
   - component: {fileID: 4675752705969036229}
   - component: {fileID: 1708252251501559135}
   - component: {fileID: 7880438502293176131}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7590,7 +7615,7 @@ GameObject:
   - component: {fileID: 4785508635891734901}
   - component: {fileID: 1530934361417711599}
   - component: {fileID: 8058883666639715827}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7725,7 +7750,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6136292862403497983}
   - component: {fileID: 5132197251109872480}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: RightLateralMountainSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7843,7 +7868,7 @@ GameObject:
   - component: {fileID: 6010905529697659729}
   - component: {fileID: 305247192427695563}
   - component: {fileID: 9139048272703950807}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7993,7 +8018,7 @@ GameObject:
   - component: {fileID: 8562304861126333750}
   - component: {fileID: 4227870863013963666}
   - component: {fileID: 1179424790076603791}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DestructionSectionTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8010,7 +8035,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3080395628745713575}
   - component: {fileID: 2589492093219468774}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NewSectionTrigger
   m_TagString: Zone_MountainGenerator
   m_Icon: {fileID: 0}
@@ -8198,7 +8223,7 @@ GameObject:
   - component: {fileID: 3217616240724926602}
   - component: {fileID: 8930698411787027984}
   - component: {fileID: 78858814342431756}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8217,7 +8242,7 @@ GameObject:
   - component: {fileID: 3327405875300196922}
   - component: {fileID: 8753344063832917152}
   - component: {fileID: 257337687847274172}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8467,7 +8492,7 @@ GameObject:
   - component: {fileID: 4553101870733430814}
   - component: {fileID: 7527955927683724932}
   - component: {fileID: 1337766210957112472}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8574,7 +8599,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4137864008951116976}
   - component: {fileID: 3133909994137131055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LeftLateralMountainSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8658,7 +8683,7 @@ GameObject:
   - component: {fileID: 703014430236068215}
   - component: {fileID: 6815892274877575149}
   - component: {fileID: 2629810427698359793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8730,7 +8755,7 @@ GameObject:
   - component: {fileID: 579028571715822117}
   - component: {fileID: 4679407848179979577}
   - component: {fileID: 311261232246036855}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirstMountainSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8797,7 +8822,7 @@ GameObject:
   - component: {fileID: 42967735109446861}
   - component: {fileID: 6327510069837138519}
   - component: {fileID: 3253793202769332299}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8935,7 +8960,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7785624540923042731}
   - component: {fileID: 7303821079762602474}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NewSectionTrigger
   m_TagString: Zone_MountainGenerator
   m_Icon: {fileID: 0}
@@ -9001,7 +9026,7 @@ GameObject:
   - component: {fileID: 3485980871529130298}
   - component: {fileID: 8944062976674896798}
   - component: {fileID: 6263930237173350787}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DestructionSectionTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9020,7 +9045,7 @@ GameObject:
   - component: {fileID: 1314215498968362563}
   - component: {fileID: 5001944509367159001}
   - component: {fileID: 4576331532850399941}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LateralMountainSectionPart (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

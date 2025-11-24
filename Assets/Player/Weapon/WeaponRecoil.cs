@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 public class WeaponRecoil : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Transform playerCameraHolder;
+    [SerializeField] private Transform playerCameraHolderTransform;
+    [SerializeField] private Transform playerCameraTransform;
     [SerializeField] AudioSource shootSound;
     [SerializeField] private GameObject pulsePrefab;
     [SerializeField] private Transform spawnPoint;
@@ -28,6 +29,9 @@ public class WeaponRecoil : MonoBehaviour
     [SerializeField] private float recoilSpeed = 5f;
     [SerializeField] private float desaccelerationTime = 1f;
     [SerializeField] private float additionalForwardScale = 1f;
+    [SerializeField] private float additionalVerticalScale = 1f;
+    [SerializeField] private float minimunRecoilVerticalAngle = 10f;
+    [SerializeField] private LayerMask groundLayer;
 
     private float lastShootTime = -Mathf.Infinity;
     private float currentCooldown = 0f;
@@ -77,6 +81,15 @@ public class WeaponRecoil : MonoBehaviour
             );
         }
 
+        // Apply desacceleration to the player rigidbody in y axis
+        if (!IsGrounded()) 
+        {
+            //Debug.Log($"Current Y Speed: {rb.linearVelocity.y}");
+            UpdateVerticalSpeed(
+                rb.linearVelocity.y - (Mathf.Abs(desacceleration) / 50f)
+            );
+        }
+
         // Update cooldown
         if (Time.time - lastShootTime < cooldown)
         {
@@ -97,8 +110,8 @@ public class WeaponRecoil : MonoBehaviour
         lastShootTime = Time.time;
 
         // Apply physical recoil
-        Quaternion difference = Quaternion.Inverse(rb.transform.rotation) * playerCameraHolder.localRotation;
-        float yawAngleDifference = Mathf.DeltaAngle(0, difference.eulerAngles.y);
+        Quaternion holderDifference = Quaternion.Inverse(rb.transform.rotation) * playerCameraHolderTransform.localRotation;
+        float yawAngleDifference = Mathf.DeltaAngle(0, holderDifference.eulerAngles.y);
         float recoilLateralSpeedScale = Mathf.Abs(yawAngleDifference) / 90f; // Scale recoil based on how much the player is looking to the sides
         recoilLateralSpeedScale = recoilLateralSpeedScale > 1f ? 1f : recoilLateralSpeedScale; // Clamp to 1
 
@@ -117,6 +130,22 @@ public class WeaponRecoil : MonoBehaviour
                 rb.linearVelocity.z + recoilSpeed * recoilForwardSpeedScale * zComponentScale
             );
         }
+
+        // Vertical recoil only if looking downwards enough
+        Quaternion cameraDifference = Quaternion.Inverse(playerCameraHolderTransform.localRotation) * playerCameraTransform.localRotation;
+        float pitchAngleDiffence = Mathf.DeltaAngle(0, cameraDifference.eulerAngles.x);
+        //Debug.Log($"Pitch Angle Difference: {cameraDifference.eulerAngles.x}; {pitchAngleDiffence}");
+        //Debug.Log($"playerCameraHolderTransform.localRotation {playerCameraHolderTransform.localRotation}; playerCameraTransform.localRotation {playerCameraTransform.localRotation.eulerAngles}");
+
+        if (pitchAngleDiffence > minimunRecoilVerticalAngle)
+        {
+            float recoilVerticalSpeedScale = Mathf.Abs(pitchAngleDiffence) / 90f; // Scale vertical recoil based on how much the player is looking downwards
+            UpdateVerticalSpeed(
+                rb.linearVelocity.y + recoilSpeed * recoilVerticalSpeedScale * additionalVerticalScale
+            );
+        
+        }
+
 
         // Apply camera recoil
         impulseSource.GenerateImpulse(recoilDirection.normalized * recoilForce);
@@ -148,4 +177,34 @@ public class WeaponRecoil : MonoBehaviour
             speedZ
         );
     }
+
+    public void UpdateVerticalSpeed(float speed)
+    {
+        rb.linearVelocity = new Vector3(
+            rb.linearVelocity.x,
+            speed,
+            rb.linearVelocity.z
+        );
+    }
+
+    private bool IsGrounded() // Auxiliar function to check if the player is grounded
+    {
+        // Lanzar rayo hacia abajo
+        return Physics.Raycast(rb.transform.position, -rb.transform.up, rb.transform.localScale.y / 2f + 1f, groundLayer);
+    }
+
+    // Debugging: Dibujar rayo en la escena
+    //private void OnDrawGizmos()
+    //{
+    //    // Color según si toca el suelo
+    //    Gizmos.color = IsGrounded() ? Color.green : Color.red;
+
+    //    // Dibujar línea del rayo
+    //    Vector3 start = transform.position;
+    //    Vector3 end = transform.position - rb.transform.up * (rb.transform.localScale.y / 2f + 1f);
+    //    Gizmos.DrawLine(start, end);
+
+    //    // Esfera al final (opcional)
+    //    Gizmos.DrawSphere(end, 0.05f);
+    //}
 }

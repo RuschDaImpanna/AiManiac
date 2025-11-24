@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1757768198111015277}
   - component: {fileID: 1239793964688089900}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NewSectionTrigger
   m_TagString: Zone_MountainGenerator
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   - component: {fileID: 8962690967715367139}
   - component: {fileID: 3789876104850571263}
   - component: {fileID: 8086515397417415601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PFB_CentralSection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 196938467192848368}
   - component: {fileID: 5675849170854956372}
   - component: {fileID: 7221214143165273929}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: DestructionSectionTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
