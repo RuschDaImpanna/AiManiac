@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class MountainGeneration : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] private Transform lateralParallax;
+    [SerializeField] private GameObject prefabLateralParallaxSet;
 
     public GameObject lastMountainSectionGenerated;
     private GameObject duplicatedLastMountainSectionGenerated;
@@ -12,6 +15,8 @@ public class MountainGeneration : MonoBehaviour
     private GameManager gameManager;
 
     public Boolean needDuplicate = false;
+
+    private float newSectionZPosition = 0f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,11 +26,14 @@ public class MountainGeneration : MonoBehaviour
         {
             Debug.LogError("GameManager not found in the scene.");
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        
+        if (lateralParallax == null)
+        {
+            Debug.LogError("LateralParallax is not assigned.");
+        } else
+        {
+            newSectionZPosition = lateralParallax.GetChild(lateralParallax.childCount - 2).transform.localPosition.z;
+        }
     }
 
     private IEnumerator OnTriggerEnter(Collider other)
@@ -80,6 +88,26 @@ public class MountainGeneration : MonoBehaviour
             lastMountainSectionGenerated = duplicatedLastMountainSectionGenerated;
 
             gameManager.LastZPosition -= CalculteRelativeNextSectionPosition().z * 3f;
+
+            // Manage lateral parallax sets
+            foreach (Transform child in lateralParallax)
+            {
+                if (child.CompareTag("Zone_ParallaxDeathWall")) {
+                    continue;
+                }
+
+                child.position -= CalculteRelativeNextSectionPosition() * 3f;
+            }
+
+            if (lateralParallax.childCount < 5)
+            {
+                GameObject newLateralParallaxSet = Instantiate(prefabLateralParallaxSet, lateralParallax);
+                newLateralParallaxSet.transform.localPosition = new Vector3(
+                    0, 
+                    0, 
+                    lateralParallax.GetChild(lateralParallax.childCount - 2).localPosition.z + newSectionZPosition
+                );
+            }
         }
     }
 
