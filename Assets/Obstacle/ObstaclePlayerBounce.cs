@@ -35,16 +35,14 @@ public class ObstaclePlayerBounce : MonoBehaviour
 
             if (playerRigidbody != null)
             {
-                int direction = (other.transform.position.x > transform.position.x) ? -1 : 1;
-
                 impulseSource.GenerateImpulse(playerRigidbody.linearVelocity * impulseScale);
+
+                int direction = (other.transform.position.x > transform.position.x) ? -1 : 1;
 
                 WeaponRecoil weaponRecoil = other.GetComponent<WeaponRecoil>();
                 SpeedBar speedBar = other.GetComponent<SpeedBar>();
                 float speed = speedBar.Speed * 3.6f;
                 float additionalBounceSpeedScale = speed / 300f;
-
-                Debug.Log($"additonal Bounce Speed Scale: {additionalBounceSpeedScale}; speed: {speed}");
 
                 weaponRecoil?.UpdateLateralSpeed(
                     - direction * weaponRecoil.RecoilSpeed * additionalBounceSpeedScale * 0.75f, 
@@ -55,6 +53,8 @@ public class ObstaclePlayerBounce : MonoBehaviour
                     playerRigidbody.linearVelocity.y * speedReduction,
                     playerRigidbody.linearVelocity.z * speedReduction
                 );
+
+                // Old way to apply recoil
                 //playerRigidbody.linearVelocity = new Vector3(
                 //    playerRigidbody.linearVelocity.x,
                 //    playerRigidbody.linearVelocity.y * speedReduction,

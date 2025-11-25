@@ -26,15 +26,35 @@ public class LateralSectionPlayerBounce : MonoBehaviour
             if (playerRigidbody != null)
             {
                 impulseSource.GenerateImpulse(playerRigidbody.linearVelocity * impulseScale);
-                
-                // Invert the player's horizontal velocity to create a bounce effect
-                playerRigidbody.linearVelocity = new Vector3(
-                    -playerRigidbody.linearVelocity.x,
-                    playerRigidbody.linearVelocity.y * speedReduction, 
+
+                float direction = Mathf.Sign(playerRigidbody.linearVelocity.x);
+
+                WeaponRecoil weaponRecoil = other.GetComponent<WeaponRecoil>();
+                SpeedBar speedBar = other.GetComponent<SpeedBar>();
+                float speed = speedBar.Speed * 3.6f;
+                float additionalBounceSpeedScale = speed / 300f;
+
+                Debug.Log($"additonal Bounce Speed Scale: {additionalBounceSpeedScale}; speed: {speed}");
+
+                weaponRecoil?.UpdateLateralSpeed(
+                    -direction * weaponRecoil.RecoilSpeed * additionalBounceSpeedScale * 0.75f,
+                    direction
+                );
+
+                weaponRecoil?.UpdateForwardSpeed(
+                    playerRigidbody.linearVelocity.y * speedReduction,
                     playerRigidbody.linearVelocity.z * speedReduction
                 );
 
-                playerRigidbody.AddForce(new Vector3(playerRigidbody.linearVelocity.x * bounceForce, 0, 0), ForceMode.Impulse);
+                // Old way to apply recoil
+                // Invert the player's horizontal velocity to create a bounce effect
+                //playerRigidbody.linearVelocity = new Vector3(
+                //    -playerRigidbody.linearVelocity.x,
+                //    playerRigidbody.linearVelocity.y * speedReduction, 
+                //    playerRigidbody.linearVelocity.z * speedReduction
+                //);
+
+                //playerRigidbody.AddForce(new Vector3(playerRigidbody.linearVelocity.x * bounceForce, 0, 0), ForceMode.Impulse);
             }
         }
     }
