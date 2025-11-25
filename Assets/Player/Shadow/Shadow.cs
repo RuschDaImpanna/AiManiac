@@ -17,6 +17,15 @@ public class Shadow : MonoBehaviour
     private Renderer shadowRenderer;
     private Material shadowMaterial;
 
+    private void Start()
+    {
+        shadowRenderer = GetComponent<Renderer>();
+        if (shadowRenderer != null)
+        {
+            shadowMaterial = shadowRenderer.material;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

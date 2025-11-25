@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private AudioSource windSound;
-    public GameObject Player {
+    public GameObject Player
+    {
         get { return player; }
     }
 
@@ -32,10 +33,12 @@ public class GameManager : MonoBehaviour
     private SpeedBar playerSpeedBar;
     private WeaponRecoil playerWeapon;
     private PlayerMovement playerMovement;
+    private PlayerInput playerInput;
     private int score;
 
     private float lastZPosition;
-    public float LastZPosition {
+    public float LastZPosition
+    {
         get { return lastZPosition; }
         set { lastZPosition = value; }
     }
@@ -43,7 +46,8 @@ public class GameManager : MonoBehaviour
     public const string highScoreKey = "HighScore";
 
     private bool isGameOver = false;
-    public bool IsGameOver {
+    public bool IsGameOver
+    {
         get { return isGameOver; }
     }
 
@@ -65,54 +69,77 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        InitializeGame();
+    }
+
+    private void InitializeGame()
+    {
         // Find and subscribe to the SpeedBar's state change event
         playerSpeedBar = FindFirstObjectByType<SpeedBar>();
 
-        if (playerSpeedBar != null )
+        if (playerSpeedBar != null)
         {
             playerSpeedBar.OnStateChanged += HandlePlayerStateChange;
         }
-        
-        // Find the player's weapon
-        playerWeapon = player.GetComponentInChildren<WeaponRecoil>();
 
-        // Find the player's movement script
-        playerMovement = player.GetComponent<PlayerMovement>();
+        // Find the player's weapon
+        if (player != null)
+        {
+            playerWeapon = player.GetComponentInChildren<WeaponRecoil>();
+            playerMovement = player.GetComponent<PlayerMovement>();
+            playerInput = player.GetComponent<PlayerInput>();
+        }
 
         // Load high score and initialize score
         loadHighScore();
         score = 0;
-        lastZPosition = player.transform.position.z;
+
+        if (player != null)
+        {
+            lastZPosition = player.transform.position.z;
+        }
 
         // Initialize screens
-        loseScreen.SetActive(false);
-        playScreen.SetActive(true);
-        pauseScreen.SetActive(false);
+        if (loseScreen != null) loseScreen.SetActive(false);
+        if (playScreen != null) playScreen.SetActive(true);
+        if (pauseScreen != null) pauseScreen.SetActive(false);
 
         // Bind the pause action
-        InputAction pauseGameAction = player.GetComponent<PlayerInput>().actions["PauseGame"];
-        pauseGameAction.performed += ctx => 
+        if (playerInput != null)
         {
-            if (ctx.control.path.Contains("escape")) PauseGame();
-        };
+            InputAction pauseGameAction = playerInput.actions["PauseGame"];
+            pauseGameAction.performed += OnPauseGamePerformed;
+        }
+    }
+
+    private void OnPauseGamePerformed(InputAction.CallbackContext ctx)
+    {
+        if (ctx.control.path.Contains("escape"))
+        {
+            PauseGame();
+        }
     }
 
     private void FixedUpdate()
     {
+        // Check for null references
+        if (player == null || playerSpeedBar == null) return;
+
         // Update score UI
         if (player.transform.position.z - lastZPosition > 1)
         {
             score += 1;
             UpdateScoreUI();
             lastZPosition = player.transform.position.z;
-
-
         }
 
         // Update speed UI
-        speed = playerSpeedBar.Speed*3.6f;
+        speed = playerSpeedBar.Speed * 3.6f;
 
-        speedText.text = speed.ToString("F1");
+        if (speedText != null)
+        {
+            speedText.text = speed.ToString("F1");
+        }
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -121,7 +148,14 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         isGameOver = false;
 
-        if (windSound.isPlaying == false)
+        // Cleanup old subscriptions
+        CleanupSubscriptions();
+
+        // Re-initialize everything after scene load
+        // Use Invoke to wait one frame for all objects to be ready
+        Invoke(nameof(InitializeGame), 0.1f);
+
+        if (windSound != null && !windSound.isPlaying)
         {
             windSound.UnPause();
         }
@@ -130,17 +164,39 @@ public class GameManager : MonoBehaviour
     void OnDestroy()
     {
         Debug.Log("GameManager destruido!");
+        CleanupSubscriptions();
+    }
 
+    private void CleanupSubscriptions()
+    {
         // Limpiar suscripciones
         if (playerSpeedBar != null)
         {
             playerSpeedBar.OnStateChanged -= HandlePlayerStateChange;
+        }
+
+        // Limpiar suscripción del input
+        if (playerInput != null)
+        {
+            InputAction pauseGameAction = playerInput.actions["PauseGame"];
+            if (pauseGameAction != null)
+            {
+                pauseGameAction.performed -= OnPauseGamePerformed;
+            }
         }
     }
 
     public void PauseGame()
     {
         if (isGameOver) return;
+
+        // Check for null references
+        if (playScreen == null || pauseScreen == null || windSound == null)
+        {
+            Debug.LogWarning("Cannot pause game - missing references");
+            return;
+        }
+
         if (Time.timeScale == 0f)
         {
             Time.timeScale = 1f; // Resume the game
@@ -175,6 +231,8 @@ public class GameManager : MonoBehaviour
 
     private void ShowLoseScreen()
     {
+        if (playScreen == null || loseScreen == null) return;
+
         playScreen.SetActive(false); // Hide play screen
         loseScreen.SetActive(true); // Show lose screen
 
@@ -184,12 +242,19 @@ public class GameManager : MonoBehaviour
 
         // Update lose screen with final score and high score
         int highScore = PlayerPrefs.GetInt(highScoreKey, 0);
-        loseScreen.GetComponent<LoseScreen>().UpdateScores(score, highScore);
+        LoseScreen loseScreenComponent = loseScreen.GetComponent<LoseScreen>();
+        if (loseScreenComponent != null)
+        {
+            loseScreenComponent.UpdateScores(score, highScore);
+        }
     }
 
     public void RestartGame()
     {
         Debug.Log("Restarting game...");
+
+        // Cleanup before restarting
+        CleanupSubscriptions();
 
         isGameOver = false;
         Time.timeScale = 1f; // Resume the game
@@ -204,6 +269,9 @@ public class GameManager : MonoBehaviour
     private void HandlePlayerStateChange(PlayerState newState)
     {
         if (Time.timeSinceLevelLoad < initialCooldownTime) return;
+
+        // Check for null references
+        if (speedText == null || screenBorder == null) return;
 
         switch (newState)
         {
@@ -233,14 +301,17 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Debug.Log("Game Over.");
-        
+
         isGameOver = true;
-        
+
         if (Time.timeScale == 0f) return;
-        
+
         Time.timeScale = 0f; // Pause the game
 
-        windSound.Pause();
+        if (windSound != null)
+        {
+            windSound.Pause();
+        }
 
         // Check high score
         if (score > PlayerPrefs.GetInt(highScoreKey, 0))
@@ -253,10 +324,7 @@ public class GameManager : MonoBehaviour
         ShowLoseScreen();
 
         // Cleanup
-        if (playerSpeedBar != null)
-        {
-            playerSpeedBar.OnStateChanged -= HandlePlayerStateChange;
-        }
+        CleanupSubscriptions();
 
         score = 0;
     }

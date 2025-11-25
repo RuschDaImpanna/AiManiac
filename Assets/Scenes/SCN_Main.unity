@@ -525,7 +525,6 @@ GameObject:
   - component: {fileID: 515627470}
   - component: {fileID: 515627474}
   - component: {fileID: 515627473}
-  - component: {fileID: 515627472}
   - component: {fileID: 515627471}
   m_Layer: 0
   m_Name: Shadow
@@ -571,28 +570,6 @@ MonoBehaviour:
   maxHeight: 10
   offsetGround: 0.01
   dissipateWithHeight: 1
---- !u!64 &515627472
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 515627469}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &515627473
 MeshRenderer:
   m_ObjectHideFlags: 0
