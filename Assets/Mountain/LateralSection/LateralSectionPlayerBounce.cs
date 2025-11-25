@@ -34,10 +34,8 @@ public class LateralSectionPlayerBounce : MonoBehaviour
                 float speed = speedBar.Speed * 3.6f;
                 float additionalBounceSpeedScale = speed / 300f;
 
-                Debug.Log($"additonal Bounce Speed Scale: {additionalBounceSpeedScale}; speed: {speed}");
-
                 weaponRecoil?.UpdateLateralSpeed(
-                    -direction * weaponRecoil.RecoilSpeed * additionalBounceSpeedScale * 0.75f,
+                    - direction * weaponRecoil.RecoilSpeed * additionalBounceSpeedScale * 0.75f,
                     direction
                 );
 

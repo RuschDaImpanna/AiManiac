@@ -1088,6 +1088,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 354845953629593934, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5625
+      objectReference: {fileID: 0}
     - target: {fileID: 735750801696828498, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
       propertyPath: player
       value: 
@@ -1108,6 +1112,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2444850864963159694}
+    - target: {fileID: 7151185731136679653, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5625
+      objectReference: {fileID: 0}
     - target: {fileID: 7507871700597399713, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
