@@ -210,7 +210,7 @@ public class WeaponRecoil : MonoBehaviour
         Quaternion cameraDifference = Quaternion.Inverse(playerCameraHolderTransform.localRotation) * playerCameraTransform.localRotation;
         float pitchAngleDiffence = Mathf.DeltaAngle(0, cameraDifference.eulerAngles.x);
 
-        if (pitchAngleDiffence > minimunRecoilVerticalAngle)
+        if (pitchAngleDiffence > minimunRecoilVerticalAngle && IsGrounded())
         {
             float recoilVerticalSpeedScale = Mathf.Abs(pitchAngleDiffence) / 90f;
             UpdateVerticalSpeed(
