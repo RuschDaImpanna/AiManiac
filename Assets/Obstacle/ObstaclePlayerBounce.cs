@@ -20,6 +20,11 @@ public class ObstaclePlayerBounce : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
@@ -27,6 +32,7 @@ public class ObstaclePlayerBounce : MonoBehaviour
             Debug.Log("Player hit obstacle, applying bounce effect.");
 
             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
+
             if (playerRigidbody != null)
             {
                 int direction = (other.transform.position.x > transform.position.x) ? -1 : 1;
@@ -34,9 +40,14 @@ public class ObstaclePlayerBounce : MonoBehaviour
                 impulseSource.GenerateImpulse(playerRigidbody.linearVelocity * impulseScale);
 
                 WeaponRecoil weaponRecoil = other.GetComponent<WeaponRecoil>();
+                SpeedBar speedBar = other.GetComponent<SpeedBar>();
+                float speed = speedBar.Speed * 3.6f;
+                float additionalBounceSpeedScale = speed / 300f;
+
+                Debug.Log($"additonal Bounce Speed Scale: {additionalBounceSpeedScale}; speed: {speed}");
 
                 weaponRecoil?.UpdateLateralSpeed(
-                    - direction * weaponRecoil.RecoilSpeed * 0.4f, 
+                    - direction * weaponRecoil.RecoilSpeed * additionalBounceSpeedScale * 0.75f, 
                     direction
                 );
 

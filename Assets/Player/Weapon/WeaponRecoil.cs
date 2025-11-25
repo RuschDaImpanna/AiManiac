@@ -76,20 +76,17 @@ public class WeaponRecoil : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Aplicar desaceleración a la velocidad lateral (X)
         float currentX = rb.linearVelocity.x;
 
-        if (Mathf.Abs(currentX) > 0.01f) // Solo desacelerar si hay velocidad lateral
+        if (Mathf.Abs(currentX) > 0.01f)
         {
-            // Calcular la desaceleración por frame
             float deceleration = desaccelerationRate * Time.fixedDeltaTime;
 
-            // Mover hacia 0 (o hacia targetLateralSpeed si quieres un objetivo diferente)
             float newX = Mathf.MoveTowards(currentX, targetLateralSpeed, deceleration);
 
-            UpdateLateralSpeed(newX, Mathf.Sign(newX), false); // false = no resetear desaceleración
+            UpdateLateralSpeed(newX, Mathf.Sign(newX), false); // false = not reset desacceleration
 
-            Debug.Log($"Lateral Decel - Current X: {currentX:F2}, Target: {targetLateralSpeed:F2}, New X: {newX:F2}, Decel Rate: {desaccelerationRate:F2}");
+            //Debug.Log($"Lateral Decel - Current X: {currentX:F2}, Target: {targetLateralSpeed:F2}, New X: {newX:F2}, Decel Rate: {desaccelerationRate:F2}");
         }
 
         // Apply desacceleration to the player rigidbody in y axis
