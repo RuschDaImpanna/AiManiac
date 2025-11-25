@@ -22,7 +22,7 @@ public class WeaponRecoil : MonoBehaviour
     [Header("Camera Recoil Settings")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
     [SerializeField] private float recoilForce = 1f;
-    [SerializeField] private Vector3 recoilDirection = new (0, 0.2f, -1f);
+    [SerializeField] private Vector3 recoilDirection = new(0, 0.2f, -1f);
     [SerializeField] private CameraWeaponRecoil cameraWeaponRecoil;
 
     [Header("Physic Recoil Settings")]
@@ -33,18 +33,20 @@ public class WeaponRecoil : MonoBehaviour
     [SerializeField] private float minimunRecoilVerticalAngle = 10f;
     [SerializeField] private LayerMask groundLayer;
 
+    public float RecoilSpeed { get { return recoilSpeed; } set { recoilSpeed = value; } }
+
     private float lastShootTime = -Mathf.Infinity;
     private float currentCooldown = 0f;
 
-    private float desacceleration = 0f;
-    private float currentShootDirection = 0f;
+     private float desaccelerationRate = 0f; // Renombrado para claridad
+    private float targetLateralSpeed = 0f;  // Nueva variable: velocidad objetivo
 
     private Quaternion mountainSectionRotation;
     private float yComponentScale;
     private float zComponentScale;
-    
+
     private Rigidbody rb;
-    
+
     void Start()
     {
         rb = GetComponentInParent<Rigidbody>();
@@ -55,7 +57,7 @@ public class WeaponRecoil : MonoBehaviour
         }
 
         InputAction shootAction = GetComponentInParent<PlayerInput>().actions["Shoot"];
-        shootAction.performed += ctx => 
+        shootAction.performed += ctx =>
         {
             if (ctx.control.path.Contains("leftButton"))
             {
@@ -68,25 +70,34 @@ public class WeaponRecoil : MonoBehaviour
         };
 
         mountainSectionRotation = prefabMountainSection.rotation;
-        yComponentScale = Mathf.Sin(mountainSectionRotation.eulerAngles.x * Mathf.Deg2Rad) * additionalForwardScale; 
+        yComponentScale = Mathf.Sin(mountainSectionRotation.eulerAngles.x * Mathf.Deg2Rad) * additionalForwardScale;
         zComponentScale = Mathf.Cos(mountainSectionRotation.eulerAngles.x * Mathf.Deg2Rad) * additionalForwardScale;
     }
 
     void FixedUpdate()
     {
-        // Apply desacceleration to the player rigidbody in x axis
-        if (-rb.linearVelocity.x * currentShootDirection > 0) {
-            UpdateLateralSpeed(
-                rb.linearVelocity.x + desacceleration / 50f
-            );
+        // Aplicar desaceleración a la velocidad lateral (X)
+        float currentX = rb.linearVelocity.x;
+
+        if (Mathf.Abs(currentX) > 0.01f) // Solo desacelerar si hay velocidad lateral
+        {
+            // Calcular la desaceleración por frame
+            float deceleration = desaccelerationRate * Time.fixedDeltaTime;
+
+            // Mover hacia 0 (o hacia targetLateralSpeed si quieres un objetivo diferente)
+            float newX = Mathf.MoveTowards(currentX, targetLateralSpeed, deceleration);
+
+            UpdateLateralSpeed(newX, Mathf.Sign(newX), false); // false = no resetear desaceleración
+
+            Debug.Log($"Lateral Decel - Current X: {currentX:F2}, Target: {targetLateralSpeed:F2}, New X: {newX:F2}, Decel Rate: {desaccelerationRate:F2}");
         }
 
         // Apply desacceleration to the player rigidbody in y axis
-        if (!IsGrounded()) 
+        if (!IsGrounded())
         {
             //Debug.Log($"Current Y Speed: {rb.linearVelocity.y}");
             UpdateVerticalSpeed(
-                rb.linearVelocity.y - (Mathf.Abs(desacceleration) / 50f)
+                rb.linearVelocity.y - (Mathf.Abs(desaccelerationRate) / 50f)
             );
         }
 
@@ -102,7 +113,7 @@ public class WeaponRecoil : MonoBehaviour
 
     // Called when left mouse button is clicked
     void OnShootWeaponRecoil()
-    {   
+    {
         if (Time.timeScale == 0f) return;
         if (currentCooldown > 0f) return;
 
@@ -115,18 +126,21 @@ public class WeaponRecoil : MonoBehaviour
         float recoilLateralSpeedScale = Mathf.Abs(yawAngleDifference) / 90f; // Scale recoil based on how much the player is looking to the sides
         recoilLateralSpeedScale = recoilLateralSpeedScale > 1f ? 1f : recoilLateralSpeedScale; // Clamp to 1
 
-        currentShootDirection = yawAngleDifference >= 0 ? 1f : -1f;
-        desacceleration = recoilSpeed * recoilLateralSpeedScale * currentShootDirection / desaccelerationTime;
+        float shootDirection = Mathf.Sign(yawAngleDifference); // -1 o 1
+        float lateralRecoilSpeed = recoilSpeed * recoilLateralSpeedScale;
+
+        Debug.Log($"Shoot - Yaw Angle: {yawAngleDifference:F1}°, Direction: {shootDirection}, Lateral Speed: {lateralRecoilSpeed:F2}");
 
         UpdateLateralSpeed(
-            - recoilSpeed * recoilLateralSpeedScale,
-            currentShootDirection
+            -shootDirection * lateralRecoilSpeed,
+            shootDirection,
+            true
         );
 
-        if (yawAngleDifference * currentShootDirection > 90f) { 
+        if (Mathf.Abs(yawAngleDifference) > 90f) {
             float recoilForwardSpeedScale = (Mathf.Abs(yawAngleDifference) - 90f) / 90f; // Scale forward recoil based on how much the player is looking backwards
             UpdateForwardSpeed(
-                rb.linearVelocity.y - recoilSpeed * recoilForwardSpeedScale  * yComponentScale,
+                rb.linearVelocity.y - recoilSpeed * recoilForwardSpeedScale * yComponentScale,
                 rb.linearVelocity.z + recoilSpeed * recoilForwardSpeedScale * zComponentScale
             );
         }
@@ -143,7 +157,7 @@ public class WeaponRecoil : MonoBehaviour
             UpdateVerticalSpeed(
                 rb.linearVelocity.y + recoilSpeed * recoilVerticalSpeedScale * additionalVerticalScale
             );
-        
+
         }
 
 
@@ -160,10 +174,16 @@ public class WeaponRecoil : MonoBehaviour
         pulse.GetComponent<Rigidbody>().linearVelocity = rb.linearVelocity; // Inherit player's velocity
     }
 
-    public void UpdateLateralSpeed(float speed, float direction = 1f)
+    public void UpdateLateralSpeed(float speed, float direction = 1f, bool resetDeceleration = true)
     {
+        if (resetDeceleration)
+        {
+            desaccelerationRate = Mathf.Abs(speed) / desaccelerationTime;
+            targetLateralSpeed = 0f; // Target: back to 0
+        }
+
         rb.linearVelocity = new Vector3(
-            speed * direction,
+            speed,
             rb.linearVelocity.y,
             rb.linearVelocity.z
         );

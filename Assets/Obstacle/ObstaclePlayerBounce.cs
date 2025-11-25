@@ -29,17 +29,28 @@ public class ObstaclePlayerBounce : MonoBehaviour
             Rigidbody playerRigidbody = other.GetComponent<Rigidbody>();
             if (playerRigidbody != null)
             {
-                int direction = (other.transform.position.x > transform.position.x) ? 1 : -1;
+                int direction = (other.transform.position.x > transform.position.x) ? -1 : 1;
 
                 impulseSource.GenerateImpulse(playerRigidbody.linearVelocity * impulseScale);
 
-                playerRigidbody.linearVelocity = new Vector3(
-                    playerRigidbody.linearVelocity.x,
+                WeaponRecoil weaponRecoil = other.GetComponent<WeaponRecoil>();
+
+                weaponRecoil?.UpdateLateralSpeed(
+                    - direction * weaponRecoil.RecoilSpeed * 0.4f, 
+                    direction
+                );
+
+                weaponRecoil?.UpdateForwardSpeed(
                     playerRigidbody.linearVelocity.y * speedReduction,
                     playerRigidbody.linearVelocity.z * speedReduction
                 );
+                //playerRigidbody.linearVelocity = new Vector3(
+                //    playerRigidbody.linearVelocity.x,
+                //    playerRigidbody.linearVelocity.y * speedReduction,
+                //    playerRigidbody.linearVelocity.z * speedReduction
+                //);
 
-                playerRigidbody.AddForce(new Vector3(playerRigidbody.linearVelocity.magnitude * bounceForce * direction, 0, 0), ForceMode.Impulse);
+                //playerRigidbody.AddForce(new Vector3(playerRigidbody.linearVelocity.magnitude * bounceForce * direction, 0, 0), ForceMode.Impulse);
             }
         }
     }
