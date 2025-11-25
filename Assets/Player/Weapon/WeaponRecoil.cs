@@ -17,7 +17,11 @@ public class WeaponRecoil : MonoBehaviour
 
     [Header("Shooting Settings")]
     [SerializeField] private float cooldown = 1.5f;
-    public float CurrentCooldown { get { return currentCooldown; } }
+
+    public float Cooldown
+    {
+        get { return cooldown; }
+    }
 
     [Header("Camera Recoil Settings")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
@@ -37,6 +41,7 @@ public class WeaponRecoil : MonoBehaviour
 
     private float lastShootTime = -Mathf.Infinity;
     private float currentCooldown = 0f;
+    public float CurrentCooldown { get { return currentCooldown; } }
 
     private float desaccelerationRate = 0f;
     private float targetLateralSpeed = 0f;
@@ -184,7 +189,7 @@ public class WeaponRecoil : MonoBehaviour
         float shootDirection = Mathf.Sign(yawAngleDifference);
         float lateralRecoilSpeed = recoilSpeed * recoilLateralSpeedScale;
 
-        Debug.Log($"Shoot - Yaw Angle: {yawAngleDifference:F1}°, Direction: {shootDirection}, Lateral Speed: {lateralRecoilSpeed:F2}");
+        //Debug.Log($"Shoot - Yaw Angle: {yawAngleDifference:F1}°, Direction: {shootDirection}, Lateral Speed: {lateralRecoilSpeed:F2}");
 
         UpdateLateralSpeed(
             -shootDirection * lateralRecoilSpeed,
