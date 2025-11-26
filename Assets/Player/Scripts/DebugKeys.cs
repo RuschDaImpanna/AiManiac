@@ -30,6 +30,16 @@ public class DebugKeys : MonoBehaviour
 
         var control = context.control;
 
+        if (player == null || rb == null)
+        {
+            player = gameManager.Player;
+
+            if (player != null)
+                rb = player.GetComponent<Rigidbody>();
+            else
+                return; // No existe jugador todavía, evitar error
+        }
+
         if (control.name == "f1")
         {
             gameManager.RestartGame();

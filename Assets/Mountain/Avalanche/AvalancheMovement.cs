@@ -133,7 +133,7 @@ public class AvalancheMovement : MonoBehaviour
             _ => normalVolume
         };
 
-        Debug.Log($"Avalanche: Estado -> {newState}, Distancia: {targetDistanceMultiplier}, Volumen: {targetVolume}");
+        //Debug.Log($"Avalanche: Estado -> {newState}, Distancia: {targetDistanceMultiplier}, Volumen: {targetVolume}");
     }
 
     // Métodos públicos por si quieres modificar distancia o volumen externamente
