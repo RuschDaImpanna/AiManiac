@@ -814,6 +814,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 2444850864963159694}
+    - target: {fileID: 6653681936025181086, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
+      propertyPath: speedBar
+      value: 
+      objectReference: {fileID: 5532003595700774816}
     - target: {fileID: 7151185731136679653, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.5625
