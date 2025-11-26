@@ -8,6 +8,8 @@ TagManager:
   - Zone_MountainDestructor
   - Zone_LoopReset
   - Obstacle
+  - Zone_ParallaxDeathWall
+  - LateralParallaxSet
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Ground
   - 
   - 
   - 

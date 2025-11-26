@@ -19,7 +19,7 @@ public class CameraWeaponRecoil : MonoBehaviour
         quaternionedCurrentRotation = Quaternion.Euler(currentRotation);
 
         // Apply the rotation to the camera
-        transform.localRotation = new Quaternion(quaternionedCurrentRotation.x, transform.localRotation.y, transform.localRotation.z, transform.localRotation.w);
+        transform.localRotation = new Quaternion(quaternionedCurrentRotation.x, transform.localRotation.y, 0f, transform.localRotation.w);
     }
 
     public void ApplyRecoil()

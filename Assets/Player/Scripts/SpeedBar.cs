@@ -12,9 +12,11 @@ public class SpeedBar : MonoBehaviour
 
     private float dangerSpeedLimit = 0f;
     private float warningSpeedLimit = 0f;
+    private float maxSpeedLimit = 0f;
     private PlayerState currentState = PlayerState.Normal;
     private float speed = 0f;
     public float Speed { get { return speed; } }
+    public float MaxSpeed { get { return maxSpeedLimit; } }
 
     private Rigidbody rb;
 
@@ -60,6 +62,7 @@ public class SpeedBar : MonoBehaviour
             deadSpeedLimit = speed * 0.5f;
             dangerSpeedLimit = speed * 0.65f;
             warningSpeedLimit = speed * 0.8f;
+            maxSpeedLimit = speed;
         }
     }
 }

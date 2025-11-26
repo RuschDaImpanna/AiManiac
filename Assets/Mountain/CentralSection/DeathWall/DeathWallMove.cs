@@ -3,14 +3,16 @@ using UnityEngine;
 
 public class DestroyWallMove : MonoBehaviour
 {
-    public GameObject player;
-    public GameObject prefabMountainSection;
-    public Boolean isFront = true;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject prefabMountainSection;
+    [SerializeField] private Boolean isFront = true;
+
+    private GameObject mountain;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        mountain = transform.parent.gameObject;
     }
 
     // Update is called once per frame
@@ -25,8 +27,6 @@ public class DestroyWallMove : MonoBehaviour
             );
         } else
         {
-            GameObject mountain = transform.parent.gameObject;
-
             transform.position = player.transform.position + new Vector3(
                 0f,
                 -prefabMountainSection.transform.localScale.z * Mathf.Sin(mountain.transform.rotation.eulerAngles.x * Mathf.PI / 180) * 3.5f,
