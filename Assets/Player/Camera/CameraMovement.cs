@@ -7,7 +7,8 @@ public class CameraMovement : MonoBehaviour
 
     [Header("Limit (Up, Down)")]
     [SerializeField] private Vector2 limitFront = new Vector2();
-    [SerializeField] private Vector2 limitBack = new Vector2(); 
+    [SerializeField] private Vector2 limitBack = new Vector2();
+    
 
     private InputController mouseScript;
     
@@ -80,5 +81,6 @@ public class CameraMovement : MonoBehaviour
     Quaternion rotMax = Quaternion.Euler(maxX, transform.parent.eulerAngles.y, 0f);
     Vector3 dirMax = rotMax * Vector3.forward;
     Debug.DrawRay(origin, dirMax * 5f, Color.blue);
-    }
+
+      }
 }

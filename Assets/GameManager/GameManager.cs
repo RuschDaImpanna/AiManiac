@@ -17,7 +17,11 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private AudioSource windSound;
-    public GameObject Player {
+    [SerializeField] private AudioSource snowboardingSound;
+    [SerializeField] private AudioSource startmusicSound;
+
+    public GameObject Player
+    {
         get { return player; }
     }
 
@@ -35,7 +39,8 @@ public class GameManager : MonoBehaviour
     private int score;
 
     private float lastZPosition;
-    public float LastZPosition {
+    public float LastZPosition
+    {
         get { return lastZPosition; }
         set { lastZPosition = value; }
     }
@@ -43,11 +48,11 @@ public class GameManager : MonoBehaviour
     public const string highScoreKey = "HighScore";
 
     private bool isGameOver = false;
-    public bool IsGameOver {
+    public bool IsGameOver
+    {
         get { return isGameOver; }
     }
 
-    // Add a cooldown to start be considering danger/dead states
     private float initialCooldownTime = 5f;
 
     public float speed;
@@ -65,33 +70,26 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // Find and subscribe to the SpeedBar's state change event
         playerSpeedBar = FindFirstObjectByType<SpeedBar>();
 
-        if (playerSpeedBar != null )
+        if (playerSpeedBar != null)
         {
             playerSpeedBar.OnStateChanged += HandlePlayerStateChange;
         }
-        
-        // Find the player's weapon
-        playerWeapon = player.GetComponentInChildren<WeaponRecoil>();
 
-        // Find the player's movement script
+        playerWeapon = player.GetComponentInChildren<WeaponRecoil>();
         playerMovement = player.GetComponent<PlayerMovement>();
 
-        // Load high score and initialize score
         loadHighScore();
         score = 0;
         lastZPosition = player.transform.position.z;
 
-        // Initialize screens
         loseScreen.SetActive(false);
         playScreen.SetActive(true);
         pauseScreen.SetActive(false);
 
-        // Bind the pause action
         InputAction pauseGameAction = player.GetComponent<PlayerInput>().actions["PauseGame"];
-        pauseGameAction.performed += ctx => 
+        pauseGameAction.performed += ctx =>
         {
             if (ctx.control.path.Contains("escape")) PauseGame();
         };
@@ -99,69 +97,76 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Update score UI
         if (player.transform.position.z - lastZPosition > 1)
         {
             score += 1;
             UpdateScoreUI();
             lastZPosition = player.transform.position.z;
-
-
         }
 
-        // Update speed UI
-        speed = playerSpeedBar.Speed*3.6f;
-
+        speed = playerSpeedBar.Speed * 3.6f;
         speedText.text = speed.ToString("F1");
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Reset time scale when a new scene is loaded
         Time.timeScale = 1f;
         isGameOver = false;
 
-        if (windSound.isPlaying == false)
-        {
-            windSound.UnPause();
-        }
+        UnpauseAllSounds();
     }
 
     void OnDestroy()
     {
-        Debug.Log("GameManager destruido!");
-
-        // Limpiar suscripciones
         if (playerSpeedBar != null)
         {
             playerSpeedBar.OnStateChanged -= HandlePlayerStateChange;
         }
     }
 
+    // ------------------------- AUDIO CONTROL -------------------------
+
+    private void PauseAllSounds()
+    {
+        windSound.Pause();
+        snowboardingSound.Pause();
+        startmusicSound.Pause();
+    }
+
+    private void UnpauseAllSounds()
+    {
+        windSound.UnPause();
+        snowboardingSound.UnPause();
+        startmusicSound.UnPause();
+    }
+
+    // -----------------------------------------------------------------
+
     public void PauseGame()
     {
         if (isGameOver) return;
+
         if (Time.timeScale == 0f)
         {
-            Time.timeScale = 1f; // Resume the game
+            Time.timeScale = 1f;
             playScreen.SetActive(true);
             pauseScreen.SetActive(false);
-            // Lock the cursor and hide it
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            windSound.UnPause();
+            UnpauseAllSounds();
         }
         else
         {
-            Time.timeScale = 0f; // Pause the game
+            Time.timeScale = 0f;
             playScreen.SetActive(false);
             pauseScreen.SetActive(true);
-            // Unlock the cursor and show it
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            windSound.Pause();
+            PauseAllSounds();
         }
     }
 
@@ -175,25 +180,21 @@ public class GameManager : MonoBehaviour
 
     private void ShowLoseScreen()
     {
-        playScreen.SetActive(false); // Hide play screen
-        loseScreen.SetActive(true); // Show lose screen
+        playScreen.SetActive(false);
+        loseScreen.SetActive(true);
 
-        // Unlock the cursor and show the cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Update lose screen with final score and high score
         int highScore = PlayerPrefs.GetInt(highScoreKey, 0);
         loseScreen.GetComponent<LoseScreen>().UpdateScores(score, highScore);
     }
 
     public void RestartGame()
     {
-        Debug.Log("Restarting game...");
-
         isGameOver = false;
-        Time.timeScale = 1f; // Resume the game
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void loadHighScore()
@@ -208,22 +209,21 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case PlayerState.Normal:
-                Debug.Log("Player is in Normal state.");
                 speedText.color = new Color(0, 1, 0.9f);
                 screenBorder.SetNormal();
                 break;
+
             case PlayerState.Warning:
-                Debug.Log("Player is in Warning state.");
                 speedText.color = Color.yellow;
                 screenBorder.SetWarning(fastTransition: true);
                 break;
+
             case PlayerState.Danger:
-                Debug.Log("Player is in Danger state.");
                 speedText.color = Color.red;
                 screenBorder.SetDanger(fastTransition: true);
                 break;
+
             case PlayerState.Dead:
-                Debug.Log("Player is Dead.");
                 speedText.color = Color.red;
                 GameOver();
                 break;
@@ -232,27 +232,22 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Debug.Log("Game Over.");
-        
         isGameOver = true;
-        
+
         if (Time.timeScale == 0f) return;
-        
-        Time.timeScale = 0f; // Pause the game
 
-        windSound.Pause();
+        Time.timeScale = 0f;
 
-        // Check high score
+        PauseAllSounds();
+
         if (score > PlayerPrefs.GetInt(highScoreKey, 0))
         {
             PlayerPrefs.SetInt(highScoreKey, score);
             PlayerPrefs.Save();
-            Debug.Log("New High Score: " + score);
         }
 
         ShowLoseScreen();
 
-        // Cleanup
         if (playerSpeedBar != null)
         {
             playerSpeedBar.OnStateChanged -= HandlePlayerStateChange;
