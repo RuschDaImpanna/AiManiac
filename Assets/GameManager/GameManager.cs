@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private AudioSource windSound;
     [SerializeField] private AudioSource snowboardingSound;
     [SerializeField] private AudioSource startmusicSound;
+    [SerializeField] private AudioSource avalancheAudio;
 
     public GameObject Player
     {
@@ -190,6 +191,7 @@ public class GameManager : MonoBehaviour
         windSound.Pause();
         snowboardingSound.Pause();
         startmusicSound.Pause();
+        avalancheAudio.Pause();
     }
 
     private void UnpauseAllSounds()
@@ -197,6 +199,7 @@ public class GameManager : MonoBehaviour
         windSound.UnPause();
         snowboardingSound.UnPause();
         startmusicSound.UnPause();
+        avalancheAudio.UnPause();
     }
 
     // -----------------------------------------------------------------

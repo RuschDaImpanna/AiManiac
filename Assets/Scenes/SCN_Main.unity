@@ -956,6 +956,10 @@ PrefabInstance:
       propertyPath: speedBar
       value: 
       objectReference: {fileID: 5532003595700774816}
+    - target: {fileID: 7360774381661424692, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 7507871700597399713, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
