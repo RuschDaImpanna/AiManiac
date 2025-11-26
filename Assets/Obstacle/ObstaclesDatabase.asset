@@ -15,7 +15,7 @@ MonoBehaviour:
   allObstacles:
   - displayName: SnowTree
     prefab: {fileID: 249393727878771358, guid: 89f30ede9277cc646a7fad6719bec86b, type: 3}
-    rarity: 50
+    rarity: 100
     marginX: 10
     marginZ: 10
   - displayName: LateralSnowTree
@@ -39,12 +39,12 @@ MonoBehaviour:
     marginX: 5
     marginZ: 10
   - displayName: Combo1
-    prefab: {fileID: 9046419929238872705, guid: 26186a650f0828444aa9f96113127f57, type: 3}
-    rarity: 5
+    prefab: {fileID: 6499287612672581535, guid: 46e922d96f191e043b9559e2ded40c4a, type: 3}
+    rarity: 100
     marginX: 5
     marginZ: 10
   - displayName: Combo2
-    prefab: {fileID: 5509253714725233276, guid: 3e54c836684581747adc1a39db8d3407, type: 3}
-    rarity: 5
+    prefab: {fileID: 4492668492820645548, guid: 3e54c836684581747adc1a39db8d3407, type: 3}
+    rarity: 100
     marginX: 5
     marginZ: 10

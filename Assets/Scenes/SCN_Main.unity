@@ -839,10 +839,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 256258407648862493, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 735750801696828498, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 2444850864963159694}
+    - target: {fileID: 1154649518950797725, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3542302329392686226, guid: 11b7500f1ebcad3468fcaf41fa9e5c35, type: 3}
       propertyPath: gameManager
       value: 

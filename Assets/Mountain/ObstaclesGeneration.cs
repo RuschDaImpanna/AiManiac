@@ -109,8 +109,13 @@ public class ObstaclesGeneration : MonoBehaviour
 
     bool CheckPosAvailability(GameObject prefab, Vector3 localPos)
     {
+        if (prefab.name == "Obstacles_Combo2")
+        {
+        }
         // Check if the prefab fits within the bounds of the parent object at the given local position
         Vector3 prefabRelativeSize = GetRelativeSize(prefab.transform.localScale);
+
+        Debug.Log($"{prefab.name}; {prefab.transform.localScale}; {prefabRelativeSize}");
 
         if (prefabRelativeSize.x > 1f || prefabRelativeSize.z > 1f)
         {
