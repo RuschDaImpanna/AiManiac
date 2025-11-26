@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [Header("References")]
     [SerializeField] private GameObject player;
     [SerializeField] private AudioSource windSound;
+    [SerializeField] private AudioSource snowboardingSound;
+    [SerializeField] private AudioSource startmusicSound;
+
     public GameObject Player
     {
         get { return player; }
@@ -51,7 +54,6 @@ public class GameManager : MonoBehaviour
         get { return isGameOver; }
     }
 
-    // Add a cooldown to start be considering danger/dead states
     private float initialCooldownTime = 5f;
 
     public float speed;
@@ -90,7 +92,6 @@ public class GameManager : MonoBehaviour
             playerInput = player.GetComponent<PlayerInput>();
         }
 
-        // Load high score and initialize score
         loadHighScore();
         score = 0;
 
@@ -144,7 +145,6 @@ public class GameManager : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Reset time scale when a new scene is loaded
         Time.timeScale = 1f;
         isGameOver = false;
 
@@ -155,10 +155,7 @@ public class GameManager : MonoBehaviour
         // Use Invoke to wait one frame for all objects to be ready
         Invoke(nameof(InitializeGame), 0.1f);
 
-        if (windSound != null && !windSound.isPlaying)
-        {
-            windSound.UnPause();
-        }
+        UnpauseAllSounds();
     }
 
     void OnDestroy()
@@ -175,7 +172,7 @@ public class GameManager : MonoBehaviour
             playerSpeedBar.OnStateChanged -= HandlePlayerStateChange;
         }
 
-        // Limpiar suscripción del input
+        // Limpiar suscripciï¿½n del input
         if (playerInput != null)
         {
             InputAction pauseGameAction = playerInput.actions["PauseGame"];
@@ -185,6 +182,24 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+    // ------------------------- AUDIO CONTROL -------------------------
+
+    private void PauseAllSounds()
+    {
+        windSound.Pause();
+        snowboardingSound.Pause();
+        startmusicSound.Pause();
+    }
+
+    private void UnpauseAllSounds()
+    {
+        windSound.UnPause();
+        snowboardingSound.UnPause();
+        startmusicSound.UnPause();
+    }
+
+    // -----------------------------------------------------------------
 
     public void PauseGame()
     {
@@ -199,25 +214,25 @@ public class GameManager : MonoBehaviour
 
         if (Time.timeScale == 0f)
         {
-            Time.timeScale = 1f; // Resume the game
+            Time.timeScale = 1f;
             playScreen.SetActive(true);
             pauseScreen.SetActive(false);
-            // Lock the cursor and hide it
+
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            windSound.UnPause();
+            UnpauseAllSounds();
         }
         else
         {
-            Time.timeScale = 0f; // Pause the game
+            Time.timeScale = 0f;
             playScreen.SetActive(false);
             pauseScreen.SetActive(true);
-            // Unlock the cursor and show it
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
 
-            windSound.Pause();
+            PauseAllSounds();
         }
     }
 
@@ -236,11 +251,9 @@ public class GameManager : MonoBehaviour
         playScreen.SetActive(false); // Hide play screen
         loseScreen.SetActive(true); // Show lose screen
 
-        // Unlock the cursor and show the cursor
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        // Update lose screen with final score and high score
         int highScore = PlayerPrefs.GetInt(highScoreKey, 0);
         LoseScreen loseScreenComponent = loseScreen.GetComponent<LoseScreen>();
         if (loseScreenComponent != null)
@@ -257,8 +270,8 @@ public class GameManager : MonoBehaviour
         CleanupSubscriptions();
 
         isGameOver = false;
-        Time.timeScale = 1f; // Resume the game
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); // Reload the current scene
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void loadHighScore()
@@ -276,22 +289,21 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case PlayerState.Normal:
-                Debug.Log("Player is in Normal state.");
                 speedText.color = new Color(0, 1, 0.9f);
                 screenBorder.SetNormal();
                 break;
+
             case PlayerState.Warning:
-                Debug.Log("Player is in Warning state.");
                 speedText.color = Color.yellow;
                 screenBorder.SetWarning(fastTransition: true);
                 break;
+
             case PlayerState.Danger:
-                Debug.Log("Player is in Danger state.");
                 speedText.color = Color.red;
                 screenBorder.SetDanger(fastTransition: true);
                 break;
+
             case PlayerState.Dead:
-                Debug.Log("Player is Dead.");
                 speedText.color = Color.red;
                 GameOver();
                 break;
@@ -308,17 +320,12 @@ public class GameManager : MonoBehaviour
 
         Time.timeScale = 0f; // Pause the game
 
-        if (windSound != null)
-        {
-            windSound.Pause();
-        }
+        PauseAllSounds();
 
-        // Check high score
         if (score > PlayerPrefs.GetInt(highScoreKey, 0))
         {
             PlayerPrefs.SetInt(highScoreKey, score);
             PlayerPrefs.Save();
-            Debug.Log("New High Score: " + score);
         }
 
         ShowLoseScreen();

@@ -6,6 +6,7 @@ public class ObstaclePlayerBounce : MonoBehaviour
     [Header("Cinemachine Impulse Settings")]
     [SerializeField] private CinemachineImpulseSource impulseSource;
     [SerializeField] private float impulseScale = 1f;
+    [SerializeField] AudioSource collisionSound;
 
     [Header("Bounce Settings")]
     [SerializeField] private float bounceForce;
@@ -62,7 +63,9 @@ public class ObstaclePlayerBounce : MonoBehaviour
                 //);
 
                 //playerRigidbody.AddForce(new Vector3(playerRigidbody.linearVelocity.magnitude * bounceForce * direction, 0, 0), ForceMode.Impulse);
-            }
+
+                collisionSound.Play();
+              }
         }
     }
 }

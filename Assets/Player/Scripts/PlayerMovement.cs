@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     public bool showSpeed = false;
     private Vector3 previousVelocity;
 
+  
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -52,11 +53,12 @@ public class PlayerMovement : MonoBehaviour
         if (showSpeed)
         {
             float acceleration = ((rb.linearVelocity - previousVelocity) / Time.fixedDeltaTime).magnitude;
-            Debug.Log("Speed (m/s): " + speed + " Acceleration (m/s^2): " + acceleration + " Speed (km/h): " +  speed * 3.6);
+            Debug.Log("Speed (m/s): " + speed + " Acceleration (m/s^2): " + acceleration + " Speed (km/h): " + speed * 3.6);
         }
 
         previousVelocity = rb.linearVelocity;
         rb.AddForce(new Vector3(moveInput.x, 0f, moveInput.y) * force);
 
+        
     }
 }
