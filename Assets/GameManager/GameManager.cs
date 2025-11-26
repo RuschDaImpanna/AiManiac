@@ -138,7 +138,7 @@ public class GameManager : MonoBehaviour
 
         if (speedText != null)
         {
-            speedText.text = speed.ToString("F1");
+            speedText.text = $"{speed:F1}km/h";
         }
     }
 

@@ -99,8 +99,11 @@ public class SpeedometerController : MonoBehaviour
         // Suavizar el movimiento de la aguja
         currentNeedleAngle = Mathf.Lerp(currentNeedleAngle, targetNeedleAngle, Time.deltaTime * smoothSpeed);
 
-        // Aplicar rotación
-        needleImageTransform.rotation = Quaternion.Euler(0, 0, currentNeedleAngle);
+        // Obtener la rotación local actual para preservar X e Y del padre
+        Vector3 currentLocalEuler = needleImageTransform.localEulerAngles;
+
+        // Aplicar rotación solo en el eje Z, manteniendo X e Y del padre
+        needleImageTransform.localRotation = Quaternion.Euler(0f, 0f, currentNeedleAngle);
     }
 
     private void HandleStateChange(PlayerState newState)
@@ -126,6 +129,7 @@ public class SpeedometerController : MonoBehaviour
 
         // Suavizar transición de color
         backgroundFill.color = Color.Lerp(backgroundFill.color, targetColor, Time.deltaTime * smoothSpeed);
+        //backgroundFill.color = targetColor;
     }
 
     // Método público para cambiar color manualmente si es necesario
